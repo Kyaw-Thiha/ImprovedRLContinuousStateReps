@@ -3,3 +3,5 @@
 *.swp
 *.swo
 *.cpython-39.pyc
+
+**/__pycache__
