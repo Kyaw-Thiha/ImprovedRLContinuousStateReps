@@ -22,6 +22,10 @@ To reproduce results: CartPole
 * `cartpoleData/merge_episodic_rwds.py` extracts reward data for all models across the 10 initial seeds and merges this into one file saved at cartpoleData/processed/all-episodic-rewards.csv (for easy plotting)
 * `cartpoleExperiments/a2c_baseline_cartpole.py` runs the baseline model on CartPole and saves the results
 
+```bash
+python cartpoleExperiments/run_trial_cartpole_repeats.py
+```
+
 Reproducing manuscript figures
 * `figures/generate_figure4.py` and `figures/generate_figure5.py` generates figures 4 and 5 as they appear in the paper
 * `figures/generate_figure6.py` makes the comparison plot and reports the statistics used in the paper
