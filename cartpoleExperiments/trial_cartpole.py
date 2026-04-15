@@ -53,6 +53,12 @@ class ACTrial(pytry.Trial):
         self.param("Lambda for TD(lambda)", lambd=None)
         self.param("Number of trials with learning", learnTrials=None)
 
+        ## Reward Centering (Currently only available for TD(0))
+        self.param("Reward centering mode", reward_center_mode="none")
+        self.param("Reward centering beta", reward_center_beta=0.001)
+        self.param("Reward centering eta", reward_center_eta=1.0)
+        self.param("Initial avg reward estimate", reward_center_init=0.0)
+
         ## Network Parameters
         self.param("Number of neurons in state ensemble", state_neurons=None)
         self.param("Proportion of neurons active", active_prop=None)
@@ -92,9 +98,7 @@ class ACTrial(pytry.Trial):
             print(self.env.observation_space.high)
 
             low = self.env.observation_space.low
-            low[
-                1
-            ] = -10  # cart velocity and pole angular velocity are otherwise (-inf,inf)
+            low[1] = -10  # cart velocity and pole angular velocity are otherwise (-inf,inf)
             low[3] = -10
 
             high = self.env.observation_space.high
@@ -104,9 +108,7 @@ class ACTrial(pytry.Trial):
             domain_bounds_ = np.array([[-1, -1, -1, -1], [1, 1, 1, 1]]).T
         else:
             low = self.env.observation_space.low
-            low[
-                1
-            ] = -10  # cart velocity and pole angular velocity are otherwise (-inf,inf)
+            low[1] = -10  # cart velocity and pole angular velocity are otherwise (-inf,inf)
             low[3] = -10
 
             high = self.env.observation_space.high
@@ -133,13 +135,9 @@ class ACTrial(pytry.Trial):
             rep.ranges = rep.upper - rep.lower
             state_size = rep.size_out
         elif param.rep_ == "Discrete":
-            rep = net.representations.OneHotRepCP(
-                (param.n_bins, param.n_bins, param.n_bins, param.n_bins)
-            )
+            rep = net.representations.OneHotRepCP((param.n_bins, param.n_bins, param.n_bins, param.n_bins))
             state_size = rep.size_out
 
-        ## Rule Parameters
-        rule = getattr(net.rules, param.rule)
         n_actions = self.env.action_space.n
         # print(n_actions)
 
@@ -159,11 +157,7 @@ class ACTrial(pytry.Trial):
         if state_neurons != None:
             n_neurons = next_power_of_2(state_neurons)
             if n_neurons != state_neurons:
-                print(
-                    "# neurons must be a power of 2, requested: {}, actual: {}".format(
-                        state_neurons, n_neurons
-                    )
-                )
+                print("# neurons must be a power of 2, requested: {}, actual: {}".format(state_neurons, n_neurons))
         else:
             n_neurons = None
 
@@ -188,10 +182,10 @@ class ACTrial(pytry.Trial):
         else:
             encoders = nengo.Default
 
-        ## Network
-        self.net = net.networks.ActorCritic(
-            representation=rep,
-            rule=rule(
+        ## Rule Parameters
+        rule_name = param.rule
+        if rule_name == "TD0" and param.reward_center_mode != "none":
+            rule = net.rules.TD0Center(
                 n_actions=n_actions,
                 lr=lr,
                 act_dis=act_dis,
@@ -200,7 +194,28 @@ class ACTrial(pytry.Trial):
                 lambd=lambd,
                 env_dt=env_dt,
                 learnTrials=learnTrials,
-            ),
+                reward_center_mode=param.reward_center_mode,
+                reward_center_beta=param.reward_center_beta,
+                reward_center_eta=param.reward_center_eta,
+                reward_center_init=param.reward_center_init,
+            )
+        else:
+            rule_cls = getattr(net.rules, rule_name)
+            rule = rule_cls(
+                n_actions=n_actions,
+                lr=lr,
+                act_dis=act_dis,
+                state_dis=state_dis,
+                n=n,
+                lambd=lambd,
+                env_dt=env_dt,
+                learnTrials=learnTrials,
+            )
+
+        ## Network
+        self.net = net.networks.ActorCritic(
+            representation=rep,
+            rule=rule,
             state_neurons=n_neurons,
             active_prop=active_prop,
             encoders=encoders,
@@ -217,9 +232,7 @@ class ACTrial(pytry.Trial):
         vdata = {}  # values
         adata = {}  # actions
 
-        self.data_dir = os.path.join(
-            os.path.dirname(__file__), param.data_dir, param.data_filename
-        )
+        self.data_dir = os.path.join(os.path.dirname(__file__), param.data_dir, param.data_filename)
 
         trials_start = time.time()
         for trial in tqdm(range(trials)):
@@ -255,9 +268,7 @@ class ACTrial(pytry.Trial):
             if param.normalize_state == True:
                 update_state /= self.state_scale
 
-            value, action_logits = self.net.step(
-                update_state, 0, 0, reset=True
-            )  ## state and action values
+            value, action_logits = self.net.step(update_state, 0, 0, reset=True)  ## state and action values
 
             ## Each time step
             for step in range(steps):
@@ -293,9 +304,7 @@ class ACTrial(pytry.Trial):
                 action_learn = softmax(action_logits * 1)
 
                 ## Update state and max weighted action values
-                value, action_logits = self.net.step(
-                    current_state, action_learn, reward
-                )
+                value, action_logits = self.net.step(current_state, action_learn, reward)
 
                 rs.append(reward)
 
@@ -317,9 +326,7 @@ class ACTrial(pytry.Trial):
                         for j in range(n):
                             ## Update state and action values
                             reward = 0
-                            value, action_logits = self.net.step(
-                                current_state, action_learn, reward
-                            )
+                            value, action_logits = self.net.step(current_state, action_learn, reward)
 
                             rs.append(reward)  ## save reward
 
@@ -332,9 +339,7 @@ class ACTrial(pytry.Trial):
                     else:
                         while done_counter > 0:
                             reward = 0
-                            value, action_logits = self.net.step(
-                                current_state, action_learn, reward
-                            )
+                            value, action_logits = self.net.step(current_state, action_learn, reward)
 
                             rs.append(reward)  ## save reward
 
@@ -369,9 +374,9 @@ class ACTrial(pytry.Trial):
             # feel like this should be in the agent not in the main script
 
             if param.dynamic_epsilon == True:
-                if np.mean(Ep_rewards[trial - 10 : trial]) > np.mean(
+                if np.mean(Ep_rewards[trial - 10 : trial]) > np.mean(Ep_rewards[trial - 20 : trial - 10]) + np.std(
                     Ep_rewards[trial - 20 : trial - 10]
-                ) + np.std(Ep_rewards[trial - 20 : trial - 10]):
+                ):
                     eps -= 0.001
                 # elif np.mean(Ep_rewards[trial-10:trial]) < np.mean(Ep_rewards[trial-20:trial-10])- np.std(Ep_rewards[trial-20:trial-10]):
                 #     eps += 0.001
@@ -406,11 +411,7 @@ class ACTrial(pytry.Trial):
         terminal_reward = reward_rolling_mean[-1]
 
         # the number of episodes to reach an average reward of 50. (as observed in the last 100 episodes)
-        episodes_to_learn = next(
-            itertools.chain(
-                iter(i for i, v in enumerate(reward_rolling_mean) if v > 195.0), [-1]
-            )
-        )
+        episodes_to_learn = next(itertools.chain(iter(i for i, v in enumerate(reward_rolling_mean) if v > 195.0), [-1]))
         if episodes_to_learn == -1:
             episodes_to_learn = np.nan
 

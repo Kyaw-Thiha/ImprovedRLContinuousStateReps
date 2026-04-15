@@ -3,7 +3,7 @@ import numpy as np
 
 
 ## TD(0) Learning Rule with reward centering ##
-class TD0(nengo.processes.Process):
+class TD0Center(nengo.processes.Process):
     """Create nengo Node with input, output and state.
     This node is where the TD(0) learning rule is applied.
 
@@ -41,15 +41,9 @@ class TD0(nengo.processes.Process):
 
         # Reward Centering
         self.reward_center_mode = reward_center_mode  # "none", "simple", "value"
-        self.reward_center_beta = (
-            reward_center_beta  # Used as update rate for simple centering
-        )
-        self.reward_center_eta = (
-            reward_center_eta  # Used as update rate for value centering
-        )
-        self.reward_center_init = (
-            reward_center_init  # Initial estimate of the average-reward
-        )
+        self.reward_center_beta = reward_center_beta  # Used as update rate for simple centering
+        self.reward_center_eta = reward_center_eta  # Used as update rate for value centering
+        self.reward_center_init = reward_center_init  # Initial estimate of the average-reward
 
         ## Input = reward + state representation + action values for current state
         ## Output = action values for current state + state value
@@ -71,6 +65,7 @@ class TD0(nengo.processes.Process):
             update_state_rep=np.zeros(dim),
             update_value=0,
             w=np.zeros((self.n_actions + 1, dim)),
+            avg_reward=self.reward_center_init,
         )  # np.random.rand(4+1, 4000)) #np.zeros((self.n_actions+1, dim)))
 
     def make_step(self, shape_in, shape_out, dt, rng, state):
@@ -92,12 +87,8 @@ class TD0(nengo.processes.Process):
             Outputs: updated state value, updated action values"""
 
             current_state_rep = x[:dim]  ##get the state representation of current state
-            update_state_rep = state[
-                "update_state_rep"
-            ]  ##get representation of state being updated
-            update_action = x[
-                dim:-2
-            ]  ##get the action being updated (i.e. the action that was taken)
+            update_state_rep = state["update_state_rep"]  ##get representation of state being updated
+            update_action = x[dim:-2]  ##get the action being updated (i.e. the action that was taken)
             reward = x[-2]  ##get reward received following action
             reset = x[-1]  ##get whether or not env was reset
 
@@ -118,12 +109,20 @@ class TD0(nengo.processes.Process):
             if self.learnTrials is None or self.count < self.learnTrials:
                 ## Do the TD(0) update
                 if not reset:  ##skip this if the env has just been reset
-                    ## calculate td error term
-                    td_error = (
-                        reward
-                        + (self.state_dis * current_state_value)
-                        - state["update_value"]
-                    )
+                    ## Reward Centering: updating the reward
+                    if self.reward_center_mode == "simple" or self.reward_center_mode == "value":
+                        centered_reward = reward - state["avg_reward"]
+                    else:
+                        centered_reward = reward
+
+                    ## Calculate TD Error term
+                    td_error = centered_reward + (self.state_dis * current_state_value) - state["update_value"]
+
+                    ## Reward Centering: updating the average reward
+                    if self.reward_center_mode == "simple":
+                        state["avg_reward"] = state["avg_reward"] + self.reward_center_beta * (reward - state["avg_reward"])
+                    elif self.reward_center_mode == "value":
+                        state["avg_reward"] = state["avg_reward"] + self.reward_center_eta * self.lr * td_error
 
                     ## calculate a scaling factor
                     ## this scaling factor allows us to switch from updating
@@ -137,9 +136,7 @@ class TD0(nengo.processes.Process):
                     ## update the action values
                     ## multiply the entire state represention by (action value * beta * tderror)
                     ## scale these values and then update the weight matrix/look-up table
-                    dw = np.outer(
-                        update_action * self.act_dis * td_error, update_state_rep
-                    )
+                    dw = np.outer(update_action * self.act_dis * td_error, update_state_rep)
 
                     state["w"][1:] += dw * scale
 
