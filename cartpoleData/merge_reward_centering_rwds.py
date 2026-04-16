@@ -10,6 +10,18 @@ METADATA_FILE = os.path.join(PROCESSED_DIR, "reward-centering-metadata-summary.c
 OUT_FILE = os.path.join(PROCESSED_DIR, "reward-centering-all-episodic-rewards.csv")
 
 
+def find_rewards_file(trial_id):
+    expected_suffix = os.path.join(trial_id, "rewards.csv")
+    for root, _, file_names in os.walk(DATA_DIR):
+        if "rewards.csv" in file_names:
+            rewards_path = os.path.join(root, "rewards.csv")
+            if rewards_path.endswith(expected_suffix):
+                return rewards_path
+    raise FileNotFoundError(
+        f"Rewards file not found for {trial_id} under reward-centering directory: {DATA_DIR}"
+    )
+
+
 def main():
     if not os.path.isfile(METADATA_FILE):
         raise FileNotFoundError(
@@ -25,9 +37,7 @@ def main():
 
     for _, row in mddf.iterrows():
         trial_id = row["trial_ID"]
-        rewards_path = os.path.join(DATA_DIR, trial_id, "rewards.csv")
-        if not os.path.isfile(rewards_path):
-            raise FileNotFoundError(f"Rewards file not found for {trial_id}: {rewards_path}")
+        rewards_path = find_rewards_file(trial_id)
 
         rdf = pd.read_csv(rewards_path, index_col=0)
         rtotal = rdf.sum(axis=0).reset_index(drop=True)

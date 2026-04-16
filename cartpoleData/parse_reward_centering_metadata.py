@@ -70,7 +70,12 @@ def main():
             f"Reward-centering data directory not found: {DATA_DIR}"
         )
 
-    files = sorted(f for f in os.listdir(DATA_DIR) if f.endswith(".txt"))
+    files = sorted(
+        os.path.join(root, file_name)
+        for root, _, file_names in os.walk(DATA_DIR)
+        for file_name in file_names
+        if file_name.endswith(".txt")
+    )
     if not files:
         raise FileNotFoundError(
             f"No metadata .txt files found in reward-centering directory: {DATA_DIR}"
@@ -79,15 +84,15 @@ def main():
     rows = []
     col_labels = []
 
-    with open(os.path.join(DATA_DIR, files[0])) as metadata_file:
+    with open(files[0]) as metadata_file:
         for line in metadata_file:
             parsed = parse_line(line)
             if parsed is not None:
                 col_labels.append(parsed[0])
 
-    for file_name in files:
+    for file_path in files:
         temp_data = {}
-        with open(os.path.join(DATA_DIR, file_name)) as metadata_file:
+        with open(file_path) as metadata_file:
             for line in metadata_file:
                 parsed = parse_line(line)
                 if parsed is not None:
