@@ -23,7 +23,15 @@ To reproduce results: CartPole
 * `cartpoleExperiments/a2c_baseline_cartpole.py` runs the baseline model on CartPole and saves the results
 
 ```bash
-python cartpoleExperiments/run_trial_cartpole_repeats.py
+python cartpoleExperiments/run_reward_centering.py
+```
+
+```bash
+python cartpoleData/parse_reward_centering_metadata.py
+```
+
+```bash
+python cartpoleData/merge_reward_centering_rwds.py
 ```
 
 Reproducing manuscript figures
