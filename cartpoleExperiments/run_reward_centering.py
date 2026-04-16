@@ -24,7 +24,7 @@ reward_center_eta = 1.0
 reward_center_init = 0.0
 
 data_dir_ = os.path.join(REPO_ROOT, "cartpoleData", "reward_centering", reward_center_mode)
-
+os.makedirs(data_dir_, exist_ok=True)
 
 for i in range(5):
     pre_comment_ = f"reward_center={reward_center_mode}, run={i}"
