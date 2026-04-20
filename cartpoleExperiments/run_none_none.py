@@ -18,7 +18,7 @@ learnTrials = trials
 ac = ACTrial()
 
 # Reward Centering configs
-reward_center_mode = "simple"  # "none", "simple", "value"
+reward_center_mode = "none"  # "none", "simple", "value"
 reward_center_beta = 0.001
 reward_center_eta = 1.0
 reward_center_init = 0.0
@@ -69,15 +69,15 @@ for i in range(10):
         eps=0.259453,  # from NNI
         lr=0.283112,  # from NNI
         ## Uncomment next 9 lines for HexSSP rep
-        # rep_ = 'PlaceSSP',                             # todo -- fix this in the trial file
-        # specify_encoder_samples = False,
-        # neuron_type = nengo.RectifiedLinear(),
-        # length_scale = 0.527579,                       # from NNI
-        # n_rotates = 7,                                 # from NNI
-        # state_neurons = 4096,                          # from NNI
-        # active_prop = 0.242728,                        # from NNI
-        # eps = 0.221581,                                # from NNI
-        # lr = 0.195843,                                 # from NNI
+        # rep_="PlaceSSP",
+        # specify_encoder_samples=False,
+        # neuron_type=nengo.RectifiedLinear(),
+        # length_scale=0.527579,  # from NNI
+        # n_rotates=7,  # from NNI
+        # state_neurons=4096,  # from NNI
+        # active_prop=0.242728,  # from NNI
+        # eps=0.221581,  # from NNI
+        # lr=0.195843,  # from NNI
         ###
         ### common model parameters
         rule="TD0",  # kinda lambda
