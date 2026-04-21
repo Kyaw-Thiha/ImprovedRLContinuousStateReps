@@ -22,16 +22,32 @@ To reproduce results: CartPole
 * `cartpoleData/merge_episodic_rwds.py` extracts reward data for all models across the 10 initial seeds and merges this into one file saved at cartpoleData/processed/all-episodic-rewards.csv (for easy plotting)
 * `cartpoleExperiments/a2c_baseline_cartpole.py` runs the baseline model on CartPole and saves the results
 
+For running the reward centering experiment with discrete representation,
 ```bash
 python cartpoleExperiments/run_reward_centering.py
 ```
 
+For running the reward centering with hex ssp representation
+```bash
+python cartpoleExperiments/run_hexssp_centering.py
+```
+
+After that, you can parse and merge the raw data for further analysis.
 ```bash
 python cartpoleData/parse_reward_centering_metadata.py
 ```
 
 ```bash
 python cartpoleData/merge_reward_centering_rwds.py
+```
+
+Then, you can generate plots for those using
+```bash
+python cartpoleExperiments/plotting/plot_cartpole_ablation.py \
+    --metadata cartpoleData/processed/reward-centering-metadata-summary.csv \
+    --rewards cartpoleData/processed/reward-centering-all-episodic-rewards.csv \
+    --output-dir cartpoleExperiments/plotting/output/reward-centering \
+    --prefix reward-centering
 ```
 
 Reproducing manuscript figures
