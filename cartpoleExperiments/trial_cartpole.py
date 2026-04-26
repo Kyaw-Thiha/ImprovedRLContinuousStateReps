@@ -19,6 +19,33 @@ import network.rlnet as net
 warnings.simplefilter(action="ignore", category=pd.errors.PerformanceWarning)
 
 
+# Target Policy pi
+def target_policy(action_logits, mode):
+    if mode == "greedy":
+        probs = np.zeros_like(action_logits, dtype=float)
+        probs[np.argmax(action_logits)] = 1.0
+        return probs
+    elif mode == "softmax":
+        return softmax(action_logits)
+    else:
+        raise ValueError(f"Unsupported target policy mode: {mode}")
+
+
+# Behavior Policy b
+def behavior_policy(action_logits, target_probs, mode, eps):
+    n_actions = len(action_logits)
+
+    if mode == "epsilon_greedy":
+        greedy_action = np.argmax(action_logits)
+        probs = np.full(n_actions, eps / n_actions, dtype=float)
+        probs[greedy_action] += 1.0 - eps
+        return probs
+    elif mode == "epsilon_soft_target":
+        return (1.0 - eps) * target_probs + (eps / n_actions)
+    else:
+        raise ValueError(f"Unsupported behavior policy mode: {mode}")
+
+
 class ACTrial(pytry.Trial):
     ## PARAMETERS ##
     def params(self):
@@ -52,6 +79,10 @@ class ACTrial(pytry.Trial):
         self.param("n for TD(n)", n=None)
         self.param("Lambda for TD(lambda)", lambd=None)
         self.param("Number of trials with learning", learnTrials=None)
+
+        ## Policy Modes
+        self.param("Target policy mode", target_policy_mode="greedy")
+        self.param("Behavior policy mode", behavior_policy_mode="epsilon_greedy")
 
         ## Reward Centering (Currently only available for TD(0))
         self.param("Reward centering mode", reward_center_mode="none")
@@ -268,20 +299,36 @@ class ACTrial(pytry.Trial):
             if param.normalize_state == True:
                 update_state /= self.state_scale
 
-            value, action_logits = self.net.step(update_state, 0, 0, reset=True)  ## state and action values
+            value, action_logits = self.net.step(update_state, 0, 0, reset=True, rho=1.0)  ## state and action values
 
             ## Each time step
             for step in range(steps):
                 ### CORE TRAINING LOOP ###
-                p = np.random.random()
 
                 ## Force exploration using epsilon greedy
-                if trial < learnTrials and p < eps:
-                    action_logits = np.random.uniform(0, n_actions, n_actions)
+                # p = np.random.random()
+                # if trial < learnTrials and p < eps:
+                #     action_logits = np.random.uniform(0, n_actions, n_actions)
+
+                ## Getting the target and behavior policy probabiliites
+                target_probs = target_policy(action_logits, param.target_policy_mode)
+                behavior_probs = behavior_policy(
+                    action_logits,
+                    target_probs,
+                    param.behavior_policy_mode,
+                    eps if trial < learnTrials else 0.0,
+                )
 
                 ## convert action_logits to action_choice
                 # action_choice = np.dot(softmax(action_logits), [-1,1])
-                action_choice = np.argmax(softmax(action_logits))
+                # action_choice = np.argmax(softmax(action_logits))
+
+                # Choosing the action based on policies distributions
+                action_choice = np.random.choice(n_actions, p=behavior_probs)
+                target_prob = target_probs[action_choice]
+                behavior_prob = behavior_probs[action_choice]
+                # Computing the importance-sampling ratio
+                rho = 0.0 if behavior_prob == 0.0 else target_prob / behavior_prob
 
                 ## Do the action
                 obs, reward, done, t, info = self.env.step(action_choice)
@@ -301,10 +348,11 @@ class ACTrial(pytry.Trial):
                     # print('after normalization: ', current_state)
 
                 ## For the continuous action spaces, learn about the probability distribution across action primitives
-                action_learn = softmax(action_logits * 1)
+                # action_learn = softmax(action_logits * 1)
+                action_learn = action_choice
 
                 ## Update state and max weighted action values
-                value, action_logits = self.net.step(current_state, action_learn, reward)
+                value, action_logits = self.net.step(current_state, action_learn, reward, rho=rho)
 
                 rs.append(reward)
 
@@ -326,7 +374,7 @@ class ACTrial(pytry.Trial):
                         for j in range(n):
                             ## Update state and action values
                             reward = 0
-                            value, action_logits = self.net.step(current_state, action_learn, reward)
+                            value, action_logits = self.net.step(current_state, action_learn, reward, rho=1.0)
 
                             rs.append(reward)  ## save reward
 
@@ -339,7 +387,7 @@ class ACTrial(pytry.Trial):
                     else:
                         while done_counter > 0:
                             reward = 0
-                            value, action_logits = self.net.step(current_state, action_learn, reward)
+                            value, action_logits = self.net.step(current_state, action_learn, reward, rho=1.0)
 
                             rs.append(reward)  ## save reward
 

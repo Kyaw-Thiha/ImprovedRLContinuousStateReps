@@ -45,9 +45,9 @@ class TD0Center(nengo.processes.Process):
         self.reward_center_eta = reward_center_eta  # Used as update rate for value centering
         self.reward_center_init = reward_center_init  # Initial estimate of the average-reward
 
-        ## Input = reward + state representation + action values for current state
+        ## Input = rho + reward + state representation + action values for current state
         ## Output = action values for current state + state value
-        super().__init__(default_size_in=n_actions + 2, default_size_out=n_actions + 1)
+        super().__init__(default_size_in=n_actions + 3, default_size_out=n_actions + 1)
 
     def make_state(self, shape_in, shape_out, dt, dtype=None):
         """Get a dictionary of signals to represent the state of this process.
@@ -58,7 +58,7 @@ class TD0Center(nengo.processes.Process):
         ## set dim = length of each row in matrix/look-up table
         ## where a nengo ensemble is used to store the state representation,
         ## this is equal to the number of neurons in the ensemble
-        dim = shape_in[0] - 2 - self.n_actions
+        dim = shape_in[0] - 3 - self.n_actions
 
         ## return the state dictionary
         return dict(
@@ -73,7 +73,7 @@ class TD0Center(nengo.processes.Process):
         ## set dim = length of each row in matrix/look-up table
         ## where a nengo ensemble is used to store the state representation,
         ## this is equal to the number of neurons in the ensemble
-        dim = shape_in[0] - 2 - self.n_actions
+        dim = shape_in[0] - 3 - self.n_actions
 
         ## One time step
         def step_TD0(t, x, state=state):
@@ -88,7 +88,8 @@ class TD0Center(nengo.processes.Process):
 
             current_state_rep = x[:dim]  ##get the state representation of current state
             update_state_rep = state["update_state_rep"]  ##get representation of state being updated
-            update_action = x[dim:-2]  ##get the action being updated (i.e. the action that was taken)
+            update_action = x[dim : dim + self.n_actions]  ##get the action being updated (i.e. the action that was taken)
+            rho = x[dim + self.n_actions]  ##importance-sampling ratio
             reward = x[-2]  ##get reward received following action
             reset = x[-1]  ##get whether or not env was reset
 
@@ -122,7 +123,7 @@ class TD0Center(nengo.processes.Process):
                     if self.reward_center_mode == "simple":
                         state["avg_reward"] = state["avg_reward"] + self.reward_center_beta * (reward - state["avg_reward"])
                     elif self.reward_center_mode == "value":
-                        state["avg_reward"] = state["avg_reward"] + self.reward_center_eta * self.lr * td_error
+                        state["avg_reward"] = state["avg_reward"] + self.reward_center_eta * self.lr * rho * td_error
 
                     ## calculate a scaling factor
                     ## this scaling factor allows us to switch from updating
@@ -132,7 +133,12 @@ class TD0Center(nengo.processes.Process):
                         scale = 1.0 / scale
 
                     ## update the state value
-                    state["w"][0] += self.lr * td_error * update_state_rep * scale
+                    if self.reward_center_mode == "value":
+                        state["w"][0] += self.lr * rho * td_error * update_state_rep * scale
+                    else:
+                        state["w"][0] += self.lr * td_error * update_state_rep * scale
+
+                    # TODO: Need to update these with proper action weight updating
                     ## update the action values
                     ## multiply the entire state represention by (action value * beta * tderror)
                     ## scale these values and then update the weight matrix/look-up table

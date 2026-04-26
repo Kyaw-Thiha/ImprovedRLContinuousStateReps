@@ -9,7 +9,7 @@ from rlnet.utils import sparsity_to_x_intercept
 class ActorCritic(object):
     """Nengo model implementing an Actor-Critic network.
     Single-layer network
-    Inputs: state, action, reward and reset
+    Inputs: state, action, reward, rho and reset
     Outputs: updated state value, action values for actions available in current state
 
     Example of Usage:
@@ -49,54 +49,44 @@ class ActorCritic(object):
         self.model = nengo.Network()
         with self.model:
             ## empty array for state
-            ## size = size of state representation + number of actions + reward + whether env was reset
-            self.state = np.zeros(dim + rule.n_actions + 2)
+            ## size = size of state representation + number of actions + rho + reward + whether env was reset
+            self.state = np.zeros(dim + rule.n_actions + 3)
             ## create nengo node for containing state
             self.state_node = nengo.Node(lambda t: self.state)
 
             ## if we're not using a neuron ensemble to contain the state representation
             if state_neurons == None:
                 ## create nengo node for containing the learning rule
-                ## input size in is dim (state) + n_actions + reward + env.reset
-                self.rule = nengo.Node(rule, size_in=dim + rule.n_actions + 2)
+                ## input size in is dim (state) + n_actions + rho + reward + env.reset
+                self.rule = nengo.Node(rule, size_in=dim + rule.n_actions + 3)
                 ## connect the state node to the rule node
                 nengo.Connection(self.state_node, self.rule, synapse=None)
 
             ## if we are using a neuron ensemble
             else:
                 ## create nengo node for containing the learning rule
-                ## input size in is state_neurons (state) + n_actions + reward + env.reset
-                self.rule = nengo.Node(
-                    rule, size_in=self.state_neurons + rule.n_actions + 2
-                )
+                ## input size in is state_neurons (state) + n_actions + rho + reward + env.reset
+                self.rule = nengo.Node(rule, size_in=self.state_neurons + rule.n_actions + 3)
                 ## create ensemble for containing the state representation
                 self.ensemble = nengo.Ensemble(
                     n_neurons=state_neurons,
                     dimensions=dim,
                     neuron_type=self.neuron_type,
-                    intercepts=nengo.dists.Choice(
-                        [sparsity_to_x_intercept(dim, self.active_prop)]
-                    ),
+                    intercepts=nengo.dists.Choice([sparsity_to_x_intercept(dim, self.active_prop)]),
                     **ensemble_args,
                 )
                 ##connect the state representation to the ensemble
                 nengo.Connection(self.state_node[:dim], self.ensemble, synapse=None)
                 ##connect the state ensemble to the rule node
-                nengo.Connection(
-                    self.ensemble.neurons, self.rule[:state_neurons], synapse=None
-                )
+                nengo.Connection(self.ensemble.neurons, self.rule[:state_neurons], synapse=None)
                 ##connect the state representation to the rule node
-                nengo.Connection(
-                    self.state_node[dim:], self.rule[state_neurons:], synapse=None
-                )
+                nengo.Connection(self.state_node[dim:], self.rule[state_neurons:], synapse=None)
 
             ## create node for containing the updated state value
             self.value_node = nengo.Node(self.value_node_func, size_in=1)
 
             ## create node for containing the updated action values
-            self.action_values_node = nengo.Node(
-                self.action_values_node_func, size_in=rule.n_actions
-            )
+            self.action_values_node = nengo.Node(self.action_values_node_func, size_in=rule.n_actions)
 
             ## send first output from rule node (updated state value) to the state value node
             nengo.Connection(self.rule[0], self.value_node, synapse=None)
@@ -106,17 +96,13 @@ class ActorCritic(object):
         ## run model
         self.sim = nengo.Simulator(self.model)
 
-    def step(self, state, update_action, reward, reset=False):
+    def step(self, state, update_action, reward, reset=False, rho=1.0):
         """Function for running the model for one time step.
 
-        Inputs: agent's state, chosen action, reward
+        Inputs: agent's state, chosen action, reward, importance-sampling ratio rho
         Outputs: state value, action values"""
 
-        if (
-            type(update_action) == int
-            or type(update_action) == np.int64
-            or len(update_action) == 1
-        ):
+        if type(update_action) == int or type(update_action) == np.int64 or len(update_action) == 1:
             ## set update_action to an array of 0's with one value for each action
             self.update_action[:] = 0
             ## set the update_action value at the position of the chosen action to 1
@@ -125,10 +111,8 @@ class ActorCritic(object):
             self.update_action = update_action
 
         ## create state variable containing state representation,
-        ## update_action array, reward, and whether or not the env was reset
-        self.state[:] = np.concatenate(
-            [self.representation.map(state), self.update_action, [reward, reset]]
-        )
+        ## update_action array, rho, reward, and whether or not the env was reset
+        self.state[:] = np.concatenate([self.representation.map(state), self.update_action, [rho, reward, reset]])
 
         ## run model for one step
         self.sim.step()
@@ -185,4 +169,3 @@ class ActorCritic(object):
     def action_values_node_func(self, t, x):
         ## identity function
         self.action_values[:] = x
-
