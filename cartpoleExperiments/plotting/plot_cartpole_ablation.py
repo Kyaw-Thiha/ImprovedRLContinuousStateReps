@@ -54,9 +54,21 @@ def build_parser():
     )
     parser.add_argument(
         "--uncertainty",
-        choices=["std", "sem"],
-        default="std",
+        choices=["std", "quantile"],
+        default="quantile",
         help="Uncertainty band for the learning-curve figure.",
+    )
+    parser.add_argument(
+        "--quantile-low",
+        type=float,
+        default=5.0,
+        help="Lower percentile for quantile bands.",
+    )
+    parser.add_argument(
+        "--quantile-high",
+        type=float,
+        default=95.0,
+        help="Upper percentile for quantile bands.",
     )
     return parser
 
@@ -97,6 +109,8 @@ def main():
         rolling_window=args.rolling_window,
         solve_threshold=args.solve_threshold,
         uncertainty=args.uncertainty,
+        quantile_low=args.quantile_low,
+        quantile_high=args.quantile_high,
     )
     plot_summary_panels(metadata, conditions, summary_path, total_episodes=len(rewards.index))
     plot_interaction(

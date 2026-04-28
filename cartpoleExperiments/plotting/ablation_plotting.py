@@ -136,11 +136,18 @@ def compute_learning_curve_stats(rewards, parsed_columns, rolling_window=DEFAULT
         frames.append(tmp)
     combined = pd.concat(frames, ignore_index=True)
     grouped = (
-        combined.groupby(["rep_", "reward_center_mode", "episode"], as_index=False)["rolling_reward"]
+        combined.groupby(["rep_", "reward_center_mode", "episode"])["rolling_reward"]
         .agg(["mean", "std", "count"])
         .reset_index()
     )
-    grouped["sem"] = grouped["std"] / np.sqrt(grouped["count"])
+    quantiles = (
+        combined.groupby(["rep_", "reward_center_mode", "episode"])["rolling_reward"]
+        .quantile([0.05, 0.95])
+        .unstack()
+        .reset_index()
+        .rename(columns={0.05: "q05", 0.95: "q95"})
+    )
+    grouped = grouped.merge(quantiles, on=["rep_", "reward_center_mode", "episode"], how="left")
     return combined, grouped
 
 
@@ -179,7 +186,16 @@ def save_summary_table(summary_df, out_path):
     table_df[keep].to_csv(out_path, index=False)
 
 
-def plot_learning_curves(curve_stats, conditions, out_path, rolling_window, solve_threshold, uncertainty="std"):
+def plot_learning_curves(
+    curve_stats,
+    conditions,
+    out_path,
+    rolling_window,
+    solve_threshold,
+    uncertainty="quantile",
+    quantile_low=5.0,
+    quantile_high=95.0,
+):
     fig, ax = plt.subplots(figsize=(10.5, 6.5), constrained_layout=True)
 
     for condition in conditions:
@@ -187,13 +203,22 @@ def plot_learning_curves(curve_stats, conditions, out_path, rolling_window, solv
             (curve_stats["rep_"] == condition.rep) & (curve_stats["reward_center_mode"] == condition.reward_center_mode)
         ].sort_values("episode")
         y = subset["mean"].to_numpy()
-        if uncertainty == "sem":
-            spread = subset["sem"].fillna(0).to_numpy()
-        else:
+        if uncertainty == "std":
             spread = subset["std"].fillna(0).to_numpy()
+            lower = y - spread
+            upper = y + spread
+        else:
+            lower_col = f"q{int(quantile_low):02d}"
+            upper_col = f"q{int(quantile_high):02d}"
+            if lower_col not in subset.columns or upper_col not in subset.columns:
+                raise ValueError(
+                    f"Quantile columns {lower_col}/{upper_col} are not available in learning-curve stats."
+                )
+            lower = subset[lower_col].to_numpy()
+            upper = subset[upper_col].to_numpy()
 
         ax.plot(subset["episode"], y, lw=2.4, color=condition.color, label=condition.label)
-        ax.fill_between(subset["episode"], y - spread, y + spread, color=condition.color, alpha=0.18)
+        ax.fill_between(subset["episode"], lower, upper, color=condition.color, alpha=0.18)
 
     ax.axhline(solve_threshold, color="#222222", lw=1.2, ls="--", alpha=0.8)
     ax.set_title(f"CartPole Learning Curves ({rolling_window}-Episode Rolling Mean)")

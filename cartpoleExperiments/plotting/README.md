@@ -20,7 +20,7 @@ python cartpoleExperiments/plotting/plot_cartpole_ablation.py \
 ```
 
 Outputs:
-- learning-curve figure
+- learning-curve figure with a 5th-95th percentile band by default
 - terminal-reward and episodes-to-learn summary panels
 - interaction plot for terminal reward
 - interaction plot for episodes to learn
