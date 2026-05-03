@@ -6,8 +6,7 @@ Reusable plotting scripts for processed CartPole ablation outputs.
 
 `plot_cartpole_ablation.py` expects:
 - a metadata summary CSV with columns including `rep_`, `reward_center_mode`, `seed`, `terminal_reward`, and `episodes_to_learn`
-- a merged episodic rewards CSV whose columns follow the pattern
-  `reward_center_mode-representation-representation_param-seedN`
+- a merged episodic rewards CSV whose columns are unique `trial_ID` values matching the metadata CSV
 
 Example:
 

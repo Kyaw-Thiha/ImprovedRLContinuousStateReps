@@ -26,11 +26,11 @@ reward_center_init = 0.0
 representation_name = "Discrete"
 
 data_dir_ = os.path.join(
-    REPO_ROOT, "cartpoleData", "reward_centering", representation_name, reward_center_mode
+    REPO_ROOT, "cartpoleData", "reward_centering_20trials", representation_name, reward_center_mode
 )
 os.makedirs(data_dir_, exist_ok=True)
 
-for i in range(10):
+for i in range(20):
     pre_comment_ = f"rep={representation_name}, reward_center={reward_center_mode}, run={i}"
 
     # return parameters and results

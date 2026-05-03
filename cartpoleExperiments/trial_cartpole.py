@@ -81,7 +81,7 @@ class ACTrial(pytry.Trial):
         self.param("Number of trials with learning", learnTrials=None)
 
         ## Policy Modes
-        self.param("Target policy mode", target_policy_mode="greedy")
+        self.param("Target policy mode", target_policy_mode="softmax")
         self.param("Behavior policy mode", behavior_policy_mode="epsilon_greedy")
 
         ## Reward Centering (Currently only available for TD(0))
@@ -426,6 +426,7 @@ class ACTrial(pytry.Trial):
                     Ep_rewards[trial - 20 : trial - 10]
                 ):
                     eps -= 0.001
+                    eps = np.clip(eps, 0.0, 1.0)
                 # elif np.mean(Ep_rewards[trial-10:trial]) < np.mean(Ep_rewards[trial-20:trial-10])- np.std(Ep_rewards[trial-20:trial-10]):
                 #     eps += 0.001
 
@@ -459,7 +460,7 @@ class ACTrial(pytry.Trial):
         terminal_reward = reward_rolling_mean[-1]
 
         # the number of episodes to reach an average reward of 50. (as observed in the last 100 episodes)
-        episodes_to_learn = next(itertools.chain(iter(i for i, v in enumerate(reward_rolling_mean) if v > 195.0), [-1]))
+        episodes_to_learn = next(itertools.chain(iter(i for i, v in enumerate(reward_rolling_mean) if v > 495.0), [-1]))
         if episodes_to_learn == -1:
             episodes_to_learn = np.nan
 

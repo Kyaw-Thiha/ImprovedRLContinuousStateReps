@@ -18,17 +18,24 @@ learnTrials = trials
 ac = ACTrial()
 
 # Reward Centering configs
-reward_center_mode = "simple"  # "none", "simple", "value"
+reward_center_mode = "value"  # "none", "simple", "value"
 reward_center_beta = 0.001
-reward_center_eta = 1.0
+reward_center_eta = float(sys.argv[1]) if len(sys.argv) > 1 else 1.0
 reward_center_init = 0.0
 
 representation_name = "PlaceSSP"
+eta_label = str(reward_center_eta).replace(".", "p")
 
-data_dir_ = os.path.join(REPO_ROOT, "cartpoleData", "reward_centering", representation_name, reward_center_mode)
+data_dir_ = os.path.join(
+    REPO_ROOT,
+    "cartpoleData",
+    "reward_centering_eta_tuning",
+    representation_name,
+    f"{reward_center_mode}_eta_{eta_label}",
+)
 os.makedirs(data_dir_, exist_ok=True)
 
-for i in range(10):
+for i in range(20):
     pre_comment_ = f"rep={representation_name}, reward_center={reward_center_mode}, run={i}"
 
     # return parameters and results
