@@ -1,6 +1,7 @@
-_all__ = ["normal", "onehot", "ssp","vsa"]
+_all__ = ["normal", "onehot", "ssp", "vsa", "tilecoding"]
 from .normal import NormalRep
 from .onehot import OneHotRepRB, OneHotRepCP
 from .ssp import SSPRep
 from .vsa import VSARep
 from .onehottransform import OneHotRepTransformND
+from .tilecoding import TileCodingRep

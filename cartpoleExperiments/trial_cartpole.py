@@ -63,6 +63,9 @@ class ACTrial(pytry.Trial):
         ## Representation
         self.param("Method for representing the state", rep_="Normal")
         self.param("Discretization of the representation", n_bins=100)
+        self.param("Number of tilings for tile coding", num_tilings=8)
+        self.param("Tiles per dimension for tile coding", tiles_per_dim=None)
+        self.param("IHT size for tile coding", iht_size=4096)
         self.param("Normalize state", normalize_state=False)
         self.param("Length scale", length_scale=1.0)
         self.param("Number of rotations", n_rotates=5)
@@ -83,6 +86,8 @@ class ACTrial(pytry.Trial):
         ## Policy Modes
         self.param("Target policy mode", target_policy_mode="softmax")
         self.param("Behavior policy mode", behavior_policy_mode="epsilon_greedy")
+        self.param("Force rho to one", force_rho_one=False)
+        self.param("On-policy override", on_policy_override=False)
 
         ## Reward Centering (Currently only available for TD(0))
         self.param("Reward centering mode", reward_center_mode="none")
@@ -118,6 +123,7 @@ class ACTrial(pytry.Trial):
 
         self.env = gym.make(param.env)
         self.env._max_episode_steps = 500
+        obs_dim = len(self.env.observation_space.high)
 
         gif_trials = [t for t in range(param.trials) if t % (trials / 4) == 0]
 
@@ -149,7 +155,7 @@ class ACTrial(pytry.Trial):
             domain_bounds_ = np.array([low, high]).T
 
         if param.rep_ == "HexSSP" or param.rep_ == "PlaceSSP":
-            state_size = len(self.env.observation_space.high)
+            state_size = obs_dim
             rep = net.representations.SSPRep(
                 state_size,
                 length_scale=param.length_scale,
@@ -164,6 +170,16 @@ class ACTrial(pytry.Trial):
             rep.upper = high
             rep.lower = low
             rep.ranges = rep.upper - rep.lower
+            state_size = rep.size_out
+        elif param.rep_ == "TileCoding":
+            rep = net.representations.TileCodingRep(
+                self.env,
+                num_tilings=param.num_tilings,
+                tiles_per_dim=param.tiles_per_dim,
+                iht_size=param.iht_size,
+                bounds_low=low,
+                bounds_high=high,
+            )
             state_size = rep.size_out
         elif param.rep_ == "Discrete":
             rep = net.representations.OneHotRepCP((param.n_bins, param.n_bins, param.n_bins, param.n_bins))
@@ -295,7 +311,7 @@ class ACTrial(pytry.Trial):
             ## Start environment
             reset_obj = self.env.reset()[0]
             # print('state size: ', state_size)
-            update_state = rep.get_state(reset_obj[:state_size], self.env)
+            update_state = rep.get_state(reset_obj[:obs_dim], self.env)
             if param.normalize_state == True:
                 update_state /= self.state_scale
 
@@ -312,12 +328,16 @@ class ACTrial(pytry.Trial):
 
                 ## Getting the target and behavior policy probabiliites
                 target_probs = target_policy(action_logits, param.target_policy_mode)
-                behavior_probs = behavior_policy(
-                    action_logits,
-                    target_probs,
-                    param.behavior_policy_mode,
-                    eps if trial < learnTrials else 0.0,
-                )
+
+                if param.on_policy_override:
+                    behavior_probs = target_probs.copy()
+                else:
+                    behavior_probs = behavior_policy(
+                        action_logits,
+                        target_probs,
+                        param.behavior_policy_mode,
+                        eps if trial < learnTrials else 0.0,
+                    )
 
                 ## convert action_logits to action_choice
                 # action_choice = np.dot(softmax(action_logits), [-1,1])
@@ -328,7 +348,10 @@ class ACTrial(pytry.Trial):
                 target_prob = target_probs[action_choice]
                 behavior_prob = behavior_probs[action_choice]
                 # Computing the importance-sampling ratio
-                rho = 0.0 if behavior_prob == 0.0 else target_prob / behavior_prob
+                if param.force_rho_one:
+                    rho = 1.0
+                else:
+                    rho = 0.0 if behavior_prob == 0.0 else target_prob / behavior_prob
 
                 ## Do the action
                 obs, reward, done, t, info = self.env.step(action_choice)
@@ -336,7 +359,7 @@ class ACTrial(pytry.Trial):
                     reward = 0
 
                 ## Collect agent location and direction
-                state = obs[:state_size]
+                state = obs[:obs_dim]
 
                 ## Get new state
                 current_state = rep.get_state(state, self.env)
