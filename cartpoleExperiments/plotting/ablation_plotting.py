@@ -176,6 +176,9 @@ def compute_learning_curve_stats(rewards, run_info, condition_col, rolling_windo
         .agg(["mean", "std", "count"])
         .reset_index()
     )
+    grouped["sem"] = grouped["std"] / np.sqrt(grouped["count"])
+    grouped["gaussian95_low"] = grouped["mean"] - 1.96 * grouped["sem"]
+    grouped["gaussian95_high"] = grouped["mean"] + 1.96 * grouped["sem"]
     quantiles = (
         combined.groupby(["rep_", condition_col, "episode"])["rolling_reward"]
         .quantile([0.05, 0.95])
@@ -266,6 +269,9 @@ def plot_learning_curves(
             spread = subset["std"].fillna(0).to_numpy()
             lower = y - spread
             upper = y + spread
+        elif uncertainty == "gaussian95":
+            lower = subset["gaussian95_low"].to_numpy()
+            upper = subset["gaussian95_high"].to_numpy()
         else:
             lower_col = f"q{int(quantile_low):02d}"
             upper_col = f"q{int(quantile_high):02d}"

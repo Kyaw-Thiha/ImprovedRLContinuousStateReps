@@ -24,3 +24,6 @@ Outputs:
 - interaction plot for terminal reward
 - interaction plot for episodes to learn
 - summary statistics table as CSV
+
+`--uncertainty gaussian95` uses an approximate 95% confidence interval
+for the mean curve, computed as `mean +/- 1.96 * (std / sqrt(n))`.
