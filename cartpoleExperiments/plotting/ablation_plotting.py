@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 
-DEFAULT_SOLVE_THRESHOLD = 195.0
+DEFAULT_SOLVE_THRESHOLD = 495.0
 DEFAULT_ROLLING_WINDOW = 100
 CONDITION_COLORS = {
     ("Discrete", "none"): "#6c757d",
@@ -97,9 +97,7 @@ def summarize_conditions(
 ):
     rows = []
     for condition in condition_order(metadata, condition_col):
-        group = metadata[
-            (metadata["rep_"] == condition.rep) & (metadata[condition_col] == condition.condition_value)
-        ].copy()
+        group = metadata[(metadata["rep_"] == condition.rep) & (metadata[condition_col] == condition.condition_value)].copy()
         solved_mask = group["episodes_to_learn"].notna()
         solve_rate = solved_mask.mean()
 
@@ -138,17 +136,11 @@ def build_run_info(metadata, rewards, condition_col):
 
     missing_rewards = sorted(set(run_info["column"]) - reward_columns)
     if missing_rewards:
-        raise ValueError(
-            "Some metadata trial_ID values are missing from the rewards CSV. "
-            f"Examples: {missing_rewards[:5]}"
-        )
+        raise ValueError(f"Some metadata trial_ID values are missing from the rewards CSV. Examples: {missing_rewards[:5]}")
 
     extra_rewards = sorted(reward_columns - set(run_info["column"]))
     if extra_rewards:
-        raise ValueError(
-            "Some rewards columns do not have matching metadata trial_ID rows. "
-            f"Examples: {extra_rewards[:5]}"
-        )
+        raise ValueError(f"Some rewards columns do not have matching metadata trial_ID rows. Examples: {extra_rewards[:5]}")
 
     return run_info.reset_index(drop=True)
 
@@ -171,11 +163,7 @@ def compute_learning_curve_stats(rewards, run_info, condition_col, rolling_windo
         tmp = tmp.dropna(subset=["rolling_reward"]).reset_index(drop=True)
         frames.append(tmp)
     combined = pd.concat(frames, ignore_index=True)
-    grouped = (
-        combined.groupby(["rep_", condition_col, "episode"])["rolling_reward"]
-        .agg(["mean", "std", "count"])
-        .reset_index()
-    )
+    grouped = combined.groupby(["rep_", condition_col, "episode"])["rolling_reward"].agg(["mean", "std", "count"]).reset_index()
     grouped["sem"] = grouped["std"] / np.sqrt(grouped["count"])
     grouped["gaussian95_low"] = grouped["mean"] - 1.96 * grouped["sem"]
     grouped["gaussian95_high"] = grouped["mean"] + 1.96 * grouped["sem"]
@@ -193,8 +181,7 @@ def compute_learning_curve_stats(rewards, run_info, condition_col, rolling_windo
 def condition_colors(conditions, condition_col):
     if condition_col == "reward_center_mode":
         return {
-            condition.key: CONDITION_COLORS.get((condition.rep, condition.condition_value), "#4e79a7")
-            for condition in conditions
+            condition.key: CONDITION_COLORS.get((condition.rep, condition.condition_value), "#4e79a7") for condition in conditions
         }
 
     unique_values = []
@@ -205,9 +192,7 @@ def condition_colors(conditions, condition_col):
     if condition_col == "reward_center_eta":
         unique_values = sorted(unique_values)
 
-    value_to_color = {
-        value: ETA_COLOR_PALETTE[i % len(ETA_COLOR_PALETTE)] for i, value in enumerate(unique_values)
-    }
+    value_to_color = {value: ETA_COLOR_PALETTE[i % len(ETA_COLOR_PALETTE)] for i, value in enumerate(unique_values)}
     return {condition.key: value_to_color[condition.condition_value] for condition in conditions}
 
 
@@ -223,13 +208,13 @@ def save_summary_table(summary_df, out_path):
     table_df = summary_df.copy()
     table_df["solve_rate_pct"] = (100 * table_df["solve_rate"]).round(1)
     table_df["terminal_reward_mean_std"] = table_df.apply(
-        lambda row: f'{row["terminal_reward_mean"]:.2f} +/- {row["terminal_reward_std"]:.2f}', axis=1
+        lambda row: f"{row['terminal_reward_mean']:.2f} +/- {row['terminal_reward_std']:.2f}", axis=1
     )
     table_df["episodes_to_learn_mean_std"] = table_df.apply(
         lambda row: (
             "NA"
             if pd.isna(row["episodes_to_learn_mean"])
-            else f'{row["episodes_to_learn_mean"]:.2f} +/- {row["episodes_to_learn_std"]:.2f}'
+            else f"{row['episodes_to_learn_mean']:.2f} +/- {row['episodes_to_learn_std']:.2f}"
         ),
         axis=1,
     )
@@ -276,9 +261,7 @@ def plot_learning_curves(
             lower_col = f"q{int(quantile_low):02d}"
             upper_col = f"q{int(quantile_high):02d}"
             if lower_col not in subset.columns or upper_col not in subset.columns:
-                raise ValueError(
-                    f"Quantile columns {lower_col}/{upper_col} are not available in learning-curve stats."
-                )
+                raise ValueError(f"Quantile columns {lower_col}/{upper_col} are not available in learning-curve stats.")
             lower = subset[lower_col].to_numpy()
             upper = subset[upper_col].to_numpy()
 
@@ -313,9 +296,7 @@ def plot_summary_panels(metadata, conditions, condition_col, out_path, total_epi
     point_rng = np.random.default_rng(7)
 
     for condition in conditions:
-        group = metadata[
-            (metadata["rep_"] == condition.rep) & (metadata[condition_col] == condition.condition_value)
-        ]
+        group = metadata[(metadata["rep_"] == condition.rep) & (metadata[condition_col] == condition.condition_value)]
         terminal_groups.append(group["terminal_reward"].dropna().to_numpy())
         episode_groups.append(group["episodes_to_learn"].fillna(total_episodes).to_numpy())
 
@@ -353,9 +334,7 @@ def plot_summary_panels(metadata, conditions, condition_col, out_path, total_epi
         patch.set_alpha(0.35)
         patch.set_edgecolor(colors[condition.key])
     for i, condition in enumerate(conditions):
-        group = metadata[
-            (metadata["rep_"] == condition.rep) & (metadata[condition_col] == condition.condition_value)
-        ].copy()
+        group = metadata[(metadata["rep_"] == condition.rep) & (metadata[condition_col] == condition.condition_value)].copy()
         group["episode_plot"] = group["episodes_to_learn"].fillna(total_episodes)
         jitter = point_rng.normal(0, 0.045, size=len(group))
         solved = group["episodes_to_learn"].notna().to_numpy()
@@ -383,7 +362,9 @@ def plot_summary_panels(metadata, conditions, condition_col, out_path, total_epi
     ep_ax.set_xticklabels([condition.label() for condition in conditions], rotation=18, ha="right")
     ep_ax.set_ylim(0, total_episodes * 1.1)
     ep_ax.grid(axis="y", alpha=0.2, linewidth=0.6)
-    unsolved_handle = Line2D([0], [0], marker="X", color="none", markerfacecolor="#444444", markersize=8, label="Unsolved (censored)")
+    unsolved_handle = Line2D(
+        [0], [0], marker="X", color="none", markerfacecolor="#444444", markersize=8, label="Unsolved (censored)"
+    )
     ep_ax.legend(handles=[unsolved_handle], frameon=False, loc="lower right")
 
     fig.savefig(out_path, dpi=300)
