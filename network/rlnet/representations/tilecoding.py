@@ -133,6 +133,7 @@ class TileCodingRep(object):
         iht_size=4096,
         bounds_low=None,
         bounds_high=None,
+        state_indices=None,
     ):
         self.env = env
         self.num_tilings = num_tilings
@@ -140,8 +141,12 @@ class TileCodingRep(object):
         self.size_out = iht_size
 
         obs_dim = len(self.env.observation_space.high)
+        if state_indices is None:
+            state_indices = tuple(range(obs_dim))
+        self.state_indices = np.asarray(state_indices, dtype=int)
+
         if tiles_per_dim is None:
-            tiles_per_dim = (8,) * obs_dim
+            tiles_per_dim = (8,) * len(self.state_indices)
         self.tiles_per_dim = np.asarray(tiles_per_dim, dtype=float)
 
         if bounds_low is None:
@@ -149,13 +154,19 @@ class TileCodingRep(object):
         if bounds_high is None:
             bounds_high = np.asarray(self.env.observation_space.high, dtype=float)
 
-        self.lower = np.asarray(bounds_low, dtype=float)
-        self.upper = np.asarray(bounds_high, dtype=float)
+        self.lower = np.asarray(bounds_low, dtype=float)[self.state_indices]
+        self.upper = np.asarray(bounds_high, dtype=float)[self.state_indices]
         self.ranges = self.upper - self.lower
         self.result = np.zeros(self.size_out)
 
-    def map(self, state):
+    def _select_state(self, state):
         state = np.asarray(state, dtype=float)
+        if state.shape[0] == len(self.state_indices):
+            return state
+        return state[self.state_indices]
+
+    def map(self, state):
+        state = self._select_state(state)
         clipped = np.clip(state, self.lower, self.upper)
         scaled = (clipped - self.lower) / self.ranges * self.tiles_per_dim
         active_tiles = tiles(self.iht, self.num_tilings, scaled)
@@ -165,5 +176,5 @@ class TileCodingRep(object):
         return self.result
 
     def get_state(self, state, env=None):
-        state = np.asarray(state, dtype=float)
+        state = self._select_state(state)
         return np.clip(state, self.lower, self.upper)

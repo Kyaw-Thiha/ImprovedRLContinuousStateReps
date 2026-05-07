@@ -43,9 +43,10 @@ for i in range(20):
         gifs=False,
         ### model-specific parameters ###
         rep_="TileCoding",
-        num_tilings=8,
+        num_tilings=16,
         tiles_per_dim=(8, 8, 8, 8),
-        iht_size=4096,
+        iht_size=65536,
+        tile_state_indices=(0, 1, 2, 3),
         eps=0.259453,
         lr=0.283112,
         ###

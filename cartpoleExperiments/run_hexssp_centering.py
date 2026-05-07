@@ -20,23 +20,38 @@ ac = ACTrial()
 # Reward Centering configs
 reward_center_mode = "value"  # "none", "simple", "value"
 reward_center_beta = 0.001
-reward_center_eta = float(sys.argv[1]) if len(sys.argv) > 1 else 1.0
+reward_center_eta = float(sys.argv[1]) if len(sys.argv) > 1 else 0.015625
 reward_center_init = 0.0
+condition_label = sys.argv[2] if len(sys.argv) > 2 else "off_policy_is"
 
 representation_name = "PlaceSSP"
-eta_label = str(reward_center_eta).replace(".", "p")
 
-data_dir_ = os.path.join(
-    REPO_ROOT,
-    "cartpoleData",
-    "reward_centering_eta_tuning",
-    representation_name,
-    f"{reward_center_mode}_eta_{eta_label}",
-)
+if condition_label == "on_policy":
+    target_policy_mode = "softmax"
+    behavior_policy_mode = "epsilon_greedy"
+    on_policy_override = True
+    force_rho_one = True
+elif condition_label == "off_policy_is":
+    target_policy_mode = "softmax"
+    behavior_policy_mode = "epsilon_greedy"
+    on_policy_override = False
+    force_rho_one = False
+elif condition_label == "off_policy_no_is":
+    target_policy_mode = "softmax"
+    behavior_policy_mode = "epsilon_greedy"
+    on_policy_override = False
+    force_rho_one = True
+else:
+    raise ValueError(f"Unsupported condition_label: {condition_label}")
+
+data_dir_ = os.path.join(REPO_ROOT, "cartpoleData", "value_centering_policy_ablation", representation_name, condition_label)
 os.makedirs(data_dir_, exist_ok=True)
 
 for i in range(20):
-    pre_comment_ = f"rep={representation_name}, reward_center={reward_center_mode}, run={i}"
+    pre_comment_ = (
+        f"rep={representation_name}, reward_center={reward_center_mode}, eta={reward_center_eta}, "
+        f"condition={condition_label}, run={i}"
+    )
 
     # return parameters and results
     metadata = ac.run(
@@ -96,6 +111,10 @@ for i in range(20):
         reward_center_beta=reward_center_beta,
         reward_center_eta=reward_center_eta,
         reward_center_init=reward_center_init,
+        target_policy_mode=target_policy_mode,
+        behavior_policy_mode=behavior_policy_mode,
+        force_rho_one=force_rho_one,
+        on_policy_override=on_policy_override,
         ###
         ###
         ### data saving specifications
@@ -112,6 +131,9 @@ for i in range(20):
     print("terminal reward: ", metadata["terminal_reward"])
     print("dimensionality: ", metadata["dimensionality"])
 
-    post_comment = f"rep={representation_name}, reward_center={reward_center_mode}, run={i}"
+    post_comment = (
+        f"rep={representation_name}, reward_center={reward_center_mode}, eta={reward_center_eta}, "
+        f"condition={condition_label}, run={i}"
+    )
     with open(os.path.join(data_dir_, "{}.txt".format(metadata["trial_ID"])), "a") as data_file:
         data_file.write("post_comment = " + post_comment)

@@ -66,6 +66,7 @@ class ACTrial(pytry.Trial):
         self.param("Number of tilings for tile coding", num_tilings=8)
         self.param("Tiles per dimension for tile coding", tiles_per_dim=None)
         self.param("IHT size for tile coding", iht_size=4096)
+        self.param("State indices for tile coding", tile_state_indices=None)
         self.param("Normalize state", normalize_state=False)
         self.param("Length scale", length_scale=1.0)
         self.param("Number of rotations", n_rotates=5)
@@ -179,6 +180,7 @@ class ACTrial(pytry.Trial):
                 iht_size=param.iht_size,
                 bounds_low=low,
                 bounds_high=high,
+                state_indices=param.tile_state_indices,
             )
             state_size = rep.size_out
         elif param.rep_ == "Discrete":
@@ -379,10 +381,10 @@ class ACTrial(pytry.Trial):
 
                 rs.append(reward)
 
-                cps.append(current_state[0])
-                cvs.append(current_state[1])
-                pas.append(current_state[2])
-                pvs.append(current_state[3])
+                cps.append(state[0])
+                cvs.append(state[1])
+                pas.append(state[2])
+                pvs.append(state[3])
 
                 vs.append(value[0])
 
@@ -401,10 +403,10 @@ class ACTrial(pytry.Trial):
 
                             rs.append(reward)  ## save reward
 
-                            cps.append(current_state[0])
-                            cvs.append(current_state[1])
-                            pas.append(current_state[2])
-                            pvs.append(current_state[3])
+                            cps.append(state[0])
+                            cvs.append(state[1])
+                            pas.append(state[2])
+                            pvs.append(state[3])
 
                             vs.append(value[0])
                     else:
@@ -414,10 +416,10 @@ class ACTrial(pytry.Trial):
 
                             rs.append(reward)  ## save reward
 
-                            cps.append(current_state[0])
-                            cvs.append(current_state[1])
-                            pas.append(current_state[2])
-                            pvs.append(current_state[3])
+                            cps.append(state[0])
+                            cvs.append(state[1])
+                            pas.append(state[2])
+                            pvs.append(state[3])
 
                             vs.append(value[0])
                             done_counter -= 1
