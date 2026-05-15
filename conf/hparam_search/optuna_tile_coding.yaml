@@ -1,13 +1,17 @@
 # Search space for tile coding representation.
-# Used by scripts/run_hparam_search.py --representation tile_coding
+# Used by scripts/run_hparam_search.py --representation tile_coding --centering {none,simple,value}
 #
 # Fixed params (not searched):
 #   rep_: TileCoding
-#   tiles_per_dim: [8, 8, 8, 8]
-#   iht_size: 65536
 #   tile_state_indices: [0, 1, 2, 3]
 #
 # Searched params:
 #   eps:         float  [0.1,  0.8]
 #   lr:          float  [0.001, 0.5]  log scale
-#   num_tilings: int    [4,    32]
+#   num_tilings: categorical [4, 8, 16, 32]
+#   tiles_per_dim: categorical scalar [4, 6, 8, 10, 12], expanded to all 4 dims
+#   iht_size: categorical [16384, 32768, 65536, 131072]
+#
+# Additional searched params by centering mode:
+#   simple: reward_center_beta  float [1e-5, 1e-1] log scale
+#   value:  reward_center_eta   float [1e-4, 1.0]  log scale

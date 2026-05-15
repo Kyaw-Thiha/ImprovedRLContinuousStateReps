@@ -19,7 +19,7 @@ from hydra.core.hydra_config import HydraConfig
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../experiments"))
 
-from trial_cartpole import ACTrial
+from experiments.trial_cartpole import ACTrial
 
 
 def cfg_to_trial_kwargs(cfg: DictConfig) -> dict:
@@ -55,6 +55,7 @@ def main(cfg: DictConfig) -> float:
 
         if cfg.use_wandb:
             import wandb
+
             wandb.init(
                 project=cfg.wandb_project,
                 name=f"{cfg.rep_}/{cfg.reward_center_mode}/seed{seed}",
@@ -71,18 +72,22 @@ def main(cfg: DictConfig) -> float:
 
         if cfg.use_wandb:
             import wandb
-            wandb.log({
-                "terminal_reward": metadata["terminal_reward"],
-                "terminal_reward_learning": metadata["terminal_reward_learning"],
-                "episodes_to_learn": metadata["episodes_to_learn"],
-                "build_time": metadata["build_time"],
-                "total_time": metadata["total_time"],
-            })
+
+            wandb.log(
+                {
+                    "terminal_reward": metadata["terminal_reward"],
+                    "terminal_reward_learning": metadata["terminal_reward_learning"],
+                    "episodes_to_learn": metadata["episodes_to_learn"],
+                    "build_time": metadata["build_time"],
+                    "total_time": metadata["total_time"],
+                }
+            )
             wandb.finish()
 
         terminal_rewards.append(metadata["terminal_reward"])
-        print(f"  seed={seed}  terminal_reward={metadata['terminal_reward']:.1f}  "
-              f"episodes_to_learn={metadata['episodes_to_learn']}")
+        print(
+            f"  seed={seed}  terminal_reward={metadata['terminal_reward']:.1f}  episodes_to_learn={metadata['episodes_to_learn']}"
+        )
 
     mean_reward = float(np.mean(terminal_rewards))
     print(f"\nmean terminal reward over {cfg.n_seeds} seeds: {mean_reward:.1f}")

@@ -1,10 +1,14 @@
 # Search space for discrete (one-hot) representation.
-# Used by scripts/run_hparam_search.py --representation discrete
+# Used by scripts/run_hparam_search.py --representation discrete --centering {none,simple,value}
 #
 # Fixed params (not searched):
 #   rep_: Discrete
-#   n_bins: 19
 #
 # Searched params:
+#   n_bins:       categorical [7, 11, 15, 19, 23]
 #   eps:          float  [0.1,  0.8]
 #   lr:           float  [0.001, 0.5]  log scale
+#
+# Additional searched params by centering mode:
+#   simple: reward_center_beta  float [1e-5, 1e-1] log scale
+#   value:  reward_center_eta   float [1e-4, 1.0]  log scale

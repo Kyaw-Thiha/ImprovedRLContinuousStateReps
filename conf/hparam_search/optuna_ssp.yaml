@@ -1,5 +1,5 @@
 # Search space for SSP (PlaceSSP) representation.
-# Used by scripts/run_hparam_search.py --representation ssp
+# Used by scripts/run_hparam_search.py --representation ssp --centering {none,simple,value}
 #
 # Fixed params (not searched):
 #   rep_: PlaceSSP
@@ -9,3 +9,7 @@
 #   lr:           float  [0.001, 0.5]  log scale
 #   length_scale: float  [0.1,  2.0]
 #   n_rotates:    int    [4,    12]
+#
+# Additional searched params by centering mode:
+#   simple: reward_center_beta  float [1e-5, 1e-1] log scale
+#   value:  reward_center_eta   float [1e-4, 1.0]  log scale

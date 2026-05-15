@@ -1,15 +1,16 @@
 """
-Hyperparameter search using Optuna for a given representation type.
+Hyperparameter search using Optuna for a representation/centering condition.
 
 Results are persisted in optuna_studies.db (SQLite) so searches can be
-interrupted and resumed without losing progress. Best params are written
-back to conf/representation/{rep}.yaml when the search completes.
+interrupted and resumed without losing progress. Best params are written to
+outputs/hparam_search/best/{representation}_{centering}.yaml when the search
+completes.
 
 Usage:
-    python scripts/run_hparam_search.py --representation discrete
-    python scripts/run_hparam_search.py --representation ssp --n-trials 50
-    python scripts/run_hparam_search.py --representation tile_coding --n-seeds 5
-    python scripts/run_hparam_search.py --representation discrete --resume
+    python scripts/run_hparam_search.py --representation discrete --centering none
+    python scripts/run_hparam_search.py --representation ssp --centering value --n-trials 50
+    python scripts/run_hparam_search.py --representation tile_coding --centering simple --n-seeds 5
+    python scripts/run_hparam_search.py --representation discrete --centering none --resume
 
 Search spaces are documented in conf/hparam_search/optuna_{rep}.yaml.
 """
@@ -22,14 +23,14 @@ import yaml
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../experiments"))
 
-from trial_cartpole import ACTrial
+from experiments.trial_cartpole import ACTrial
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CONF_REP_DIR = os.path.join(REPO_ROOT, "conf", "representation")
 DB_PATH = os.path.join(REPO_ROOT, "optuna_studies.db")
 DATA_DIR = os.path.join(REPO_ROOT, "outputs", "hparam_search")
+BEST_DIR = os.path.join(DATA_DIR, "best")
 
-# Base params held fixed during search — centering off, standard AC settings
+# Base params held fixed during search.
 BASE_PARAMS = dict(
     trials=1000,
     steps=500,
@@ -42,7 +43,6 @@ BASE_PARAMS = dict(
     state_dis=0.99,
     on_policy_override=False,
     force_rho_one=True,
-    reward_center_mode="none",
     reward_center_beta=0.001,
     reward_center_eta=1.0,
     reward_center_init=0.0,
@@ -51,12 +51,12 @@ BASE_PARAMS = dict(
 )
 
 
-def sample_params(trial: optuna.Trial, representation: str) -> dict:
+def sample_representation_params(trial: optuna.Trial, representation: str) -> dict:
     """Sample hyperparameters for the given representation."""
     if representation == "discrete":
         return dict(
             rep_="Discrete",
-            n_bins=19,
+            n_bins=trial.suggest_categorical("n_bins", [7, 11, 15, 19, 23]),
             eps=trial.suggest_float("eps", 0.1, 0.8),
             lr=trial.suggest_float("lr", 0.001, 0.5, log=True),
         )
@@ -69,11 +69,12 @@ def sample_params(trial: optuna.Trial, representation: str) -> dict:
             n_rotates=trial.suggest_int("n_rotates", 4, 12),
         )
     elif representation == "tile_coding":
+        tiles_per_dim = trial.suggest_categorical("tiles_per_dim", [4, 6, 8, 10, 12])
         return dict(
             rep_="TileCoding",
-            num_tilings=trial.suggest_int("num_tilings", 4, 32),
-            tiles_per_dim=(8, 8, 8, 8),
-            iht_size=65536,
+            num_tilings=trial.suggest_categorical("num_tilings", [4, 8, 16, 32]),
+            tiles_per_dim=(tiles_per_dim,) * 4,
+            iht_size=trial.suggest_categorical("iht_size", [16384, 32768, 65536, 131072]),
             tile_state_indices=(0, 1, 2, 3),
             eps=trial.suggest_float("eps", 0.1, 0.8),
             lr=trial.suggest_float("lr", 0.001, 0.5, log=True),
@@ -82,20 +83,42 @@ def sample_params(trial: optuna.Trial, representation: str) -> dict:
         raise ValueError(f"Unknown representation: {representation}")
 
 
-def make_objective(representation: str, n_seeds: int):
+def sample_centering_params(trial: optuna.Trial, centering: str) -> dict:
+    """Sample reward-centering hyperparameters for the given centering mode."""
+    params = dict(reward_center_mode=centering)
+
+    if centering == "none":
+        return params
+    if centering == "simple":
+        params["reward_center_beta"] = trial.suggest_float("reward_center_beta", 1e-5, 1e-1, log=True)
+        return params
+    if centering == "value":
+        params["reward_center_eta"] = trial.suggest_float("reward_center_eta", 1e-4, 1.0, log=True)
+        return params
+
+    raise ValueError(f"Unknown centering mode: {centering}")
+
+
+def sample_params(trial: optuna.Trial, representation: str, centering: str) -> dict:
+    params = sample_representation_params(trial, representation)
+    params.update(sample_centering_params(trial, centering))
+    return params
+
+
+def make_objective(representation: str, centering: str, n_seeds: int):
     ac = ACTrial()
 
     def objective(trial: optuna.Trial) -> float:
-        rep_params = sample_params(trial, representation)
+        params = sample_params(trial, representation, centering)
 
         rewards = []
         for seed in range(n_seeds):
             metadata = ac.run(
                 seed=seed,
                 data_dir=DATA_DIR,
-                pre_comment=f"optuna trial={trial.number} rep={representation} seed={seed}",
+                pre_comment=f"optuna trial={trial.number} rep={representation} centering={centering} seed={seed}",
                 **BASE_PARAMS,
-                **rep_params,
+                **params,
             )
             rewards.append(metadata["terminal_reward"])
 
@@ -104,42 +127,63 @@ def make_objective(representation: str, n_seeds: int):
     return objective
 
 
-def save_best_params(representation: str, best_params: dict) -> None:
-    """Merge best searched params into the representation's conf YAML."""
-    conf_path = os.path.join(CONF_REP_DIR, f"{representation}.yaml")
+def trial_params_from_search_params(representation: str, centering: str, search_params: dict) -> dict:
+    """Convert Optuna's searched params into ACTrial-ready params."""
+    params = dict(search_params)
 
-    with open(conf_path) as f:
-        current = yaml.safe_load(f)
+    if representation == "discrete":
+        params["rep_"] = "Discrete"
+    elif representation == "ssp":
+        params["rep_"] = "PlaceSSP"
+    elif representation == "tile_coding":
+        params["rep_"] = "TileCoding"
+        if isinstance(params.get("tiles_per_dim"), int):
+            params["tiles_per_dim"] = [params["tiles_per_dim"]] * 4
+        params["tile_state_indices"] = [0, 1, 2, 3]
+    else:
+        raise ValueError(f"Unknown representation: {representation}")
 
-    current.update(best_params)
+    params["reward_center_mode"] = centering
+    return params
 
-    with open(conf_path, "w") as f:
-        f.write(f"# Best params from Optuna search\n")
-        yaml.dump(current, f, default_flow_style=False, sort_keys=False)
 
-    print(f"Best params written to {conf_path}")
+def save_best_params(representation: str, centering: str, best_value: float, best_params: dict) -> None:
+    """Write condition-specific best params without mutating conf/ defaults."""
+    os.makedirs(BEST_DIR, exist_ok=True)
+    best_path = os.path.join(BEST_DIR, f"{representation}_{centering}.yaml")
+
+    payload = {
+        "representation": representation,
+        "centering": centering,
+        "best_value": float(best_value),
+        "params": trial_params_from_search_params(representation, centering, best_params),
+    }
+
+    with open(best_path, "w") as f:
+        f.write("# Best params from Optuna search. Intended for scripts/run_best_ablation.py\n")
+        yaml.dump(payload, f, default_flow_style=False, sort_keys=False)
+
+    print(f"Best params written to {best_path}")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Optuna hyperparameter search")
     parser.add_argument(
-        "--representation", choices=["discrete", "ssp", "tile_coding"], required=True,
-        help="Which representation to tune"
+        "--representation", choices=["discrete", "ssp", "tile_coding"], required=True, help="Which representation to tune"
+    )
+    parser.add_argument(
+        "--centering", choices=["none", "simple", "value"], required=True, help="Which reward-centering mode to tune"
     )
     parser.add_argument("--n-trials", type=int, default=100, help="Number of Optuna trials")
+    parser.add_argument("--n-seeds", type=int, default=3, help="Seeds to average per Optuna trial (fewer = faster search)")
     parser.add_argument(
-        "--n-seeds", type=int, default=3,
-        help="Seeds to average per Optuna trial (fewer = faster search)"
-    )
-    parser.add_argument(
-        "--resume", action="store_true",
-        help="Print existing study progress and resume (study always persists to DB)"
+        "--resume", action="store_true", help="Print existing study progress and resume (study always persists to DB)"
     )
     args = parser.parse_args()
 
     os.makedirs(DATA_DIR, exist_ok=True)
 
-    study_name = f"{args.representation}_hparam_search"
+    study_name = f"{args.representation}_{args.centering}_hparam_search"
     storage = f"sqlite:///{DB_PATH}"
 
     # load_if_exists=True means re-running without --resume safely continues the study
@@ -157,7 +201,7 @@ def main():
         if args.resume:
             print(f"Current best: {study.best_value:.2f}  params: {study.best_params}")
 
-    objective = make_objective(args.representation, args.n_seeds)
+    objective = make_objective(args.representation, args.centering, args.n_seeds)
 
     optuna.logging.set_verbosity(optuna.logging.WARNING)
     study.optimize(objective, n_trials=args.n_trials, show_progress_bar=True)
@@ -166,7 +210,7 @@ def main():
     print(f"Best value : {study.best_value:.2f}")
     print(f"Best params: {study.best_params}")
 
-    save_best_params(args.representation, study.best_params)
+    save_best_params(args.representation, args.centering, study.best_value, study.best_params)
 
 
 if __name__ == "__main__":
