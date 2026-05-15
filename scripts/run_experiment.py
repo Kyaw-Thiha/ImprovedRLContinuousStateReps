@@ -52,12 +52,34 @@ def main(cfg: DictConfig) -> float:
 
     for seed in range(cfg.n_seeds):
         pre_comment = f"rep={cfg.rep_}, centering={cfg.reward_center_mode}, seed={seed}"
+
+        if cfg.use_wandb:
+            import wandb
+            wandb.init(
+                project=cfg.wandb_project,
+                name=f"{cfg.rep_}/{cfg.reward_center_mode}/seed{seed}",
+                config=OmegaConf.to_container(cfg, resolve=True),
+                reinit=True,
+            )
+
         metadata = ac.run(
             seed=seed,
             data_dir=data_dir,
             pre_comment=pre_comment,
             **kwargs,
         )
+
+        if cfg.use_wandb:
+            import wandb
+            wandb.log({
+                "terminal_reward": metadata["terminal_reward"],
+                "terminal_reward_learning": metadata["terminal_reward_learning"],
+                "episodes_to_learn": metadata["episodes_to_learn"],
+                "build_time": metadata["build_time"],
+                "total_time": metadata["total_time"],
+            })
+            wandb.finish()
+
         terminal_rewards.append(metadata["terminal_reward"])
         print(f"  seed={seed}  terminal_reward={metadata['terminal_reward']:.1f}  "
               f"episodes_to_learn={metadata['episodes_to_learn']}")

@@ -24,3 +24,7 @@ force_rho_one: true
 
 # Output (auto-derived by run_experiment.py from config composition)
 output_root: outputs
+
+# W&B — set use_wandb: true to enable live tracking
+use_wandb: false
+wandb_project: rl-continuous-state-reps

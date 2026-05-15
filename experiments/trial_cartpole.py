@@ -437,6 +437,10 @@ class ACTrial(BaseTrial):
             Ep_rewards.append(np.sum(rs))  ## Store total reward for episode
             # feel like this should be in the agent not in the main script
 
+            if param.use_wandb:
+                import wandb
+                wandb.log({"episode_reward": np.sum(rs), "epsilon": eps, "episode": trial})
+
             if param.dynamic_epsilon == True:
                 if np.mean(Ep_rewards[trial - 10 : trial]) > np.mean(Ep_rewards[trial - 20 : trial - 10]) + np.std(
                     Ep_rewards[trial - 20 : trial - 10]

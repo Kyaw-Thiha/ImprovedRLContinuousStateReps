@@ -20,3 +20,4 @@ class BaseTrial(pytry.Trial):
         ## Output / Logging
         self.param("Create render gifs", gifs=False)
         self.param("Comments prior to running trial", pre_comment="N/A")
+        self.param("Log metrics to Weights & Biases", use_wandb=False)
