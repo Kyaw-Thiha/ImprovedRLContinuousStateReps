@@ -1,0 +1,7 @@
+rep_: TileCoding
+num_tilings: 16
+tiles_per_dim: [8, 8, 8, 8]
+iht_size: 65536
+tile_state_indices: [0, 1, 2, 3]
+eps: 0.259453   # tuned via NNI
+lr: 0.283112    # tuned via NNI

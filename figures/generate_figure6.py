@@ -7,11 +7,11 @@ from scipy.stats import levene
 window = 50
 
 # Grab all files in subfolder HexPlace (this will contain reward.csv, reward(1).csv, etc)
-ssp_files = [f for f in listdir("../cartpoleData/baseline-comparison/HexSSP")]
+ssp_files = [f for f in listdir("../data/baseline-comparison/HexSSP")]
 all_mean_rews = []
 all_ts = []
 for i, name in enumerate(ssp_files):
-    ssp_data = np.genfromtxt("../cartpoleData/baseline-comparison/HexSSP/" + name, delimiter=',')[1:]
+    ssp_data = np.genfromtxt("../data/baseline-comparison/HexSSP/" + name, delimiter=',')[1:]
     ssp_data[np.isnan(ssp_data)] = 0
     # Epsiodic rewards
     ep_rews = np.sum(ssp_data[:,1:],axis=0)
@@ -38,14 +38,14 @@ ssp_min = np.percentile(ssp_int_rews, 10, axis=0, interpolation = 'midpoint')
 ssp_max =  np.percentile(ssp_int_rews, 90, axis=0, interpolation = 'midpoint')
 
 # The baseline data
-baseline_ts = np.load('../cartpoleData/baseline-comparison/baseline/baseline_num_timesteps.npy', allow_pickle=True)
-baseline_rs = np.load('../cartpoleData/baseline-comparison/baseline/baseline_rewards.npy', allow_pickle=True)
+baseline_ts = np.load('../data/baseline-comparison/baseline/baseline_num_timesteps.npy', allow_pickle=True)
+baseline_rs = np.load('../data/baseline-comparison/baseline/baseline_rewards.npy', allow_pickle=True)
 
 # I ran 20 extra trials and saved with a different filename, if the 
 # cartpolae_a2c.py is simply run with 20 trials this code is not needed
 
-baseline2_ts = np.load('../cartpoleData/baseline-comparison/baseline/baseline_num_timesteps_set2.npy', allow_pickle=True)
-baseline2_rs = np.load('../cartpoleData/baseline-comparison/baseline/baseline_rewards_set2.npy', allow_pickle=True)
+baseline2_ts = np.load('../data/baseline-comparison/baseline/baseline_num_timesteps_set2.npy', allow_pickle=True)
+baseline2_rs = np.load('../data/baseline-comparison/baseline/baseline_rewards_set2.npy', allow_pickle=True)
 baseline_ts= np.concatenate((baseline_ts,baseline2_ts))
 baseline_rs= np.concatenate((baseline_rs,baseline2_rs))
 

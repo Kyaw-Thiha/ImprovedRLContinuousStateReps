@@ -1,0 +1,5 @@
+rep_: PlaceSSP
+length_scale: 0.527579   # tuned via NNI
+n_rotates: 7             # tuned via NNI
+eps: 0.221581            # tuned via NNI
+lr: 0.195843             # tuned via NNI

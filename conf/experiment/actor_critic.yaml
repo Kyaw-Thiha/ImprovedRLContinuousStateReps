@@ -1,0 +1,5 @@
+model_type: actor_critic
+state_neurons: null   # set to an int (e.g. 4096) to use a Nengo neuron ensemble
+active_prop: 0.1
+target_policy_mode: greedy
+behavior_policy_mode: epsilon_greedy

@@ -1,0 +1,27 @@
+defaults:
+  - override /representation: ssp
+
+hydra:
+  sweeper:
+    sampler:
+      _target_: optuna.samplers.TPESampler
+    direction: maximize
+    n_trials: 100
+    params:
+      representation.eps:
+        type: float
+        low: 0.1
+        high: 0.8
+      representation.lr:
+        type: float
+        low: 0.001
+        high: 0.5
+        log: true
+      representation.length_scale:
+        type: float
+        low: 0.1
+        high: 2.0
+      representation.n_rotates:
+        type: int
+        low: 4
+        high: 12

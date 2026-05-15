@@ -1,0 +1,5 @@
+condition_label,n_runs,n_solved,solve_rate_pct,terminal_reward_mean_std,terminal_reward_median,episodes_to_learn_mean_std,episodes_to_learn_median
+Discrete / Simple Centering,40,0,0.0,266.29 +/- 65.14,263.19500000000005,NA,
+Discrete / Value Centering,20,0,0.0,120.16 +/- 55.03,100.57,NA,
+PlaceSSP / Simple Centering,35,26,74.3,458.28 +/- 99.88,497.58,719.69 +/- 133.94,742.0
+PlaceSSP / Value Centering,20,0,0.0,189.49 +/- 80.26,158.57,NA,

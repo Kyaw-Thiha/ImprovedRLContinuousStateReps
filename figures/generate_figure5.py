@@ -20,7 +20,7 @@ figsize_ = (8,4.3)
 fig,(ax1,ax2) = plt.subplots(1,2,figsize = figsize_)
 
 ### plot the mean episodic reward across the 10 seeds
-df = pd.read_csv(os.path.join('../cartpoleData/processed','all-episodic-rewards.csv'),index_col=0)
+df = pd.read_csv(os.path.join('../data/processed','all-episodic-rewards.csv'),index_col=0)
 for rep in sorted( set([c.split('-')[0] for c in df.columns]) ):
     print(rep)
     rep_cols = [ col for col in df.columns if rep in col ]
@@ -51,7 +51,7 @@ ax1.legend(loc = 'upper center',bbox_to_anchor=(0.5,1.25),ncol=3,frameon=False)
 
 ### plot spread of terminal rewards observed within the 10 seeds
 expt_name = 'cartpole-repeats'
-data_dir = os.path.join(os.path.dirname(__file__),'../cartpoleData/processed')
+data_dir = os.path.join(os.path.dirname(__file__),'../data/processed')
 mddf = pd.read_csv(os.path.join(data_dir,'metadata-summary.csv'.format(expt_name)),index_col = 0)
 
 # plot data for discrete representation

@@ -1,0 +1,7 @@
+condition_label,n_runs,n_solved,solve_rate_pct,terminal_reward_mean_std,terminal_reward_median,episodes_to_learn_mean_std,episodes_to_learn_median
+Discrete / condition=off_policy_is,20,0,0.0,136.40 +/- 58.58,117.69999999999999,NA,
+Discrete / condition=off_policy_no_is,20,0,0.0,174.50 +/- 55.52,165.04500000000002,NA,
+Discrete / condition=on_policy,20,0,0.0,179.92 +/- 96.38,133.69,NA,
+PlaceSSP / condition=off_policy_is,20,18,90.0,477.32 +/- 66.55,499.805,698.22 +/- 135.97,661.5
+PlaceSSP / condition=off_policy_no_is,20,19,95.0,473.47 +/- 67.62,499.645,630.95 +/- 94.68,638.0
+PlaceSSP / condition=on_policy,20,6,30.0,250.56 +/- 204.86,232.14,682.17 +/- 213.91,664.5

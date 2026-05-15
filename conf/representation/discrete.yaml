@@ -1,0 +1,4 @@
+rep_: Discrete
+n_bins: 19
+eps: 0.259453   # tuned via NNI
+lr: 0.283112    # tuned via NNI

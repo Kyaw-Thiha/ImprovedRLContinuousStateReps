@@ -1,0 +1,26 @@
+defaults:
+  - experiment: actor_critic
+  - representation: discrete
+  - centering: none
+  - _self_
+
+# Shared trial settings
+env: CartPole-v1
+trials: 1000
+steps: 500
+n_done: 1
+learnTrials: ${trials}
+n_seeds: 20
+verbose: false
+gifs: false
+
+# Common learning settings
+rule: TD0
+dynamic_epsilon: true
+act_dis: 0.9
+state_dis: 0.99
+on_policy_override: false
+force_rho_one: true
+
+# Output (auto-derived by run_experiment.py from config composition)
+output_root: outputs

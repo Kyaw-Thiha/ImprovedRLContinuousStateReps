@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sys,os
 
-sys.path.insert(0,'../network/rlnet')
+sys.path.insert(0,'../rl/representations')
 from sspspace import HexagonalSSPSpace, _get_sub_SSP, _proj_sub_SSP
 
 sspspace = HexagonalSSPSpace(domain_dim=2,n_rotates=6,n_scales=6,scale_min=0.8, scale_max=3)

@@ -5,3 +5,4 @@
 *.cpython-39.pyc
 
 **/__pycache__
+data/*

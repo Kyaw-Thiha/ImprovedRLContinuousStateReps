@@ -1,0 +1,4 @@
+reward_center_mode: none
+reward_center_beta: 0.001
+reward_center_eta: 1.0
+reward_center_init: 0.0
