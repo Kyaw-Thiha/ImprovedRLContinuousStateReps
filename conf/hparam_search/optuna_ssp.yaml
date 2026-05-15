@@ -1,27 +1,11 @@
-defaults:
-  - override /representation: ssp
-
-hydra:
-  sweeper:
-    sampler:
-      _target_: optuna.samplers.TPESampler
-    direction: maximize
-    n_trials: 100
-    params:
-      representation.eps:
-        type: float
-        low: 0.1
-        high: 0.8
-      representation.lr:
-        type: float
-        low: 0.001
-        high: 0.5
-        log: true
-      representation.length_scale:
-        type: float
-        low: 0.1
-        high: 2.0
-      representation.n_rotates:
-        type: int
-        low: 4
-        high: 12
+# Search space for SSP (PlaceSSP) representation.
+# Used by scripts/run_hparam_search.py --representation ssp
+#
+# Fixed params (not searched):
+#   rep_: PlaceSSP
+#
+# Searched params:
+#   eps:          float  [0.1,  0.8]
+#   lr:           float  [0.001, 0.5]  log scale
+#   length_scale: float  [0.1,  2.0]
+#   n_rotates:    int    [4,    12]
