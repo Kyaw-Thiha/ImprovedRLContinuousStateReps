@@ -108,7 +108,6 @@ def sample_params(trial: optuna.Trial, representation: str, centering: str) -> d
 
 
 def make_objective(representation: str, centering: str, n_seeds: int):
-    ac = ACTrial()
     # Keep pytry's per-run ACTrial artifacts grouped by the 3x3 HPO condition.
     data_dir = os.path.join(DATA_DIR, representation, centering)
     os.makedirs(data_dir, exist_ok=True)
@@ -116,6 +115,9 @@ def make_objective(representation: str, centering: str, n_seeds: int):
     episodes_per_seed = BASE_PARAMS["trials"]
 
     def objective(trial: optuna.Trial) -> float:
+        # Each trial gets its own ACTrial instance — required for thread safety
+        # when study.optimize is called with n_jobs > 1.
+        ac = ACTrial()
         params = dict(BASE_PARAMS)
         params.update(sample_params(trial, representation, centering))
 
@@ -196,6 +198,7 @@ def main():
     )
     parser.add_argument("--n-trials", type=int, default=100, help="Number of Optuna trials")
     parser.add_argument("--n-seeds", type=int, default=3, help="Seeds to average per Optuna trial (fewer = faster search)")
+    parser.add_argument("--n-jobs", type=int, default=1, help="Parallel trial workers (4-6 recommended on 8-core machines)")
     parser.add_argument(
         "--resume", action="store_true", help="Print existing study progress and resume (study always persists to DB)"
     )
@@ -231,7 +234,7 @@ def main():
     objective = make_objective(args.representation, args.centering, args.n_seeds)
 
     optuna.logging.set_verbosity(optuna.logging.WARNING)
-    study.optimize(objective, n_trials=args.n_trials, show_progress_bar=True)
+    study.optimize(objective, n_trials=args.n_trials, n_jobs=args.n_jobs, show_progress_bar=True)
 
     print(f"\nSearch complete.")
     print(f"Best value : {study.best_value:.2f}")
