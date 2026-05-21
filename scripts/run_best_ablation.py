@@ -43,12 +43,12 @@ def load_best_params(best_dir: str, representation: str, centering: str) -> dict
 
 
 def output_dir(output_root: str, model_type: str, params: dict) -> str:
-    return os.path.join(
+    return os.path.abspath(os.path.join(
         output_root,
         model_type,
         params["rep_"],
         params["reward_center_mode"],
-    )
+    ))
 
 
 def main():

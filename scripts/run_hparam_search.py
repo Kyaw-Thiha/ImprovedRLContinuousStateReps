@@ -2,8 +2,9 @@
 Hyperparameter search using Optuna for a representation/centering condition.
 
 Results are persisted in optuna_studies.db (SQLite) so searches can be
-interrupted and resumed without losing progress. Best params are written to
-outputs/hparam_search/best/{representation}_{centering}.yaml when the search
+interrupted and resumed without losing progress. Raw trial artifacts are written
+to outputs/hparam_search/{representation}/{centering}/. Best params are written
+to outputs/hparam_search/best/{representation}_{centering}.yaml when the search
 completes.
 
 Usage:
@@ -19,6 +20,7 @@ import sys, os, argparse
 import numpy as np
 import optuna
 import yaml
+from optuna.trial import TrialState
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../experiments"))
@@ -107,17 +109,20 @@ def sample_params(trial: optuna.Trial, representation: str, centering: str) -> d
 
 def make_objective(representation: str, centering: str, n_seeds: int):
     ac = ACTrial()
+    # Keep pytry's per-run ACTrial artifacts grouped by the 3x3 HPO condition.
+    data_dir = os.path.join(DATA_DIR, representation, centering)
+    os.makedirs(data_dir, exist_ok=True)
 
     def objective(trial: optuna.Trial) -> float:
-        params = sample_params(trial, representation, centering)
+        params = dict(BASE_PARAMS)
+        params.update(sample_params(trial, representation, centering))
 
         rewards = []
         for seed in range(n_seeds):
             metadata = ac.run(
                 seed=seed,
-                data_dir=DATA_DIR,
+                data_dir=data_dir,
                 pre_comment=f"optuna trial={trial.number} rep={representation} centering={centering} seed={seed}",
-                **BASE_PARAMS,
                 **params,
             )
             rewards.append(metadata["terminal_reward"])
@@ -199,7 +204,11 @@ def main():
     if n_existing > 0:
         print(f"Study '{study_name}': {n_existing} trials already completed")
         if args.resume:
-            print(f"Current best: {study.best_value:.2f}  params: {study.best_params}")
+            completed_trials = [trial for trial in study.trials if trial.state == TrialState.COMPLETE]
+            if completed_trials:
+                print(f"Current best: {study.best_value:.2f}  params: {study.best_params}")
+            else:
+                print("Current best: none yet; existing trials have not completed successfully.")
 
     objective = make_objective(args.representation, args.centering, args.n_seeds)
 

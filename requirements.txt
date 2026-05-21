@@ -25,3 +25,4 @@ optuna>=2.10.0,<3.0.0
 SQLAlchemy<2
 alembic<1.9
 wandb>=0.17
+scikit-learn>=1.0

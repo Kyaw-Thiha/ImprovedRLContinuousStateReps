@@ -73,7 +73,7 @@ def build_parser():
     parser.add_argument(
         "--uncertainty",
         choices=["std", "sem", "quantile", "gaussian95"],
-        default="sem",
+        default="gaussian95",
         help="Uncertainty band for the learning-curve figure.",
     )
     parser.add_argument(
