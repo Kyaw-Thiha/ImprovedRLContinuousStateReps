@@ -437,6 +437,11 @@ class ACTrial(BaseTrial):
             Ep_rewards.append(np.sum(rs))  ## Store total reward for episode
             # feel like this should be in the agent not in the main script
 
+            _cb = getattr(self, '_pruning_callback', None)
+            if _cb is not None:
+                _rolling = float(np.mean(Ep_rewards[-100:]) if len(Ep_rewards) >= 100 else np.mean(Ep_rewards))
+                _cb(trial, _rolling)  # trial here is the episode index; may raise TrialPruned
+
             if param.use_wandb:
                 import wandb
                 wandb.log({"episode_reward": np.sum(rs), "epsilon": eps, "episode": trial})

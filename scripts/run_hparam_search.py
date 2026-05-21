@@ -59,27 +59,27 @@ def sample_representation_params(trial: optuna.Trial, representation: str) -> di
         return dict(
             rep_="Discrete",
             n_bins=trial.suggest_categorical("n_bins", [7, 11, 15, 19, 23]),
-            eps=trial.suggest_float("eps", 0.1, 0.8),
-            lr=trial.suggest_float("lr", 0.001, 0.5, log=True),
+            eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
+            lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
         )
     elif representation == "ssp":
         return dict(
             rep_="PlaceSSP",
-            eps=trial.suggest_float("eps", 0.1, 0.8),
-            lr=trial.suggest_float("lr", 0.001, 0.5, log=True),
-            length_scale=trial.suggest_float("length_scale", 0.1, 2.0),
-            n_rotates=trial.suggest_int("n_rotates", 4, 12),
+            eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
+            lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
+            length_scale=trial.suggest_float("length_scale", 0.05, 5.0, log=True),
+            n_rotates=trial.suggest_int("n_rotates", 4, 16),
         )
     elif representation == "tile_coding":
-        tiles_per_dim = trial.suggest_categorical("tiles_per_dim", [4, 6, 8, 10, 12])
+        tiles_per_dim = trial.suggest_categorical("tiles_per_dim", [6, 8, 10, 12, 16])
         return dict(
             rep_="TileCoding",
-            num_tilings=trial.suggest_categorical("num_tilings", [4, 8, 16, 32]),
+            num_tilings=trial.suggest_categorical("num_tilings", [8, 16, 32, 64]),
             tiles_per_dim=(tiles_per_dim,) * 4,
-            iht_size=trial.suggest_categorical("iht_size", [16384, 32768, 65536, 131072]),
+            iht_size=trial.suggest_categorical("iht_size", [16384, 32768, 65536, 131072, 262144]),
             tile_state_indices=(0, 1, 2, 3),
-            eps=trial.suggest_float("eps", 0.1, 0.8),
-            lr=trial.suggest_float("lr", 0.001, 0.5, log=True),
+            eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
+            lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
         )
     else:
         raise ValueError(f"Unknown representation: {representation}")
@@ -113,19 +113,34 @@ def make_objective(representation: str, centering: str, n_seeds: int):
     data_dir = os.path.join(DATA_DIR, representation, centering)
     os.makedirs(data_dir, exist_ok=True)
 
+    episodes_per_seed = BASE_PARAMS["trials"]
+
     def objective(trial: optuna.Trial) -> float:
         params = dict(BASE_PARAMS)
         params.update(sample_params(trial, representation, centering))
 
         rewards = []
         for seed in range(n_seeds):
-            metadata = ac.run(
-                seed=seed,
-                data_dir=data_dir,
-                pre_comment=f"optuna trial={trial.number} rep={representation} centering={centering} seed={seed}",
-                **params,
-            )
-            rewards.append(metadata["terminal_reward"])
+            ep_offset = seed * episodes_per_seed
+
+            def _pruning_callback(ep_idx, rolling_reward, _offset=ep_offset):
+                trial.report(rolling_reward, _offset + ep_idx)
+                if trial.should_prune():
+                    raise optuna.exceptions.TrialPruned()
+
+            ac._pruning_callback = _pruning_callback
+            try:
+                metadata = ac.run(
+                    seed=seed,
+                    data_dir=data_dir,
+                    pre_comment=f"optuna trial={trial.number} rep={representation} centering={centering} seed={seed}",
+                    **params,
+                )
+                rewards.append(metadata["terminal_reward"])
+            except optuna.exceptions.TrialPruned:
+                raise
+            finally:
+                ac._pruning_callback = None
 
         return float(np.mean(rewards))
 
@@ -191,12 +206,15 @@ def main():
     study_name = f"{args.representation}_{args.centering}_hparam_search"
     storage = f"sqlite:///{DB_PATH}"
 
-    # load_if_exists=True means re-running without --resume safely continues the study
+    # load_if_exists=True means re-running without --resume safely continues the study.
+    # MedianPruner: don't prune until 5 trials complete and episode 200 has passed,
+    # so agents have enough time to warm up before being compared.
     study = optuna.create_study(
         study_name=study_name,
         storage=storage,
         direction="maximize",
         sampler=optuna.samplers.TPESampler(seed=42),
+        pruner=optuna.pruners.MedianPruner(n_startup_trials=5, n_warmup_steps=200),
         load_if_exists=True,
     )
 
