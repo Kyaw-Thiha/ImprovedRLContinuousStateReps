@@ -74,9 +74,9 @@ def sample_representation_params(trial: optuna.Trial, representation: str) -> di
         tiles_per_dim = trial.suggest_categorical("tiles_per_dim", [6, 8, 10, 12, 16])
         return dict(
             rep_="TileCoding",
-            num_tilings=trial.suggest_categorical("num_tilings", [8, 16, 32, 64]),
+            num_tilings=trial.suggest_categorical("num_tilings", [8, 16, 32]),
             tiles_per_dim=(tiles_per_dim,) * 4,
-            iht_size=trial.suggest_categorical("iht_size", [16384, 32768, 65536, 131072, 262144]),
+            iht_size=trial.suggest_categorical("iht_size", [16384, 32768, 65536, 131072]),
             tile_state_indices=(0, 1, 2, 3),
             eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
             lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
@@ -197,7 +197,7 @@ def main():
         "--centering", choices=["none", "simple", "value"], required=True, help="Which reward-centering mode to tune"
     )
     parser.add_argument("--n-trials", type=int, default=100, help="Number of Optuna trials")
-    parser.add_argument("--n-seeds", type=int, default=3, help="Seeds to average per Optuna trial (fewer = faster search)")
+    parser.add_argument("--n-seeds", type=int, default=5, help="Seeds to average per Optuna trial (fewer = faster search)")
     parser.add_argument("--n-jobs", type=int, default=1, help="Parallel trial workers (4-6 recommended on 8-core machines)")
     parser.add_argument(
         "--resume", action="store_true", help="Print existing study progress and resume (study always persists to DB)"

@@ -6,10 +6,15 @@ Repository to accompany [Bartlett, Simone, Dumont, Furlong, Eliasmith, Orchard &
 
 **Note: Make sure to import all dependencies listed in the *requirements.txt* file**
 
-Hyperparameter optimization
+### Hyperparameter optimization
 * To run hyperparameter optimization for a given network architecture, do: `nnictl create --config [CONFIG_FILENAME].YML`
 * For RatBox, the configuration files are located in `ratboxExperiments/nni_exps`. The network configuration for a given experiment is indicated in the file name. 
 * For Cartpole, configuration files are in /cartpoleExperiments. To modify optimization for a particular state discretization in the tabular approach, modify n_bins_ parameter within the `exp_cartpole_discrete.py` script.
+
+To plot the hyperparameter search, run the following command.
+```bash
+python experiments/plotting/plot_hparam_search.py --output-dir experiments/plotting/output/hparam-search
+```
 
 To reproduce results: RatBox
 * `ratboxExperiments/getBestParams.ipynb` reports the best hyperparameters found for RatBox
