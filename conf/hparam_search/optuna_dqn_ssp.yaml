@@ -1,0 +1,21 @@
+# Search space for DQN with SSP (PlaceSSP) representation.
+# Used by scripts/run_hparam_search_dqn.py --representation ssp --centering {none,simple,value}
+#
+# Fixed params (not searched):
+#   rep_: PlaceSSP
+#
+# Searched params (shared with A2C — warm-started from A2C best):
+#   eps:          float  [0.01, 0.5]  log scale
+#   lr:           float  [1e-4, 1.0]  log scale
+#   length_scale: float  [0.05, 5.0]  log scale
+#   n_rotates:    int    [4, 16]
+#
+# DQN-specific searched params:
+#   buffer_size:        categorical [1000, 5000, 10000, 50000]
+#   batch_size:         categorical [32, 64, 128]
+#   target_update_freq: categorical [10, 50, 100, 500]
+#   learning_starts:    categorical [100, 500, 1000]
+#
+# Additional searched params by centering mode:
+#   simple: reward_center_beta  float [1e-5, 1e-1] log scale
+#   value:  reward_center_eta   float [1e-4, 1.0]  log scale

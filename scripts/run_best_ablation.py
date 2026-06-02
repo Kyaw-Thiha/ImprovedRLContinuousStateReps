@@ -21,18 +21,22 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../experiments"))
 
 from experiments.trial_cartpole import ACTrial
+from experiments.trial_cartpole_dqn import DQNTrial
 from run_hparam_search import BASE_PARAMS, BEST_DIR
+from run_hparam_search_dqn import BASE_PARAMS as DQN_BASE_PARAMS
 
 
 REPRESENTATIONS = ["discrete", "ssp", "tile_coding"]
 CENTERINGS = ["none", "simple", "value"]
 
 
-def load_best_params(best_dir: str, representation: str, centering: str) -> dict:
-    best_path = os.path.join(best_dir, f"{representation}_{centering}.yaml")
+def load_best_params(best_dir: str, representation: str, centering: str, model_type: str = "actor_critic") -> dict:
+    prefix = "dqn_" if model_type == "dqn" else ""
+    best_path = os.path.join(best_dir, f"{prefix}{representation}_{centering}.yaml")
     if not os.path.exists(best_path):
+        search_script = "run_hparam_search_dqn.py" if model_type == "dqn" else "run_hparam_search.py"
         raise FileNotFoundError(
-            f"Missing tuned params: {best_path}. Run scripts/run_hparam_search.py "
+            f"Missing tuned params: {best_path}. Run scripts/{search_script} "
             f"--representation {representation} --centering {centering} first."
         )
 
@@ -57,7 +61,7 @@ def main():
     parser.add_argument("--centering", choices=CENTERINGS, help="Run one centering mode only")
     parser.add_argument("--best-dir", default=BEST_DIR, help="Directory containing best-param YAML files")
     parser.add_argument("--output-root", default=os.path.join("outputs", "tuned"), help="Where final runs are saved")
-    parser.add_argument("--model-type", default="actor_critic", help="Output path model label")
+    parser.add_argument("--model-type", choices=["actor_critic", "dqn"], default="actor_critic", help="Which model to run")
     parser.add_argument("--n-seeds", type=int, default=20, help="Seeds per condition")
     parser.add_argument("--trials", type=int, default=1000, help="Episodes per seed")
     parser.add_argument("--steps", type=int, default=500, help="Max steps per episode")
@@ -66,15 +70,21 @@ def main():
     representations = [args.representation] if args.representation else REPRESENTATIONS
     centerings = [args.centering] if args.centering else CENTERINGS
 
-    ac = ACTrial()
+    if args.model_type == "dqn":
+        trial_runner = DQNTrial()
+        base_params = dict(DQN_BASE_PARAMS)
+    else:
+        trial_runner = ACTrial()
+        base_params = dict(BASE_PARAMS)
+
     total = len(representations) * len(centerings)
     done = 0
 
     for representation in representations:
         for centering in centerings:
             done += 1
-            params = dict(BASE_PARAMS)
-            params.update(load_best_params(args.best_dir, representation, centering))
+            params = dict(base_params)
+            params.update(load_best_params(args.best_dir, representation, centering, args.model_type))
             params["trials"] = args.trials
             params["learnTrials"] = args.trials
             params["steps"] = args.steps
@@ -88,7 +98,7 @@ def main():
 
             terminal_rewards = []
             for seed in range(args.n_seeds):
-                metadata = ac.run(
+                metadata = trial_runner.run(
                     seed=seed,
                     data_dir=data_dir,
                     pre_comment=f"tuned rep={representation}, centering={centering}, seed={seed}",

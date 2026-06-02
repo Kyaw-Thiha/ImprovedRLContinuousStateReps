@@ -1,0 +1,6 @@
+model_type: dqn
+buffer_size: 10000
+batch_size: 64
+target_update_freq: 100   # gradient steps between target network syncs
+learning_starts: 500      # env steps before first gradient update
+train_freq: 1             # env steps between gradient updates

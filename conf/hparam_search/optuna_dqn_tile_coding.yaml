@@ -1,0 +1,22 @@
+# Search space for DQN with tile-coding representation.
+# Used by scripts/run_hparam_search_dqn.py --representation tile_coding --centering {none,simple,value}
+#
+# Fixed params (not searched):
+#   rep_: TileCoding
+#
+# Searched params (shared with A2C — warm-started from A2C best):
+#   eps:           float      [0.01, 0.5]  log scale
+#   lr:            float      [1e-4, 1.0]  log scale
+#   num_tilings:   categorical [8, 16, 32]
+#   tiles_per_dim: categorical [6, 8, 10, 12, 16]  (scalar, expanded to all 4 dims)
+#   iht_size:      categorical [16384, 32768, 65536, 131072]
+#
+# DQN-specific searched params:
+#   buffer_size:        categorical [1000, 5000, 10000, 50000]
+#   batch_size:         categorical [32, 64, 128]
+#   target_update_freq: categorical [10, 50, 100, 500]
+#   learning_starts:    categorical [100, 500, 1000]
+#
+# Additional searched params by centering mode:
+#   simple: reward_center_beta  float [1e-5, 1e-1] log scale
+#   value:  reward_center_eta   float [1e-4, 1.0]  log scale
