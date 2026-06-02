@@ -347,7 +347,7 @@ class ACTrial(BaseTrial):
                     rho = 0.0 if behavior_prob == 0.0 else target_prob / behavior_prob
 
                 ## Do the action
-                obs, reward, done, t, info = self.env.step(action_choice)
+                obs, reward, terminated, truncated, info = self.env.step(action_choice)
                 if trial > learnTrials:
                     reward = 0
 
@@ -384,7 +384,7 @@ class ACTrial(BaseTrial):
                 ## On Finish
                 ## When using multi-step back-ups, once the agent has reached the goal you
                 ## need it to sit there for n time steps and continue doing updates
-                if done:
+                if terminated or truncated:
                     done_counter = param.n_done
                     if n is not None:
                         for j in range(n):
