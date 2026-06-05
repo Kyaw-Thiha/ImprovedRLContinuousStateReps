@@ -108,7 +108,8 @@ class DQNTrial(BaseTrial):
         obs_dim_rep = rep.size_out
 
         dqn = DQN(
-            obs_dim=obs_dim_rep,
+            rep=rep,
+            state_dim=obs_dim,
             n_actions=n_actions,
             lr=param.lr,
             gamma=param.state_dis,
@@ -164,7 +165,7 @@ class DQNTrial(BaseTrial):
                     next_state = next_state / self.state_scale
                 next_phi = rep.map(next_state)
 
-                dqn.push(phi, action, reward, next_phi, done)
+                dqn.push(state, action, reward, next_state, done)
 
                 if global_step >= param.learning_starts and global_step % param.train_freq == 0:
                     dqn.update()

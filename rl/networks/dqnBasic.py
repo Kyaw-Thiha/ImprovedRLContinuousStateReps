@@ -42,15 +42,17 @@ class DQN:
 
     Q(s, a) = w[a] · φ(s)
 
-    Feature vectors φ(s) are computed by the trial's representation object and
-    passed in directly, so this class is agnostic to which representation is used.
+    Raw states are stored in the replay buffer (state_dim floats); feature
+    vectors φ(s) are recomputed from rep during update() so the buffer size
+    is independent of representation dimensionality.
     Weight updates use the same L2-norm scaling as the A2C TD(0) rule so that
     learning rates are comparable across representations.
     """
 
     def __init__(
         self,
-        obs_dim: int,
+        rep,
+        state_dim: int,
         n_actions: int,
         lr: float,
         gamma: float,
@@ -62,6 +64,7 @@ class DQN:
         reward_center_eta: float = 1.0,
         reward_center_init: float = 0.0,
     ):
+        self.rep = rep
         self.n_actions = n_actions
         self.lr = lr
         self.gamma = gamma
@@ -72,22 +75,26 @@ class DQN:
         self.reward_center_eta = reward_center_eta
         self.avg_reward = float(reward_center_init)
 
+        obs_dim = rep.size_out
         self.w = np.zeros((n_actions, obs_dim))
         self.w_target = np.zeros((n_actions, obs_dim))
-        self.buffer = ReplayBuffer(buffer_size, obs_dim)
+        self.buffer = ReplayBuffer(buffer_size, state_dim)
         self._update_count = 0
 
     def get_q_values(self, phi: np.ndarray) -> np.ndarray:
         return self.w @ phi
 
-    def push(self, phi: np.ndarray, action: int, reward: float, next_phi: np.ndarray, done: bool):
-        self.buffer.push(phi, action, reward, next_phi, done)
+    def push(self, state: np.ndarray, action: int, reward: float, next_state: np.ndarray, done: bool):
+        self.buffer.push(state, action, reward, next_state, done)
 
     def update(self):
         if len(self.buffer) < self.batch_size:
             return
 
-        obs_b, act_b, rew_b, next_obs_b, done_b = self.buffer.sample(self.batch_size)
+        states_b, act_b, rew_b, next_states_b, done_b = self.buffer.sample(self.batch_size)
+
+        obs_b = np.stack([self.rep.map(s) for s in states_b])
+        next_obs_b = np.stack([self.rep.map(s) for s in next_states_b])
 
         # Reward centering
         if self.reward_center_mode == "simple":
@@ -112,11 +119,11 @@ class DQN:
             mask = act_b == a
             if not np.any(mask):
                 continue
-            phi_a = obs_b[mask]       # (n_a, dim)
+            phi_a = obs_b[mask]        # (n_a, dim)
             delta_a = td_errors[mask]  # (n_a,)
             norms = np.sum(phi_a ** 2, axis=1)
             scales = np.where(norms > 0, 1.0 / norms, 0.0)
-            self.w[a] += self.lr * np.sum((delta_a * scales)[:, None] * phi_a, axis=0)
+            self.w[a] += self.lr * np.mean((delta_a * scales)[:, None] * phi_a, axis=0)
 
         # Value-centering avg_reward update (uses mean TD error as a proxy for value gradient)
         if self.reward_center_mode == "value":

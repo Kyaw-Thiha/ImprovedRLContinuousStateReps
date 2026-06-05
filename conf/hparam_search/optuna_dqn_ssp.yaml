@@ -7,8 +7,8 @@
 # Searched params (shared with A2C — warm-started from A2C best):
 #   eps:          float  [0.01, 0.5]  log scale
 #   lr:           float  [1e-4, 1.0]  log scale
-#   length_scale: float  [0.05, 5.0]  log scale
-#   n_rotates:    int    [4, 16]
+#   length_scale: float  [0.1, 1.0]  log scale  (tightened from A2C best: 0.23–0.41)
+#   n_rotates:    int    [4, 12]                (tightened from A2C best: 6–10)
 #
 # DQN-specific searched params:
 #   buffer_size:        categorical [1000, 5000, 10000, 50000]

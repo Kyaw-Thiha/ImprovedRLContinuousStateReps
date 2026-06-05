@@ -63,6 +63,7 @@ def main():
     parser.add_argument("--output-root", default=os.path.join("outputs", "tuned"), help="Where final runs are saved")
     parser.add_argument("--model-type", choices=["actor_critic", "dqn"], default="actor_critic", help="Which model to run")
     parser.add_argument("--n-seeds", type=int, default=20, help="Seeds per condition")
+    parser.add_argument("--start-seed", type=int, default=0, help="Resume from this seed index (skip already-completed seeds)")
     parser.add_argument("--trials", type=int, default=1000, help="Episodes per seed")
     parser.add_argument("--steps", type=int, default=500, help="Max steps per episode")
     args = parser.parse_args()
@@ -97,7 +98,7 @@ def main():
             print(f"  params={params}")
 
             terminal_rewards = []
-            for seed in range(args.n_seeds):
+            for seed in range(args.start_seed, args.n_seeds):
                 metadata = trial_runner.run(
                     seed=seed,
                     data_dir=data_dir,

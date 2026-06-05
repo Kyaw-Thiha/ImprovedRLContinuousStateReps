@@ -7,9 +7,9 @@
 # Searched params (shared with A2C — warm-started from A2C best):
 #   eps:           float      [0.01, 0.5]  log scale
 #   lr:            float      [1e-4, 1.0]  log scale
-#   num_tilings:   categorical [8, 16, 32]
-#   tiles_per_dim: categorical [6, 8, 10, 12, 16]  (scalar, expanded to all 4 dims)
-#   iht_size:      categorical [16384, 32768, 65536, 131072]
+#   num_tilings:   categorical [16, 32]        (tightened from A2C best: 16–32, never 8)
+#   tiles_per_dim: categorical [10, 12, 16]    (tightened from A2C best: 12–16, never <10)
+#   iht_size:      categorical [32768, 65536]  (tightened from A2C best: 32768–65536)
 #
 # DQN-specific searched params:
 #   buffer_size:        categorical [1000, 5000, 10000, 50000]

@@ -111,7 +111,7 @@ def _enqueue_warmstart(study: optuna.Study, representation: str, centering: str)
     elif centering == "value" and "reward_center_eta" in a2c:
         trial_params["reward_center_eta"] = float(a2c["reward_center_eta"])
 
-    study.enqueue_trial(trial_params, user_attrs={"source": f"a2c_warmstart_{representation}_{centering}"})
+    study.enqueue_trial(trial_params)
     print(f"Warm-start trial enqueued from A2C best params ({representation}/{centering})")
 
 
@@ -128,16 +128,16 @@ def sample_representation_params(trial: optuna.Trial, representation: str) -> di
             rep_="PlaceSSP",
             eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
             lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
-            length_scale=trial.suggest_float("length_scale", 0.05, 5.0, log=True),
-            n_rotates=trial.suggest_int("n_rotates", 4, 16),
+            length_scale=trial.suggest_float("length_scale", 0.1, 1.0, log=True),
+            n_rotates=trial.suggest_int("n_rotates", 4, 12),
         )
     elif representation == "tile_coding":
-        tiles_per_dim = trial.suggest_categorical("tiles_per_dim", [6, 8, 10, 12, 16])
+        tiles_per_dim = trial.suggest_categorical("tiles_per_dim", [10, 12, 16])
         return dict(
             rep_="TileCoding",
-            num_tilings=trial.suggest_categorical("num_tilings", [8, 16, 32]),
+            num_tilings=trial.suggest_categorical("num_tilings", [16, 32]),
             tiles_per_dim=(tiles_per_dim,) * 4,
-            iht_size=trial.suggest_categorical("iht_size", [16384, 32768, 65536, 131072]),
+            iht_size=trial.suggest_categorical("iht_size", [32768, 65536]),
             tile_state_indices=(0, 1, 2, 3),
             eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
             lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
@@ -247,11 +247,14 @@ def main():
     parser = argparse.ArgumentParser(description="Optuna DQN hyperparameter search")
     parser.add_argument("--representation", choices=["discrete", "ssp", "tile_coding"], required=True)
     parser.add_argument("--centering", choices=["none", "simple", "value"], required=True)
-    parser.add_argument("--n-trials", type=int, default=60, help="Number of Optuna trials")
+    parser.add_argument("--n-trials", type=int, default=None, help="Number of Optuna trials (default: 60/80/100 for discrete/ssp/tile_coding)")
     parser.add_argument("--n-seeds", type=int, default=3, help="Seeds per trial (3 recommended for search)")
     parser.add_argument("--n-jobs", type=int, default=1, help="Parallel trial workers")
     parser.add_argument("--resume", action="store_true", help="Print existing progress and resume")
     args = parser.parse_args()
+
+    if args.n_trials is None:
+        args.n_trials = {"discrete": 60, "ssp": 80, "tile_coding": 100}[args.representation]
 
     os.makedirs(DATA_DIR, exist_ok=True)
 
