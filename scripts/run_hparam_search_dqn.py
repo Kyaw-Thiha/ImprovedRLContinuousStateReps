@@ -72,10 +72,10 @@ def _load_a2c_best(representation: str, centering: str) -> dict:
     return payload.get("params", {})
 
 
-def _enqueue_warmstart(study: optuna.Study, representation: str, centering: str):
+def _enqueue_warmstart(study: optuna.Study, representation: str, centering: str) -> bool:
     a2c = _load_a2c_best(representation, centering)
     if not a2c:
-        return
+        return False
 
     trial_params = {}
 
@@ -113,6 +113,7 @@ def _enqueue_warmstart(study: optuna.Study, representation: str, centering: str)
 
     study.enqueue_trial(trial_params)
     print(f"Warm-start trial enqueued from A2C best params ({representation}/{centering})")
+    return True
 
 
 def sample_representation_params(trial: optuna.Trial, representation: str) -> dict:
@@ -277,6 +278,7 @@ def main():
     )
 
     n_existing = len(study.trials)
+    warm_started = False
     if n_existing > 0:
         print(f"Study '{study_name}': {n_existing} trials already recorded")
         if args.resume:
@@ -287,12 +289,20 @@ def main():
                 print("No completed trials yet.")
     else:
         # Fresh study — enqueue warm-start trial from A2C best params
-        _enqueue_warmstart(study, args.representation, args.centering)
+        warm_started = _enqueue_warmstart(study, args.representation, args.centering)
 
     objective = make_objective(args.representation, args.centering, args.n_seeds)
 
     optuna.logging.set_verbosity(optuna.logging.WARNING)
-    study.optimize(objective, n_trials=args.n_trials, n_jobs=args.n_jobs, show_progress_bar=True)
+
+    remaining = args.n_trials
+    if warm_started and args.n_jobs > 1:
+        # Run the enqueued warm-start trial single-threaded to avoid a race
+        # condition where multiple workers simultaneously claim Trial#0.
+        study.optimize(objective, n_trials=1, n_jobs=1, show_progress_bar=True)
+        remaining = max(0, args.n_trials - 1)
+
+    study.optimize(objective, n_trials=remaining, n_jobs=args.n_jobs, show_progress_bar=True)
 
     print(f"\nSearch complete.")
     print(f"Best value : {study.best_value:.2f}")
