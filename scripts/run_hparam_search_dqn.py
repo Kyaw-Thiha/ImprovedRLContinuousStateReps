@@ -57,8 +57,8 @@ BASE_PARAMS = dict(
 DQN_DEFAULTS = dict(
     buffer_size=10000,
     batch_size=64,
-    target_update_freq=100,
-    learning_starts=500,
+    target_update_freq=10,
+    learning_starts=1000,
     train_freq=1,
 )
 
@@ -117,18 +117,19 @@ def _enqueue_warmstart(study: optuna.Study, representation: str, centering: str)
 
 
 def sample_representation_params(trial: optuna.Trial, representation: str) -> dict:
+    # Adam-compatible lr range: 1e-4 to 1e-1 (vs 1e-4 to 1.0 for NLMS)
     if representation == "discrete":
         return dict(
             rep_="Discrete",
             n_bins=trial.suggest_categorical("n_bins", [7, 11, 15, 19, 23]),
             eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
-            lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
+            lr=trial.suggest_float("lr", 1e-4, 1e-1, log=True),
         )
     elif representation == "ssp":
         return dict(
             rep_="PlaceSSP",
             eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
-            lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
+            lr=trial.suggest_float("lr", 1e-4, 1e-1, log=True),
             length_scale=trial.suggest_float("length_scale", 0.1, 1.0, log=True),
             n_rotates=trial.suggest_int("n_rotates", 4, 12),
         )
@@ -141,7 +142,7 @@ def sample_representation_params(trial: optuna.Trial, representation: str) -> di
             iht_size=trial.suggest_categorical("iht_size", [32768, 65536]),
             tile_state_indices=(0, 1, 2, 3),
             eps=trial.suggest_float("eps", 0.01, 0.5, log=True),
-            lr=trial.suggest_float("lr", 1e-4, 1.0, log=True),
+            lr=trial.suggest_float("lr", 1e-4, 1e-1, log=True),
         )
     else:
         raise ValueError(f"Unknown representation: {representation}")
@@ -149,10 +150,10 @@ def sample_representation_params(trial: optuna.Trial, representation: str) -> di
 
 def sample_dqn_params(trial: optuna.Trial) -> dict:
     return dict(
-        buffer_size=trial.suggest_categorical("buffer_size", [1000, 5000, 10000, 50000]),
+        buffer_size=trial.suggest_categorical("buffer_size", [5000, 10000, 50000, 100000]),
         batch_size=trial.suggest_categorical("batch_size", [32, 64, 128]),
         target_update_freq=trial.suggest_categorical("target_update_freq", [10, 50, 100, 500]),
-        learning_starts=trial.suggest_categorical("learning_starts", [100, 500, 1000]),
+        learning_starts=trial.suggest_categorical("learning_starts", [500, 1000, 2000]),
     )
 
 

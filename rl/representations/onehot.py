@@ -23,11 +23,11 @@ class OneHotRepRB(object):
         if index%1 == 0:
             index=int(index)
         self.result[index] = 1
-        return self.result    
-    
-    def get_state(self, state, env=None):       
+        return self.result.copy()
+
+    def get_state(self, state, env=None):
         discrete_state = state
-        
+
         state_space_high = np.asarray([env.width, env.height, 360])
         state_space_low = np.asarray([0, 0, 0])
         
@@ -42,16 +42,18 @@ class OneHotRepRB(object):
         return discrete_state
     
 class OneHotRepCP(object):
-    '''Create one-hot representation. I.e. the state is represented as a list of 0's and a 1. 
+    '''Create one-hot representation. I.e. the state is represented as a list of 0's and a 1.
     This method works with CartPole v1.
     '''
-    def __init__(self, ranges):
+    def __init__(self, ranges, bounds_low=None, bounds_high=None):
         ##step 1
         self.ranges = ranges
         self.factors = np.array([np.prod(ranges[x+1:]) for x in range(len(ranges))], dtype=int)
         ##step 2
         self.result = np.zeros(np.prod(ranges))
         self.size_out = len(self.result)
+        self.bounds_low = bounds_low
+        self.bounds_high = bounds_high
 
     def map(self, state):
         index = 0
@@ -64,14 +66,14 @@ class OneHotRepCP(object):
         if index%1 == 0:
             index=int(index)
         self.result[index] = 1
-        return self.result    
+        return self.result.copy()
     
-    def get_state(self, state, env=None):       
-        
+    def get_state(self, state, env=None):
+
         discrete_state = state
 
-        state_space_low = env.observation_space.low
-        state_space_high = env.observation_space.high
+        state_space_low  = self.bounds_low  if self.bounds_low  is not None else env.observation_space.low
+        state_space_high = self.bounds_high if self.bounds_high is not None else env.observation_space.high
         
         discrete_obs_size = np.array(self.ranges)
         

@@ -173,7 +173,7 @@ class TileCodingRep(object):
 
         self.result[:] = 0
         self.result[active_tiles] = 1
-        return self.result
+        return self.result.copy()
 
     def get_state(self, state, env=None):
         state = self._select_state(state)

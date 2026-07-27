@@ -3,7 +3,7 @@ Hyperparameter search using Optuna for a representation/centering condition.
 
 Results are persisted in optuna_studies.db (SQLite) so searches can be
 interrupted and resumed without losing progress. Raw trial artifacts are written
-to outputs/hparam_search/{representation}/{centering}/. Best params are written
+to outputs/hparam_search/a2c/{representation}/{centering}/. Best params are written
 to outputs/hparam_search/best/{representation}_{centering}.yaml when the search
 completes.
 
@@ -109,7 +109,7 @@ def sample_params(trial: optuna.Trial, representation: str, centering: str) -> d
 
 def make_objective(representation: str, centering: str, n_seeds: int):
     # Keep pytry's per-run ACTrial artifacts grouped by the 3x3 HPO condition.
-    data_dir = os.path.join(DATA_DIR, representation, centering)
+    data_dir = os.path.join(DATA_DIR, "a2c", representation, centering)
     os.makedirs(data_dir, exist_ok=True)
 
     episodes_per_seed = BASE_PARAMS["trials"]

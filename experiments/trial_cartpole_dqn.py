@@ -50,6 +50,12 @@ class DQNTrial(BaseTrial):
         self.param("Reward centering eta", reward_center_eta=1.0)
         self.param("Initial avg reward estimate", reward_center_init=0.0)
 
+        ## Adam Optimizer
+        self.param("Adam beta1", adam_beta1=0.9)
+        self.param("Adam beta2", adam_beta2=0.999)
+        self.param("Adam epsilon", adam_eps=1e-8)
+        self.param("Max gradient norm", max_grad_norm=10.0)
+
     def evaluate(self, param):
         total_start = time.time()
         build_start = time.time()
@@ -88,18 +94,22 @@ class DQNTrial(BaseTrial):
             rep.lower = low
             rep.ranges = rep.upper - rep.lower
         elif param.rep_ == "TileCoding":
+            tile_low  = np.array([-1., -1., -1., -1.]) if param.normalize_state else low
+            tile_high = np.array([ 1.,  1.,  1.,  1.]) if param.normalize_state else high
             rep = net.representations.TileCodingRep(
                 env,
                 num_tilings=param.num_tilings,
                 tiles_per_dim=param.tiles_per_dim,
                 iht_size=param.iht_size,
-                bounds_low=low,
-                bounds_high=high,
+                bounds_low=tile_low,
+                bounds_high=tile_high,
                 state_indices=param.tile_state_indices,
             )
         elif param.rep_ == "Discrete":
             rep = net.representations.OneHotRepCP(
-                (param.n_bins, param.n_bins, param.n_bins, param.n_bins)
+                (param.n_bins, param.n_bins, param.n_bins, param.n_bins),
+                bounds_low=low,
+                bounds_high=high,
             )
         else:
             raise ValueError(f"Unknown representation: {param.rep_}")
@@ -120,6 +130,10 @@ class DQNTrial(BaseTrial):
             reward_center_beta=param.reward_center_beta,
             reward_center_eta=param.reward_center_eta,
             reward_center_init=param.reward_center_init,
+            adam_beta1=param.adam_beta1,
+            adam_beta2=param.adam_beta2,
+            adam_eps=param.adam_eps,
+            max_grad_norm=param.max_grad_norm,
         )
 
         build_end = time.time()
@@ -165,9 +179,11 @@ class DQNTrial(BaseTrial):
                     next_state = next_state / self.state_scale
                 next_phi = rep.map(next_state)
 
-                dqn.push(state, action, reward, next_state, done)
+                dqn.push(phi, action, reward, next_phi, done)
 
-                if global_step >= param.learning_starts and global_step % param.train_freq == 0:
+                if (global_step >= param.learning_starts
+                        and global_step % param.train_freq == 0
+                        and trial < learnTrials):
                     dqn.update()
 
                 rs.append(reward)
@@ -197,7 +213,7 @@ class DQNTrial(BaseTrial):
                 )
                 _cb(trial, _rolling)
 
-            if param.dynamic_epsilon:
+            if param.dynamic_epsilon and trial >= 20:
                 if np.mean(Ep_rewards[trial - 10 : trial]) > np.mean(
                     Ep_rewards[trial - 20 : trial - 10]
                 ) + np.std(Ep_rewards[trial - 20 : trial - 10]):

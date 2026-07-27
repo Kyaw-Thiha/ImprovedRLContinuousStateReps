@@ -164,18 +164,24 @@ class ACTrial(BaseTrial):
             rep.ranges = rep.upper - rep.lower
             state_size = rep.size_out
         elif param.rep_ == "TileCoding":
+            tile_low  = np.array([-1., -1., -1., -1.]) if param.normalize_state else low
+            tile_high = np.array([ 1.,  1.,  1.,  1.]) if param.normalize_state else high
             rep = net.representations.TileCodingRep(
                 self.env,
                 num_tilings=param.num_tilings,
                 tiles_per_dim=param.tiles_per_dim,
                 iht_size=param.iht_size,
-                bounds_low=low,
-                bounds_high=high,
+                bounds_low=tile_low,
+                bounds_high=tile_high,
                 state_indices=param.tile_state_indices,
             )
             state_size = rep.size_out
         elif param.rep_ == "Discrete":
-            rep = net.representations.OneHotRepCP((param.n_bins, param.n_bins, param.n_bins, param.n_bins))
+            rep = net.representations.OneHotRepCP(
+                (param.n_bins, param.n_bins, param.n_bins, param.n_bins),
+                bounds_low=low,
+                bounds_high=high,
+            )
             state_size = rep.size_out
 
         n_actions = self.env.action_space.n
@@ -446,7 +452,7 @@ class ACTrial(BaseTrial):
                 import wandb
                 wandb.log({"episode_reward": np.sum(rs), "epsilon": eps, "episode": trial})
 
-            if param.dynamic_epsilon == True:
+            if param.dynamic_epsilon == True and trial >= 20:
                 if np.mean(Ep_rewards[trial - 10 : trial]) > np.mean(Ep_rewards[trial - 20 : trial - 10]) + np.std(
                     Ep_rewards[trial - 20 : trial - 10]
                 ):

@@ -42,11 +42,9 @@ class DQN:
 
     Q(s, a) = w[a] · φ(s)
 
-    Raw states are stored in the replay buffer (state_dim floats); feature
-    vectors φ(s) are recomputed from rep during update() so the buffer size
-    is independent of representation dimensionality.
-    Weight updates use the same L2-norm scaling as the A2C TD(0) rule so that
-    learning rates are comparable across representations.
+    Encoded phi vectors are stored in the replay buffer (rep.size_out floats)
+    to avoid re-encoding on every update call.
+    Weights are updated with Adam + gradient clipping (standard DQN practice).
     """
 
     def __init__(
@@ -63,6 +61,10 @@ class DQN:
         reward_center_beta: float = 0.001,
         reward_center_eta: float = 1.0,
         reward_center_init: float = 0.0,
+        adam_beta1: float = 0.9,
+        adam_beta2: float = 0.999,
+        adam_eps: float = 1e-8,
+        max_grad_norm: float = 10.0,
     ):
         self.rep = rep
         self.n_actions = n_actions
@@ -74,12 +76,19 @@ class DQN:
         self.reward_center_beta = reward_center_beta
         self.reward_center_eta = reward_center_eta
         self.avg_reward = float(reward_center_init)
+        self.adam_beta1 = adam_beta1
+        self.adam_beta2 = adam_beta2
+        self.adam_eps = adam_eps
+        self.max_grad_norm = max_grad_norm
 
         obs_dim = rep.size_out
         self.w = np.zeros((n_actions, obs_dim))
         self.w_target = np.zeros((n_actions, obs_dim))
-        self.buffer = ReplayBuffer(buffer_size, state_dim)
+        self.m = np.zeros((n_actions, obs_dim))
+        self.v = np.zeros((n_actions, obs_dim))
+        self.buffer = ReplayBuffer(buffer_size, obs_dim)
         self._update_count = 0
+        self._adam_t = 0
 
     def get_q_values(self, phi: np.ndarray) -> np.ndarray:
         return self.w @ phi
@@ -91,10 +100,7 @@ class DQN:
         if len(self.buffer) < self.batch_size:
             return
 
-        states_b, act_b, rew_b, next_states_b, done_b = self.buffer.sample(self.batch_size)
-
-        obs_b = np.stack([self.rep.map(s) for s in states_b])
-        next_obs_b = np.stack([self.rep.map(s) for s in next_states_b])
+        obs_b, act_b, rew_b, next_obs_b, done_b = self.buffer.sample(self.batch_size)
 
         # Reward centering
         if self.reward_center_mode == "simple":
@@ -107,23 +113,33 @@ class DQN:
 
         # TD targets using the frozen target network
         next_q = next_obs_b @ self.w_target.T  # (batch, n_actions)
-        max_next_q = np.max(next_q, axis=1)    # (batch,)
+        max_next_q = np.max(next_q, axis=1)  # (batch,)
         targets = centered_rew + self.gamma * max_next_q * (~done_b)
 
         # Q-values for the actions that were taken
         current_q = np.sum(self.w[act_b] * obs_b, axis=1)  # (batch,)
         td_errors = targets - current_q
 
-        # Weight update grouped by action — same L2-norm scaling as A2C TD(0)
+        # Adam update per action
+        self._adam_t += 1
         for a in range(self.n_actions):
             mask = act_b == a
             if not np.any(mask):
                 continue
-            phi_a = obs_b[mask]        # (n_a, dim)
-            delta_a = td_errors[mask]  # (n_a,)
-            norms = np.sum(phi_a ** 2, axis=1)
-            scales = np.where(norms > 0, 1.0 / norms, 0.0)
-            self.w[a] += self.lr * np.mean((delta_a * scales)[:, None] * phi_a, axis=0)
+            phi_a = obs_b[mask]
+            delta_a = td_errors[mask]
+            g = np.mean(delta_a[:, None] * phi_a, axis=0)
+
+            # gradient clipping by global norm
+            g_norm = np.linalg.norm(g)
+            if g_norm > self.max_grad_norm:
+                g = g * (self.max_grad_norm / g_norm)
+
+            self.m[a] = self.adam_beta1 * self.m[a] + (1 - self.adam_beta1) * g
+            self.v[a] = self.adam_beta2 * self.v[a] + (1 - self.adam_beta2) * g ** 2
+            m_hat = self.m[a] / (1 - self.adam_beta1 ** self._adam_t)
+            v_hat = self.v[a] / (1 - self.adam_beta2 ** self._adam_t)
+            self.w[a] += self.lr * m_hat / (np.sqrt(v_hat) + self.adam_eps)
 
         # Value-centering avg_reward update (uses mean TD error as a proxy for value gradient)
         if self.reward_center_mode == "value":
@@ -131,7 +147,4 @@ class DQN:
 
         self._update_count += 1
         if self._update_count % self.target_update_freq == 0:
-            self.update_target()
-
-    def update_target(self):
-        np.copyto(self.w_target, self.w)
+            np.copyto(self.w_target, self.w)  # Updating the target
