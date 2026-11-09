@@ -1,0 +1,110 @@
+{
+  "config": {
+    "n_trans": 20000,
+    "probe": 256,
+    "batch": 64,
+    "k": 200,
+    "behaviour": "hand-coded CartPole controller",
+    "mean_episode_len": 500.0,
+    "target": "fixed at initialisation",
+    "metric": "squared residual change on fixed probe set"
+  },
+  "arms": {
+    "linear/ssp/own_lr": {
+      "label": "linear/ssp/own_lr",
+      "lr": 0.03663700878280695,
+      "sparse": false,
+      "n_params": 2004,
+      "interference_meanabs": 0.13355443488806487,
+      "interference_signed": 0.03046680117957294,
+      "probe_residual2_level": 3.9346931797266005,
+      "param_step_norm": 0.46139044836163523,
+      "interference_per_unit_step": 0.28946077094206696,
+      "interference_per_unit_step_signed": 0.06603257888792105
+    },
+    "linear/tile/own_lr": {
+      "label": "linear/tile/own_lr",
+      "lr": 0.0019431147558422073,
+      "sparse": true,
+      "n_params": 65538,
+      "interference_meanabs": 0.21241700455546378,
+      "interference_signed": 0.1567842183308676,
+      "probe_residual2_level": 16.01271089553833,
+      "param_step_norm": 0.02775682121515274,
+      "interference_per_unit_step": 7.652785702978953,
+      "interference_per_unit_step_signed": 5.648493288031031
+    },
+    "linear/ssp/lr1e-3": {
+      "label": "linear/ssp/lr1e-3",
+      "lr": 0.001,
+      "sparse": false,
+      "n_params": 2004,
+      "interference_meanabs": 0.008030195948667824,
+      "interference_signed": -0.005125643127466901,
+      "probe_residual2_level": 1.2468091493844986,
+      "param_step_norm": 0.038369125947356225,
+      "interference_per_unit_step": 0.2092879561469691,
+      "interference_per_unit_step_signed": -0.13358769585993335
+    },
+    "linear/tile/lr1e-3": {
+      "label": "linear/tile/lr1e-3",
+      "lr": 0.001,
+      "sparse": true,
+      "n_params": 65538,
+      "interference_meanabs": 0.09625217847526074,
+      "interference_signed": 0.04486133436206728,
+      "probe_residual2_level": 7.811407566070557,
+      "param_step_norm": 0.01586400980129838,
+      "interference_per_unit_step": 6.067329740768506,
+      "interference_per_unit_step_signed": 2.8278685479881407
+    },
+    "deep/ssp/own_lr": {
+      "label": "deep/ssp/own_lr",
+      "lr": 0.0007112760952020975,
+      "sparse": false,
+      "n_params": 17218,
+      "interference_meanabs": 7.686632869541645,
+      "interference_signed": 7.295717866122723,
+      "probe_residual2_level": 419.50125809431074,
+      "param_step_norm": 0.0395283641666174,
+      "interference_per_unit_step": 194.4586635850006,
+      "interference_per_unit_step_signed": 184.56918266008392
+    },
+    "deep/tile/own_lr": {
+      "label": "deep/tile/own_lr",
+      "lr": 0.00011137604124046432,
+      "sparse": true,
+      "n_params": 4198658,
+      "interference_meanabs": 2.402830441147089,
+      "interference_signed": 1.5833850695285947,
+      "probe_residual2_level": 185.14846467971802,
+      "param_step_norm": 0.004980149971670471,
+      "interference_per_unit_step": 482.4815426875824,
+      "interference_per_unit_step_signed": 317.93923446797055
+    },
+    "deep/ssp/lr1e-3": {
+      "label": "deep/ssp/lr1e-3",
+      "lr": 0.001,
+      "sparse": false,
+      "n_params": 17218,
+      "interference_meanabs": 8.258671887367964,
+      "interference_signed": 7.298906736150384,
+      "probe_residual2_level": 419.8188444185257,
+      "param_step_norm": 0.04466178856790066,
+      "interference_per_unit_step": 184.91583414336523,
+      "interference_per_unit_step_signed": 163.42620773132802
+    },
+    "deep/tile/lr1e-3": {
+      "label": "deep/tile/lr1e-3",
+      "lr": 0.001,
+      "sparse": true,
+      "n_params": 4198658,
+      "interference_meanabs": 10.571565167307854,
+      "interference_signed": 1.3805937734618783,
+      "probe_residual2_level": 143.91578838825225,
+      "param_step_norm": 0.028037514653988183,
+      "interference_per_unit_step": 377.0507228537144,
+      "interference_per_unit_step_signed": 49.24094701330799
+    }
+  }
+}

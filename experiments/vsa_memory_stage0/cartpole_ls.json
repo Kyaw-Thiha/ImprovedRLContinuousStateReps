@@ -1,0 +1,378 @@
+{
+  "raw": {
+    "legacy(a2c)/ssp/none/ls=0.2477/Dreal=241": {
+      "label": "legacy(a2c)/ssp/none/ls=0.2477/Dreal=241",
+      "D_complex": 120,
+      "ssp_dim_real": 241,
+      "half_width": {
+        "x": 0.45714285714285713,
+        "x_dot": 0.45112781954887216,
+        "theta": NaN,
+        "omega": 0.47619047619047616
+      },
+      "half_width_over_range": {
+        "x": 0.09523809523809523,
+        "x_dot": 0.045112781954887216,
+        "theta": NaN,
+        "omega": 0.047619047619047616
+      },
+      "min_wavelength": {
+        "x": 0.8832749382511247,
+        "x_dot": 0.8751221803948447,
+        "theta": 0.8831592334223531,
+        "omega": 0.8495985419726225
+      },
+      "max_wavelength": {
+        "x": 98.935412022248,
+        "x_dot": 226.4466371168594,
+        "theta": 85.12700551496262,
+        "omega": 115.12386875573968
+      },
+      "kappa_theta_at_cliff": 0.8509004691979581,
+      "kappa_theta_across_full_range": 0.5181845452005631,
+      "theta_resolved": false,
+      "length_scale": 0.24773507149141605
+    },
+    "legacy(a2c)/ssp/none/ls=0.2477/Dreal=1041": {
+      "label": "legacy(a2c)/ssp/none/ls=0.2477/Dreal=1041",
+      "D_complex": 520,
+      "ssp_dim_real": 1041,
+      "half_width": {
+        "x": 0.45714285714285713,
+        "x_dot": 0.47619047619047616,
+        "theta": NaN,
+        "omega": 0.45112781954887216
+      },
+      "half_width_over_range": {
+        "x": 0.09523809523809523,
+        "x_dot": 0.047619047619047616,
+        "theta": NaN,
+        "omega": 0.045112781954887216
+      },
+      "min_wavelength": {
+        "x": 0.7975923273663927,
+        "x_dot": 0.7930897812726476,
+        "theta": 0.7829916406306849,
+        "omega": 0.8475209736934942
+      },
+      "max_wavelength": {
+        "x": 333.01779477267326,
+        "x_dot": 226.4466371168503,
+        "theta": 154.1276178416857,
+        "omega": 115.12386875574309
+      },
+      "kappa_theta_at_cliff": 0.8513783889441334,
+      "kappa_theta_across_full_range": 0.523289775892686,
+      "theta_resolved": false,
+      "length_scale": 0.24773507149141605
+    },
+    "legacy(a2c)/ssp/value/ls=0.3433/Dreal=241": {
+      "label": "legacy(a2c)/ssp/value/ls=0.3433/Dreal=241",
+      "D_complex": 120,
+      "ssp_dim_real": 241,
+      "half_width": {
+        "x": 0.625563909774436,
+        "x_dot": 0.6265664160401002,
+        "theta": NaN,
+        "omega": 0.6516290726817042
+      },
+      "half_width_over_range": {
+        "x": 0.13032581453634084,
+        "x_dot": 0.06265664160401002,
+        "theta": NaN,
+        "omega": 0.06516290726817042
+      },
+      "min_wavelength": {
+        "x": 1.224002799920028,
+        "x_dot": 1.2127050736843952,
+        "theta": 1.223842461356974,
+        "omega": 1.1773355601388131
+      },
+      "max_wavelength": {
+        "x": 137.10025732898572,
+        "x_dot": 313.7995949622513,
+        "theta": 117.96518681423059,
+        "omega": 159.53349471644174
+      },
+      "kappa_theta_at_cliff": 0.9195869959054314,
+      "kappa_theta_across_full_range": 0.7128071165689264,
+      "theta_resolved": false,
+      "length_scale": 0.34330015266171904
+    },
+    "legacy(a2c)/ssp/value/ls=0.3433/Dreal=1041": {
+      "label": "legacy(a2c)/ssp/value/ls=0.3433/Dreal=1041",
+      "D_complex": 520,
+      "ssp_dim_real": 1041,
+      "half_width": {
+        "x": 0.625563909774436,
+        "x_dot": 0.6516290726817042,
+        "theta": NaN,
+        "omega": 0.6015037593984962
+      },
+      "half_width_over_range": {
+        "x": 0.13032581453634084,
+        "x_dot": 0.06516290726817042,
+        "theta": NaN,
+        "omega": 0.06015037593984962
+      },
+      "min_wavelength": {
+        "x": 1.1052676800998924,
+        "x_dot": 1.0990282536349856,
+        "theta": 1.0850347031735386,
+        "omega": 1.1744565591838974
+      },
+      "max_wavelength": {
+        "x": 461.481126173486,
+        "x_dot": 313.79959496223864,
+        "theta": 213.58314111884306,
+        "omega": 159.53349471644643
+      },
+      "kappa_theta_at_cliff": 0.9197249330044336,
+      "kappa_theta_across_full_range": 0.7146044537676791,
+      "theta_resolved": false,
+      "length_scale": 0.34330015266171904
+    },
+    "legacy(a2c)/NNI/representation/ls=0.5276/Dreal=241": {
+      "label": "legacy(a2c)/NNI/representation/ls=0.5276/Dreal=241",
+      "D_complex": 120,
+      "ssp_dim_real": 241,
+      "half_width": {
+        "x": 0.9624060150375939,
+        "x_dot": 0.9774436090225563,
+        "theta": NaN,
+        "omega": 0.9774436090225563
+      },
+      "half_width_over_range": {
+        "x": 0.20050125313283207,
+        "x_dot": 0.09774436090225563,
+        "theta": NaN,
+        "omega": 0.09774436090225563
+      },
+      "min_wavelength": {
+        "x": 1.8810308360547845,
+        "x_dot": 1.8636686442134591,
+        "theta": 1.8807844299343632,
+        "omega": 1.809313257412184
+      },
+      "max_wavelength": {
+        "x": 210.69380861197186,
+        "x_dot": 482.24294462730165,
+        "theta": 181.28729280115118,
+        "omega": 245.1689023626552
+      },
+      "kappa_theta_at_cliff": 0.96519104608446,
+      "kappa_theta_across_full_range": 0.8673598832619689,
+      "theta_resolved": false,
+      "length_scale": 0.527579
+    },
+    "legacy(a2c)/NNI/representation/ls=0.5276/Dreal=1041": {
+      "label": "legacy(a2c)/NNI/representation/ls=0.5276/Dreal=1041",
+      "D_complex": 520,
+      "ssp_dim_real": 1041,
+      "half_width": {
+        "x": 0.9624060150375939,
+        "x_dot": 0.9774436090225563,
+        "theta": NaN,
+        "omega": 0.9273182957393483
+      },
+      "half_width_over_range": {
+        "x": 0.20050125313283207,
+        "x_dot": 0.09774436090225563,
+        "theta": NaN,
+        "omega": 0.09273182957393483
+      },
+      "min_wavelength": {
+        "x": 1.6985603206940947,
+        "x_dot": 1.6889716550631395,
+        "theta": 1.6674665572597767,
+        "omega": 1.8048888479471228
+      },
+      "max_wavelength": {
+        "x": 709.1979108596253,
+        "x_dot": 482.24294462728227,
+        "theta": 328.23166297677886,
+        "omega": 245.16890236266244
+      },
+      "kappa_theta_at_cliff": 0.965216753932078,
+      "kappa_theta_across_full_range": 0.8677374242482602,
+      "theta_resolved": false,
+      "length_scale": 0.527579
+    },
+    "current(dqn)/ssp/value/deep/ls=0.1631/Dreal=201": {
+      "label": "current(dqn)/ssp/value/deep/ls=0.1631/Dreal=201",
+      "D_complex": 100,
+      "ssp_dim_real": 201,
+      "half_width": {
+        "x": 0.7218045112781954,
+        "x_dot": 0.7268170426065163,
+        "theta": NaN,
+        "omega": 0.7268170426065163
+      },
+      "half_width_over_range": {
+        "x": 0.15037593984962405,
+        "x_dot": 0.07268170426065163,
+        "theta": NaN,
+        "omega": 0.07268170426065163
+      },
+      "min_wavelength": {
+        "x": 1.230846401706853,
+        "x_dot": 1.2777676432811798,
+        "theta": 1.296661026860897,
+        "omega": 1.3811561052230936
+      },
+      "max_wavelength": {
+        "x": 73.45540795956055,
+        "x_dot": 278.86987003299294,
+        "theta": 982.7474485690967,
+        "omega": 305.1491857943342
+      },
+      "kappa_theta_at_cliff": 0.9397114110800004,
+      "kappa_theta_across_full_range": 0.7854890250798977,
+      "theta_resolved": false,
+      "length_scale": 0.16309222982594232
+    },
+    "current(dqn)/ssp/value/deep/ls=0.1631/Dreal=1001": {
+      "label": "current(dqn)/ssp/value/deep/ls=0.1631/Dreal=1001",
+      "D_complex": 500,
+      "ssp_dim_real": 1001,
+      "half_width": {
+        "x": 0.7218045112781954,
+        "x_dot": 0.7268170426065163,
+        "theta": NaN,
+        "omega": 0.7268170426065163
+      },
+      "half_width_over_range": {
+        "x": 0.15037593984962405,
+        "x_dot": 0.07268170426065163,
+        "theta": NaN,
+        "omega": 0.07268170426065163
+      },
+      "min_wavelength": {
+        "x": 1.230846401706853,
+        "x_dot": 1.2777676432811798,
+        "theta": 1.296661026860897,
+        "omega": 1.2597105149588939
+      },
+      "max_wavelength": {
+        "x": 1598.6058151582854,
+        "x_dot": 278.86987003299294,
+        "theta": 1267.3630024301167,
+        "omega": 1099.8223199562174
+      },
+      "kappa_theta_at_cliff": 0.9393132521444226,
+      "kappa_theta_across_full_range": 0.7799020613798441,
+      "theta_resolved": false,
+      "length_scale": 0.16309222982594232
+    }
+  },
+  "single_scalar_impossibility": {
+    "theta_half_width_at_ls1": 5.012531328320802,
+    "ls_forced_for_theta_cliff": 0.0416955,
+    "theta_half_width_after": 0.19276190476190477,
+    "omega_half_width_after": 0.20050125313283207,
+    "kappa_omega_at_step_1.0": 0.13583352924652448,
+    "kappa_x_at_step_1.0": -0.12522886849346235,
+    "note": "omega/x move ~1 unit per CartPole step; a kappa near 1 there means those axes are over-resolved into near-noise"
+  },
+  "normalised": {
+    "normalised/legacy/ls=0.16309222982594232": {
+      "label": "normalised/legacy/ls=0.16309222982594232",
+      "D_complex": 120,
+      "ssp_dim_real": 241,
+      "half_width": {
+        "x": 1.419548872180451,
+        "x_dot": 2.9573934837092732,
+        "theta": 0.11838095238095239,
+        "omega": 3.007518796992481
+      },
+      "half_width_over_range": {
+        "x": 0.2957393483709273,
+        "x_dot": 0.2957393483709273,
+        "theta": 0.28320802005012535,
+        "omega": 0.3007518796992481
+      },
+      "min_wavelength": {
+        "x": 2.791148367226425,
+        "x_dot": 5.7612201175835995,
+        "theta": 0.24303066361049624,
+        "omega": 5.593189524317538
+      },
+      "max_wavelength": {
+        "x": 312.6358529695548,
+        "x_dot": 1490.7734606020151,
+        "theta": 23.425529461210868,
+        "omega": 757.8986838047795
+      },
+      "kappa_theta_at_cliff": 0.1046744949049926,
+      "kappa_theta_across_full_range": -0.02576685782644626,
+      "theta_resolved": true,
+      "length_scale": 0.16309222982594232
+    },
+    "normalised/legacy/ls=0.24773507149141605": {
+      "label": "normalised/legacy/ls=0.24773507149141605",
+      "D_complex": 120,
+      "ssp_dim_real": 241,
+      "half_width": {
+        "x": 2.1533834586466165,
+        "x_dot": 4.486215538847118,
+        "theta": 0.1801904761904762,
+        "omega": 4.56140350877193
+      },
+      "half_width_over_range": {
+        "x": 0.4486215538847118,
+        "x_dot": 0.44862155388471175,
+        "theta": 0.431077694235589,
+        "omega": 0.45614035087719296
+      },
+      "min_wavelength": {
+        "x": 4.239719703605398,
+        "x_dot": 8.751221803948447,
+        "theta": 0.3691605595705436,
+        "omega": 8.495985419726225
+      },
+      "max_wavelength": {
+        "x": 474.8899777067903,
+        "x_dot": 2264.4663711685935,
+        "theta": 35.58308830525437,
+        "omega": 1151.2386875573966
+      },
+      "kappa_theta_at_cliff": 0.38692697053211755,
+      "kappa_theta_across_full_range": 0.016783619139516332,
+      "theta_resolved": true,
+      "length_scale": 0.24773507149141605
+    },
+    "normalised/legacy/ls=0.5": {
+      "label": "normalised/legacy/ls=0.5",
+      "D_complex": 120,
+      "ssp_dim_real": 241,
+      "half_width": {
+        "x": 4.3428571428571425,
+        "x_dot": 9.047619047619047,
+        "theta": 0.3624761904761905,
+        "omega": 9.172932330827066
+      },
+      "half_width_over_range": {
+        "x": 0.9047619047619048,
+        "x_dot": 0.9047619047619048,
+        "theta": 0.8671679197994988,
+        "omega": 0.9172932330827066
+      },
+      "min_wavelength": {
+        "x": 8.55696304540454,
+        "x_dot": 17.662460448704923,
+        "theta": 0.7450712516159322,
+        "omega": 17.147320661097048
+      },
+      "max_wavelength": {
+        "x": 958.4633593617874,
+        "x_dot": 4570.338704035809,
+        "theta": 71.81681643022296,
+        "omega": 2323.5278731967646
+      },
+      "kappa_theta_at_cliff": 0.7965867478934936,
+      "kappa_theta_across_full_range": 0.3938091561827164,
+      "theta_resolved": true,
+      "length_scale": 0.5
+    }
+  }
+}
