@@ -1,0 +1,11 @@
+{
+ "written": "2026-11-08T21:09:49+00:00",
+ "note": "sha256 of the round-7b pre-registration (d210) before the first RS launch",
+ "files": {
+  "docs/mjlab_centering/02-decisions.md": "c5c83432efcd58228d6d3db0c9501ebcc1e9984588194b77660853725d958936",
+  "mjlab_centering/jobs_r7.py": "e4dc5a2aa09041177783c196a991c6c88d835baa2f3982c2addb868f74e96f64",
+  "mjlab_centering/analysis/r7_report.py": "ad6a709c1beb7fb29a72c33737a30331a0e0f044c61b25338ec24e5824df5e16",
+  "mjlab_centering/analysis/r7_spend.py": "ba465cff6875f28c54ddb2024ee9dc5627651203b8c40babb1ffd12a44a43e90",
+  "mjlab_centering/src/mjlab_centering/algo.py": "8e13f18df9fd4c8dec9b52743bdba77bcadb760d2a4edef0cb28d7275a4e4f0d"
+ }
+}

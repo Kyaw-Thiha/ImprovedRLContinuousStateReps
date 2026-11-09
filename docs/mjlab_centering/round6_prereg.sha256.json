@@ -1,0 +1,14 @@
+{
+ "written": "2026-11-04T20:02:58Z",
+ "files": {
+  "docs/mjlab_centering/02-decisions.md": "c895e819b4c591b247301e18ed1d40c833e11e95a1d7d1fc813be572ccd3113a",
+  "mjlab_centering/jobs_r4.py": "4378e036085038d3a0c21f2b17576268c168e7502a36c0f3ae0c7fad744893ce",
+  "mjlab_centering/analysis/g1_slope.py": "aaf651532455b1f9edc005c54d63ebbea7d933eb6f8fc5937c23e58e9be6fc85",
+  "mjlab_centering/analysis/ssp_readout.py": "adb58840d506fd09bd583ccade5d6222422a6982704f7d8190a533d71cb4efe6",
+  "mjlab_centering/analysis/h2_guard.py": "fc4d471e9e0a13526994914e77134addcebf7b7a042e8fbe364ecc61b8cf8d09",
+  "scripts/run_hparam_search_dqn.py": "12db650d3dc062f9a50bfe547909779e0eb0e19e9fd17f7a0aab90b2e71e0aa2",
+  "scripts/launch_cell_pod.py": "9cc122c3b3136990f3203048df871265bef518182201ba3eba7abf8b7fb65677",
+  "mjlab_centering/tests/test_r6.py": "fa816fd04f095cb64a9d90a0b007a49764c4665f41a3e197b4afdbdebe528e22",
+  "tests/test_h2_arms.py": "756874c9bebbd6bd2189af85a94dc5f544748873979b6223c430e70c907b1d0a"
+ }
+}

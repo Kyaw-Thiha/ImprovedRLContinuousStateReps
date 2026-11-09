@@ -1,0 +1,15 @@
+{
+ "written": "2026-11-06T08:38:53+00:00",
+ "note": "sha256 of the round-7 pre-registration (d155-d159) and every file it names, taken before the first launch",
+ "files": {
+  "docs/mjlab_centering/02-decisions.md": "8ac2823b44a905256b182456cc04e2fdd6bb143c02c16ee6ab15255146ec5d02",
+  "mjlab_centering/jobs_r7.py": "e4dc5a2aa09041177783c196a991c6c88d835baa2f3982c2addb868f74e96f64",
+  "mjlab_centering/src/mjlab_centering/algo.py": "8e13f18df9fd4c8dec9b52743bdba77bcadb760d2a4edef0cb28d7275a4e4f0d",
+  "mjlab_centering/src/mjlab_centering/train.py": "c818385caa18ec0f3565b51040f04659c7cf44696b3eae0ab72c1414a24d13d9",
+  "mjlab_centering/src/mjlab_centering/env_cfg.py": "90b26cec053e7b73561f13f9d5e48b5db245efec3bccc65d44454a811a38231a",
+  "mjlab_centering/analysis/r7_report.py": "30b802d223dccfb32baed31a2429582a964b919592cfe34e1ae4a88d7c12ddea",
+  "mjlab_centering/analysis/r7_spend.py": "0519928af547f767a83a5f6cd6c7b366cf833cd8633c2c543b33785f49252cc9",
+  "mjlab_centering/tests/test_r7_arms.py": "67670b7915f4db56ba83b376a87d8d36d60bc98d1957374656fe07de04cfa435",
+  "mjlab_centering/tests/test_r7_jobs.py": "77b725c5cf083b5659587425a991740040b8c34329b873922ad0ed7337b37afe"
+ }
+}
