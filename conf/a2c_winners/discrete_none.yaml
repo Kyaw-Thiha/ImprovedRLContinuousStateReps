@@ -1,0 +1,10 @@
+# Best params from Optuna search. Intended for scripts/run_best_ablation.py
+representation: discrete
+centering: none
+best_value: 118.46300000000001
+params:
+  eps: 0.3687988938861393
+  lr: 0.8463764602414748
+  n_bins: 23
+  rep_: Discrete
+  reward_center_mode: none

@@ -1,0 +1,12 @@
+# Best params from Optuna search (fixed_lr variant). Intended for scripts/run_best_ablation.py
+representation: ssp
+centering: value
+best_value: 499.398
+params:
+  eps: 0.09884145932562635
+  length_scale: 0.34330015266171904
+  n_rotates: 16
+  reward_center_eta: 0.0009583711816641079
+  lr: 0.397
+  rep_: PlaceSSP
+  reward_center_mode: value

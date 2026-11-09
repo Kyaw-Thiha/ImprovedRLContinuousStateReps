@@ -1,0 +1,22 @@
+# Best params from Optuna search. Intended for scripts/run_best_ablation.py
+representation: tile_coding
+centering: simple
+best_value: 490.9049999999999
+params:
+  eps: 0.10791839748889775
+  iht_size: 131072
+  lr: 0.6001092799162381
+  num_tilings: 32
+  reward_center_beta: 0.07910670033508961
+  tiles_per_dim:
+  - 10
+  - 10
+  - 10
+  - 10
+  rep_: TileCoding
+  reward_center_mode: simple
+  tile_state_indices:
+  - 0
+  - 1
+  - 2
+  - 3
