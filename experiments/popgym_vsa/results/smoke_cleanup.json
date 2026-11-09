@@ -1,0 +1,44 @@
+{
+ "args": {
+  "fam": "CountRecall",
+  "diff": "Easy",
+  "model": "vsa_count",
+  "updates": 2,
+  "envs": 16,
+  "window": 16,
+  "dim": 256,
+  "code": "block",
+  "cleanup": true,
+  "hidden": 64,
+  "lr": 0.0003,
+  "gamma": 0.99,
+  "lam": 0.95,
+  "ent": 0.01,
+  "seed": 0,
+  "eval_eps": 20,
+  "tag": "smoke_cleanup"
+ },
+ "spec": {
+  "fam": "CountRecall",
+  "diff": "Easy",
+  "cards": [
+   2,
+   2
+  ],
+  "n_items": 2,
+  "act_dim": 27,
+  "ep_len": 51,
+  "k": 0,
+  "lag": 0
+ },
+ "last_k_train_return": -0.9276960784313731,
+ "eval_return": [
+  -1.0000000000000004,
+  2.220446049250313e-16
+ ],
+ "curve": [
+  -0.919117647058824,
+  -0.9362745098039222
+ ],
+ "wall_s": 1.17
+}

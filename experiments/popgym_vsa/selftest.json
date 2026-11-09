@@ -1,0 +1,142 @@
+{
+ "scripted": {
+  "RepeatPreviousEasy/d256/random": {
+   "vsa": 0.9816666666666675,
+   "vsa_std": 0.02380476142847621,
+   "oracle": 1.0000000000000007,
+   "action_agreement": 0.9908333333333332
+  },
+  "RepeatPreviousMedium/d256/random": {
+   "vsa": 0.8555555555555544,
+   "vsa_std": 0.06309898162000283,
+   "oracle": 0.9999999999999984,
+   "action_agreement": 0.9277777777777777
+  },
+  "RepeatPreviousHard/d256/random": {
+   "vsa": 0.7047826086956526,
+   "vsa_std": 0.06566369032306316,
+   "oracle": 1.0000000000000018,
+   "action_agreement": 0.8523913043478263
+  },
+  "CountRecallEasy/d256/random": {
+   "vsa": 0.01647058823529413,
+   "vsa_std": 0.08441489598163895,
+   "oracle": 1.0000000000000007,
+   "action_agreement": 0.5082352941176471
+  },
+  "CountRecallMedium/d256/random": {
+   "vsa": 0.9145631067961163,
+   "vsa_std": 0.08201441585220531,
+   "oracle": 0.9999999999999997,
+   "action_agreement": 0.9572815533980584
+  },
+  "CountRecallHard/d256/random": {
+   "vsa": -0.2610628019323671,
+   "vsa_std": 0.06761186700030017,
+   "oracle": 1.000000000000003,
+   "action_agreement": 0.3694685990338165
+  },
+  "RepeatPreviousEasy/d256/block": {
+   "vsa": 0.980833333333334,
+   "vsa_std": 0.03141346137495133,
+   "oracle": 1.0000000000000007,
+   "action_agreement": 0.9904166666666666
+  },
+  "RepeatPreviousMedium/d256/block": {
+   "vsa": 0.8783333333333322,
+   "vsa_std": 0.04543683717909392,
+   "oracle": 0.9999999999999984,
+   "action_agreement": 0.9391666666666667
+  },
+  "RepeatPreviousHard/d256/block": {
+   "vsa": 0.7126086956521744,
+   "vsa_std": 0.07420530453526938,
+   "oracle": 1.0000000000000018,
+   "action_agreement": 0.8563043478260872
+  },
+  "CountRecallEasy/d256/block": {
+   "vsa": 1.0000000000000007,
+   "vsa_std": 0.0,
+   "oracle": 1.0000000000000007,
+   "action_agreement": 1.0
+  },
+  "CountRecallMedium/d256/block": {
+   "vsa": 0.9999999999999997,
+   "vsa_std": 0.0,
+   "oracle": 0.9999999999999997,
+   "action_agreement": 1.0
+  },
+  "CountRecallHard/d256/block": {
+   "vsa": 1.000000000000003,
+   "vsa_std": 0.0,
+   "oracle": 1.000000000000003,
+   "action_agreement": 1.0
+  }
+ },
+ "count_readout": {
+  "n13_d64_random": {
+   "exact": 0.4798076923076923,
+   "mean_abs_err": 0.583216738902892
+  },
+  "n13_d64_block": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  },
+  "n13_d256_random": {
+   "exact": 0.6775,
+   "mean_abs_err": 0.39457042267116216
+  },
+  "n13_d256_block": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  },
+  "n13_d1024_random": {
+   "exact": 0.9909615384615384,
+   "mean_abs_err": 0.15758624890729642
+  },
+  "n13_d1024_block": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  },
+  "n13_d4096_random": {
+   "exact": 1.0,
+   "mean_abs_err": 0.1077242278202007
+  },
+  "n13_d4096_block": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  },
+  "n2_d256_random_s25": {
+   "exact": 0.5,
+   "mean_abs_err": 0.4977903389930725
+  },
+  "n2_d256_block_s25": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  },
+  "n4_d256_random_s25": {
+   "exact": 0.996875,
+   "mean_abs_err": 0.13373341807164252
+  },
+  "n4_d256_block_s25": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  },
+  "n13_d256_random_s25": {
+   "exact": 0.7653846153846153,
+   "mean_abs_err": 0.3325703445621408
+  },
+  "n13_d256_block_s25": {
+   "exact": 1.0,
+   "mean_abs_err": 0.0
+  }
+ },
+ "delay_readout": {
+  "k4_d256_random": 0.9878947368421053,
+  "k4_d256_block": 0.9862280701754386,
+  "k32_d256_random": 0.937063492063492,
+  "k32_d256_block": 0.9438888888888889,
+  "k64_d256_random": 0.912258064516129,
+  "k64_d256_block": 0.920483870967742
+ }
+}

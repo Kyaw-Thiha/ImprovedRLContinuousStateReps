@@ -1,0 +1,4 @@
+# Installed into the repo .venv with --no-deps; popgym's own deps (numpy, gymnasium) are already present.
+# Do NOT install popgym[baselines]: ray[rllib] downgrades gymnasium to 1.2.2 and uses the deprecated old-style
+# model API. The training loop in this folder is self-contained (see README.md).
+popgym==1.0.7

@@ -1,0 +1,45 @@
+{
+ "args": {
+  "fam": "RepeatPrevious",
+  "diff": "Easy",
+  "model": "gru",
+  "updates": 5,
+  "envs": 16,
+  "window": 16,
+  "dim": 256,
+  "code": "random",
+  "hidden": 64,
+  "lr": 0.0003,
+  "gamma": 0.99,
+  "lam": 0.95,
+  "ent": 0.01,
+  "seed": 0,
+  "eval_eps": 20,
+  "tag": ""
+ },
+ "spec": {
+  "fam": "RepeatPrevious",
+  "diff": "Easy",
+  "cards": [
+   4
+  ],
+  "n_items": 4,
+  "act_dim": 4,
+  "ep_len": 51,
+  "k": 4,
+  "lag": 3
+ },
+ "last_k_train_return": -0.48749999999999993,
+ "eval_return": [
+  -0.4999999999999999,
+  0.043700368673756346
+ ],
+ "curve": [
+  -0.4687499999999999,
+  -0.5078124999999998,
+  -0.5130208333333333,
+  -0.4296874999999999,
+  -0.5182291666666665
+ ],
+ "wall_s": 156.55
+}
