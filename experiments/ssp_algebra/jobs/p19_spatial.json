@@ -1,0 +1,166 @@
+[
+ {
+  "name": "p19-spatial-ssp",
+  "variant": "spatial",
+  "arms": [
+   "ssp_spatial"
+  ],
+  "label": "ssp",
+  "arm_cfg": {},
+  "tag": "p19_spatial_ssp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-ssp-noshift",
+  "variant": "spatial",
+  "arms": [
+   "ssp_spatial"
+  ],
+  "label": "ssp_noshift",
+  "arm_cfg": {
+   "shift": false
+  },
+  "tag": "p19_spatial_ssp_noshift",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-ssp-shared",
+  "variant": "spatial",
+  "arms": [
+   "ssp_spatial"
+  ],
+  "label": "ssp_shared",
+  "arm_cfg": {
+   "roles": "shared"
+  },
+  "tag": "p19_spatial_ssp_shared",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-gru",
+  "variant": "spatial",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p19_spatial_gru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-lru",
+  "variant": "spatial",
+  "arms": [
+   "lru"
+  ],
+  "label": "lru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p19_spatial_lru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-fwp-delta",
+  "variant": "spatial",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p19_spatial_fwp_delta",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-pose-attn",
+  "variant": "spatial",
+  "arms": [
+   "pose_attn"
+  ],
+  "label": "pose_attn",
+  "arm_cfg": {},
+  "tag": "p19_spatial_pose_attn",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-mlp",
+  "variant": "spatial",
+  "arms": [
+   "mlp"
+  ],
+  "label": "mlp",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p19_spatial_mlp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ },
+ {
+  "name": "p19-spatial-posmlp",
+  "variant": "spatial",
+  "arms": [
+   "posmlp"
+  ],
+  "label": "posmlp",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p19_spatial_posmlp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 11
+ }
+]

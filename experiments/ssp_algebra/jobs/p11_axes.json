@@ -1,0 +1,272 @@
+[
+ {
+  "name": "p11-idx32-gate-in",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "gate_input_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p11_idx32_gate_in",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-lslearned",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ls_learned_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "learned",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "ls_start": 4.0
+  },
+  "tag": "p11_idx32_lslearned",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-rung2",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rung2_T32",
+  "arm_cfg": {
+   "rung": 2,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p11_idx32_rung2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-pretrain",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "pretrain_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "pretrain_steps": 500,
+   "pretrain_mode": "probe",
+   "pretrain_shapes": "8,64"
+  },
+  "tag": "p11_idx32_pretrain",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-banks2",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "banks2_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "banks": 2
+  },
+  "tag": "p11_idx32_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-banks4",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "banks4_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "banks": 4
+  },
+  "tag": "p11_idx32_banks4",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-gate-banks",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "gate_banks_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p11_idx32_gate_banks",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-interp3",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "interp_heads3_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "read_heads": 3
+  },
+  "tag": "p11_idx32_interp3",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-idx32-tied-gate",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_gate_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p11_idx32_tied_gate",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p11-dly4-tied-gate",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_gate_dly4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p11_dly4_tied_gate",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ }
+]

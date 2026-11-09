@@ -1,0 +1,17 @@
+[
+  {"name": "s1-po64", "variant": "index", "arms": ["ssp", "gru", "tf_full", "fwp"], "tag": "s1_po64",
+   "extra": "--pool 64 --select last5 --search-seeds 3 --seeds 10", "rows": 112},
+  {"name": "s1-po256", "variant": "index", "arms": ["ssp", "gru", "tf_full", "fwp"], "tag": "s1_po256",
+   "extra": "--pool 256 --select last5 --search-seeds 3 --seeds 10", "rows": 112},
+  {"name": "s1-po1024", "variant": "index", "arms": ["ssp", "gru", "tf_full", "fwp"], "tag": "s1_po1024",
+   "extra": "--pool 1024 --select last5 --search-seeds 3 --seeds 10", "rows": 112},
+  {"name": "s1-po4096", "variant": "index", "arms": ["ssp", "gru", "tf_full", "fwp"], "tag": "s1_po4096",
+   "extra": "--pool 4096 --select last5 --search-seeds 3 --seeds 10", "rows": 112},
+
+  {"name": "s1-ws8p64", "variant": "index", "arms": ["ssp_index_learned"], "label": "ssp_index_learned_r1_ws8_s375",
+   "arm_cfg": {"rung": 1, "init": "random", "length_scale": 1.0, "ls_start": 8.0, "ls_mode": "sched", "width_steps": 375},
+   "tag": "s1_ws8p64", "extra": "--pool 64 --select last5 --search-seeds 3 --seeds 10", "rows": 28},
+  {"name": "s1-ws8p256", "variant": "index", "arms": ["ssp_index_learned"], "label": "ssp_index_learned_r1_ws8_s375",
+   "arm_cfg": {"rung": 1, "init": "random", "length_scale": 1.0, "ls_start": 8.0, "ls_mode": "sched", "width_steps": 375},
+   "tag": "s1_ws8p256", "extra": "--pool 256 --select last5 --search-seeds 3 --seeds 10", "rows": 28}
+]

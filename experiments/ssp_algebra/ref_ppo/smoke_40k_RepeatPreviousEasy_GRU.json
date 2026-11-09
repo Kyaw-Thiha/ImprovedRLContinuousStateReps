@@ -1,0 +1,31 @@
+{
+  "env": "popgym-RepeatPreviousEasy-v0",
+  "model": "GRU",
+  "steps_requested": 40000,
+  "history": [
+    {
+      "timesteps": 8262,
+      "episode_return_mean": -0.5128600823045266
+    },
+    {
+      "timesteps": 16524,
+      "episode_return_mean": -0.5185185185185185
+    },
+    {
+      "timesteps": 24786,
+      "episode_return_mean": -0.48508230452674883
+    },
+    {
+      "timesteps": 33048,
+      "episode_return_mean": -0.3749999999999999
+    },
+    {
+      "timesteps": 41310,
+      "episode_return_mean": -0.2569444444444444
+    }
+  ],
+  "mmer": -0.2569444444444444,
+  "last5": -0.4296810699588477,
+  "n_iters_with_return": 5,
+  "deviations": "PPOConfig.update_from_dict + explicit old API stack"
+}

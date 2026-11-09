@@ -1,0 +1,125 @@
+[
+ {
+  "name": "p15b-ddist-recipe",
+  "variant": "delay_distract",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_3k",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p15b_ddist_recipe_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p15b-ddist-recipe-gate-banks2",
+  "variant": "delay_distract",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_banks2_3k",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p15b_ddist_recipe_gate_banks2_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p15b-ddist-tied-gate",
+  "variant": "delay_distract",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_gate_3k",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p15b_ddist_tied_gate_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p15b-ddist-fwp-gate",
+  "variant": "delay_distract",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_3k",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input"
+  },
+  "tag": "p15b_ddist_fwp_gate_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p15b-ddist-gru",
+  "variant": "delay_distract",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru_3k",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p15b_ddist_gru_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ }
+]

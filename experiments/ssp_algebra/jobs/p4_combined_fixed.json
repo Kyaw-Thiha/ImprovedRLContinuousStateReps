@@ -1,0 +1,46 @@
+[
+ {
+  "name": "p4com-fixed",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "comb_masked",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "mask_hop_in_start": true,
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p4com_fixed",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --train-hops 1 --max-hops 8 --n-nodes 8 --n-query 8 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p4com-fixed-noaux",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "comb_masked_noaux",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "mask_hop_in_start": true,
+   "init": "random",
+   "aux_weight": 0.0
+  },
+  "tag": "p4com_fixed_noaux",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --train-hops 1 --max-hops 8 --n-nodes 8 --n-query 8 --robust",
+  "rows": 28
+ }
+]

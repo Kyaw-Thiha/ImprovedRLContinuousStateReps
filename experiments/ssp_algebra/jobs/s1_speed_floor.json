@@ -1,0 +1,4 @@
+[
+  {"name": "s1-idx-floor", "variant": "index", "arms": ["ssp", "gru", "fwp", "tf_full"], "tag": "s1_idx_floor",
+   "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10", "rows": 112}
+]

@@ -1,0 +1,227 @@
+[
+ {
+  "name": "p1d-idx16-a05",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx16_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt16_a05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1d-idx24-a05",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx24_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt24_a05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 24",
+  "rows": 11
+ },
+ {
+  "name": "p1d-idx32-a05",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx32_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt32_a05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p1d-idx48-a05",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx48_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt48_a05",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ },
+ {
+  "name": "p1d-idx64-a05",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx64_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt64_a05",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3200,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ },
+ {
+  "name": "p1d-dly4-a05",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_dly4_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_dly4_a05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 300,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p1d-dly8-a05",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_dly8_a05",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 0.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_dly8_a05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 11
+ },
+ {
+  "name": "p1d-idx16-a40",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx16_a40",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 4.0,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt16_a40",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1d-idx32-a40",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1d_idx32_a40",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_abs": 4.0,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1d_idxt32_a40",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ }
+]

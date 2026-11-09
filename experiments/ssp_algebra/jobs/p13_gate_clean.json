@@ -1,0 +1,29 @@
+[
+ {
+  "name": "p13-idx32-gate-in-clean",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "gate_input_clean_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p13_gate_input_clean_T32",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ }
+]

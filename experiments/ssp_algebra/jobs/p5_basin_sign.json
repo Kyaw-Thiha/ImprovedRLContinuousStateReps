@@ -1,0 +1,80 @@
+[
+ {
+  "name": "p5d-sm10-o10",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p5d_sm10_o10",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_slope_err": -0.1,
+   "affine_offset": 1.0,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5d_sm10_o10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p5d-sp10-o-10",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p5d_sp10_o_10",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_slope_err": 0.1,
+   "affine_offset": -1.0,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5d_sp10_o_10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p5d-sm10-o30",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p5d_sm10_o30",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_slope_err": -0.1,
+   "affine_offset": 3.0,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5d_sm10_o30",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ }
+]

@@ -1,0 +1,114 @@
+[
+ {
+  "name": "p1b-fine7",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1b_fine7",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 7.0,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "fine_frac": 0.7,
+   "ls_mode": "fixed"
+  },
+  "tag": "p1b_fine7",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1b-fine9",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1b_fine9",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 7.0,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "fine_frac": 0.9,
+   "ls_mode": "fixed"
+  },
+  "tag": "p1b_fine9",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1b-hybrid84s2",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1b_hybrid84s2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 7.0,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "fine_frac": 0.7,
+   "ls_mode": "sched",
+   "ls_start": 2.0,
+   "width_steps": 84
+  },
+  "tag": "p1b_hybrid84s2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1b-hybrid84s7",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p1b_hybrid84s7",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 7.0,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "fine_frac": 0.7,
+   "ls_mode": "sched",
+   "ls_start": 7.0,
+   "width_steps": 84
+  },
+  "tag": "p1b_hybrid84s7",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ }
+]

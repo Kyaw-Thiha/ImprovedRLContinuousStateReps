@@ -1,0 +1,47 @@
+[
+ {
+  "name": "p15b-ddist-gru",
+  "variant": "delay_distract",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru_3k",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p15b_ddist_gru_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p16-idx48-recipe-k5",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx48_recipe_k5",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "read_heads": 5
+  },
+  "tag": "p16_idx48_recipe_k5",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ }
+]

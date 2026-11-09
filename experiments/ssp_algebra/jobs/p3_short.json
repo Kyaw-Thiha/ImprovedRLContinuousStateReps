@@ -1,0 +1,143 @@
+[
+ {
+  "name": "p3-h1-aux",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_h1_aux",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3_h1_aux",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --train-hops 1 --max-hops 8 --n-nodes 8 --n-query 8",
+  "rows": 28
+ },
+ {
+  "name": "p3-h1-plain",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_h1_plain",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "aux_weight": 0.0
+  },
+  "tag": "p3_h1_plain",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --train-hops 1 --max-hops 8 --n-nodes 8 --n-query 8",
+  "rows": 28
+ },
+ {
+  "name": "p3-nodes8-b256",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_n8_b256",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3_nodes8_b256",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --n-nodes 8 --n-query 8 --max-hops 8",
+  "rows": 28
+ },
+ {
+  "name": "p3-nodes8-b512",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_n8_b512",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3_nodes8_b512",
+  "budget": 512,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --n-nodes 8 --n-query 8 --max-hops 8",
+  "rows": 28
+ },
+ {
+  "name": "p3-nodes16-b256",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_n16_b256",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3_nodes16_b256",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --n-nodes 16 --n-query 8 --max-hops 8",
+  "rows": 28
+ },
+ {
+  "name": "p3-nodes16-b512",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_n16_b512",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3_nodes16_b512",
+  "budget": 512,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --n-nodes 16 --n-query 8 --max-hops 8",
+  "rows": 28
+ },
+ {
+  "name": "p3-gate-easy",
+  "variant": "pointer",
+  "arms": [
+   "fwp",
+   "lru",
+   "tf_window"
+  ],
+  "tag": "p3_gate_easy",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --n-nodes 4 --n-query 8 --train-hops 1 --max-hops 1",
+  "rows": 84
+ }
+]

@@ -1,0 +1,17 @@
+[
+  {"name": "s1-idx-a", "variant": "index", "arms": ["ssp", "gru", "lru"], "tag": "s1_idx_a",
+   "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 84},
+
+  {"name": "s1-idx-b", "variant": "index", "arms": ["tf_full", "tf_window", "kernel_attn", "fwp"], "tag": "s1_idx_b",
+   "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 112},
+
+  {"name": "s1-idx-ws8", "variant": "index", "arms": ["ssp_index_learned"], "label": "ssp_index_learned_r1_ws8_s375",
+   "arm_cfg": {"rung": 1, "init": "random", "length_scale": 1.0, "ls_start": 8.0, "ls_mode": "sched", "width_steps": 375},
+   "tag": "s1_idx_ws8", "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 28},
+
+  {"name": "s1-ptr-a", "variant": "pointer", "arms": ["ssp", "gru", "lru"], "tag": "s1_ptr_a",
+   "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 84},
+
+  {"name": "s1-ptr-b", "variant": "pointer", "arms": ["tf_full", "tf_window", "kernel_attn"], "tag": "s1_ptr_b",
+   "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 84}
+]

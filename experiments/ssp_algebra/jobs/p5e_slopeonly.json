@@ -1,0 +1,184 @@
+[
+ {
+  "name": "p5e-idx16-slopeonly",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_T16",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_idxt16_slopeonly",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p5e-idx24-slopeonly",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_T24",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_idxt24_slopeonly",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 24",
+  "rows": 11
+ },
+ {
+  "name": "p5e-idx32-slopeonly",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_idxt32_slopeonly",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p5e-idx48-slopeonly",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_T48",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_idxt48_slopeonly",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ },
+ {
+  "name": "p5e-idx64-slopeonly",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_T64",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_idxt64_slopeonly",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ },
+ {
+  "name": "p5e-dly4-slopeonly",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_dly4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_dly4_slopeonly",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p5e-dly8-slopeonly",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "slopeonly_dly8",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5e_dly8_slopeonly",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 600,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 11
+ }
+]

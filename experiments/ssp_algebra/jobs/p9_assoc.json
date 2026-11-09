@@ -1,0 +1,73 @@
+[
+ {
+  "name": "p9-assoc-main",
+  "variant": "assoc",
+  "arms": [
+   "gru",
+   "lru",
+   "assoc_ssp",
+   "assoc_fwp"
+  ],
+  "tag": "p9_assoc_main",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --n-items 8 --robust",
+  "rows": 112
+ },
+ {
+  "name": "p9-assoc-nobind",
+  "variant": "assoc",
+  "arms": [
+   "assoc_ssp"
+  ],
+  "label": "assoc_ssp_nobind",
+  "arm_cfg": {
+   "bind": false
+  },
+  "tag": "p9_assoc_nobind",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --n-items 8 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p9-assoc-learned",
+  "variant": "assoc",
+  "arms": [
+   "assoc_ssp"
+  ],
+  "label": "assoc_ssp_learned",
+  "arm_cfg": {
+   "learned_codes": true
+  },
+  "tag": "p9_assoc_learned",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --n-items 8 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p9-assoc-plainfwp",
+  "variant": "assoc",
+  "arms": [
+   "assoc_fwp"
+  ],
+  "label": "assoc_fwp_plain",
+  "arm_cfg": {
+   "delta": false
+  },
+  "tag": "p9_assoc_plainfwp",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --n-items 8 --robust",
+  "rows": 28
+ }
+]

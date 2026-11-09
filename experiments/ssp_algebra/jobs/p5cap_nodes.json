@@ -1,0 +1,102 @@
+[
+ {
+  "name": "p5cap-n32-b512",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "cap_n32_b512",
+  "arm_cfg": {
+   "lr": 0.008832400141970165,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p5cap_n32_b512",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 32 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 11
+ },
+ {
+  "name": "p5cap-n32-b1024",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "cap_n32_b1024",
+  "arm_cfg": {
+   "lr": 0.008832400141970165,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p5cap_n32_b1024",
+  "budget": 1024,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 32 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 11
+ },
+ {
+  "name": "p5cap-n64-b1024",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "cap_n64_b1024",
+  "arm_cfg": {
+   "lr": 0.008832400141970165,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p5cap_n64_b1024",
+  "budget": 1024,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 64 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 11
+ },
+ {
+  "name": "p5cap-n64-b512",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "cap_n64_b512",
+  "arm_cfg": {
+   "lr": 0.008832400141970165,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p5cap_n64_b512",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 64 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 11
+ }
+]

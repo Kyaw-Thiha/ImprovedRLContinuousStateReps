@@ -1,0 +1,106 @@
+[
+ {
+  "name": "p5-rule-T24",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rule_real_T24",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 11.0,
+   "ls_mode": "sched",
+   "width_steps": 528,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5_rule_T24",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1056,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 24",
+  "rows": 11
+ },
+ {
+  "name": "p5-rule-T32",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rule_real_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 15.0,
+   "ls_mode": "sched",
+   "width_steps": 720,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5_rule_T32",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1440,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p5-rule-T48",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rule_real_T48",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 23.0,
+   "ls_mode": "sched",
+   "width_steps": 1104,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5_rule_T48",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2208,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ },
+ {
+  "name": "p5-rule-T64",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rule_real_T64",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 31.0,
+   "ls_mode": "sched",
+   "width_steps": 1488,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5_rule_T64",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2976,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ }
+]

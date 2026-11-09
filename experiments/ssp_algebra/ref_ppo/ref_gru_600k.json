@@ -1,0 +1,91 @@
+{
+  "env": "popgym-RepeatPreviousEasy-v0",
+  "model": "GRU",
+  "steps_requested": 600000,
+  "history": [
+    {
+      "timesteps": 32844,
+      "episode_return_mean": -0.5055641821946169
+    },
+    {
+      "timesteps": 65688,
+      "episode_return_mean": -0.4437111801242235
+    },
+    {
+      "timesteps": 98532,
+      "episode_return_mean": -0.27012163561076596
+    },
+    {
+      "timesteps": 131376,
+      "episode_return_mean": -0.08831521739130434
+    },
+    {
+      "timesteps": 164220,
+      "episode_return_mean": 0.05790631469979296
+    },
+    {
+      "timesteps": 197064,
+      "episode_return_mean": 0.16873706004140784
+    },
+    {
+      "timesteps": 205275,
+      "episode_return_mean": 0.259284420289855
+    },
+    {
+      "timesteps": 238119,
+      "episode_return_mean": 0.32032867494824013
+    },
+    {
+      "timesteps": 270963,
+      "episode_return_mean": 0.38075828157349884
+    },
+    {
+      "timesteps": 303807,
+      "episode_return_mean": 0.44332298136645953
+    },
+    {
+      "timesteps": 336651,
+      "episode_return_mean": 0.4842779503105588
+    },
+    {
+      "timesteps": 369495,
+      "episode_return_mean": 0.5213509316770185
+    },
+    {
+      "timesteps": 402339,
+      "episode_return_mean": 0.5624353002070392
+    },
+    {
+      "timesteps": 435183,
+      "episode_return_mean": 0.5894798136645962
+    },
+    {
+      "timesteps": 468027,
+      "episode_return_mean": 0.6259057971014493
+    },
+    {
+      "timesteps": 500871,
+      "episode_return_mean": 0.6375517598343686
+    },
+    {
+      "timesteps": 533715,
+      "episode_return_mean": 0.6337344720496895
+    },
+    {
+      "timesteps": 566559,
+      "episode_return_mean": 0.6589673913043478
+    },
+    {
+      "timesteps": 599403,
+      "episode_return_mean": 0.6779891304347827
+    },
+    {
+      "timesteps": 632247,
+      "episode_return_mean": 0.6829710144927538
+    }
+  ],
+  "mmer": 0.6829710144927538,
+  "last5": 0.6582427536231885,
+  "n_iters_with_return": 20,
+  "deviations": "PPOConfig.update_from_dict + explicit old API stack"
+}

@@ -1,0 +1,26 @@
+[
+ {
+  "name": "p4-fwp-probe",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "tag": "p4_fwp_probe",
+  "arm_cfg": {
+   "lam_init": 0.99,
+   "hidden": 64,
+   "pretrain_steps": 500,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 16",
+  "rows": 28
+ }
+]

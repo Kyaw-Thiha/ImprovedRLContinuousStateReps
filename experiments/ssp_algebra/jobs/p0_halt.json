@@ -1,0 +1,86 @@
+[
+ {
+  "name": "p0-cuehop",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "p0_cuehop",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "init": "random",
+   "halting": "cue_hop",
+   "aux_weight": 0.5
+  },
+  "tag": "p0_cuehop",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p0-cuehop-noaux",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "p0_cuehop_noaux",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "init": "random",
+   "halting": "cue_hop",
+   "aux_weight": 0.0
+  },
+  "tag": "p0_cuehop_noaux",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p0-counter",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "p0_counter",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "init": "random",
+   "halting": "counter",
+   "aux_weight": 0.5
+  },
+  "tag": "p0_counter",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p0-learned-repro",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "p0_learned_repro",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "init": "random",
+   "halting": "learned",
+   "aux_weight": 0.5
+  },
+  "tag": "p0_learned_repro",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --robust",
+  "rows": 28
+ }
+]

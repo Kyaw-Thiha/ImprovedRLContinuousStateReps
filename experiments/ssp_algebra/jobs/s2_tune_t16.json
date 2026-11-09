@@ -1,0 +1,236 @@
+[
+ {
+  "name": "s2-t16-a05-b024",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a05_b024",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a05_b024",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a05-b047",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a05_b047",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 658,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1316,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a05_b047",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a05-b094",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a05_b094",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 1316,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2632,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a05_b094",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a10-b024",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a10_b024",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 14.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a10_b024",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a10-b047",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a10_b047",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 14.0,
+   "ls_mode": "sched",
+   "width_steps": 658,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1316,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a10_b047",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a10-b094",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a10_b094",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 14.0,
+   "ls_mode": "sched",
+   "width_steps": 1316,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2632,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a10_b094",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a15-b024",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a15_b024",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 21.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a15_b024",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a15-b047",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a15_b047",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 21.0,
+   "ls_mode": "sched",
+   "width_steps": 658,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1316,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a15_b047",
+  "rows": 11
+ },
+ {
+  "name": "s2-t16-a15-b094",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_t16_a15_b094",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 21.0,
+   "ls_mode": "sched",
+   "width_steps": 1316,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2632,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_index_learned_r1_rec_s2_t16_a15_b094",
+  "rows": 11
+ }
+]

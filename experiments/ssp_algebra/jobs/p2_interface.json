@@ -1,0 +1,214 @@
+[
+ {
+  "name": "p2-nopre-n64",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_nopre_n64",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p2_nopre_n64",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p2-probeaux5",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_probeaux5",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "probe_aux_weight": 0.5
+  },
+  "tag": "p2_probeaux5",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p2-probeaux10",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_probeaux10",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "probe_aux_weight": 1.0
+  },
+  "tag": "p2_probeaux10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p2-pre50",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_pre50",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "pretrain_steps": 50,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "tag": "p2_pre50",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p2-pre100",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_pre100",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "pretrain_steps": 100,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "tag": "p2_pre100",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p2-pre200",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_pre200",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "pretrain_steps": 200,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "tag": "p2_pre200",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p2-pre500",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "p2_pre500",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "pretrain_steps": 500,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "tag": "p2_pre500",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ }
+]

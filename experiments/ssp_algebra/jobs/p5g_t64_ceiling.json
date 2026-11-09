@@ -1,0 +1,50 @@
+[
+ {
+  "name": "p5g-idx64-id-b512",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "id_T64_b512",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "identity",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5g_idxt64_id_b512",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2000,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ },
+ {
+  "name": "p5g-idx64-id-b1024",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "id_T64_b1024",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "identity",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5g_idxt64_id_b1024",
+  "budget": 1024,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2000,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ }
+]

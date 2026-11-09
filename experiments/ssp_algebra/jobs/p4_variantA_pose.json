@@ -1,0 +1,17 @@
+[
+ {
+  "name": "p4v-rung0-pose",
+  "variant": "path",
+  "arms": [
+   "pose_attn",
+   "gru",
+   "ssp"
+  ],
+  "tag": "p4v_rung0_pose",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 32 --n-landmarks 6",
+  "rows": 84
+ }
+]

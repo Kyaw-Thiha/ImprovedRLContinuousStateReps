@@ -1,0 +1,6 @@
+[
+ {"name": "ex-ws8-s375", "variant": "index", "arms": ["ssp_index_learned"], "label": "ssp_index_learned_r1_ws8_s375",
+  "arm_cfg": {"rung": 1, "init": "random", "length_scale": 1.0, "ls_start": 8.0, "ls_mode": "sched", "width_steps": 375},
+  "tag": "ex_ws8_s375"},
+ {"name": "ex-t32-base", "variant": "index", "arms": ["ssp", "gru"], "extra": "--ep-len 32", "tag": "ex_t32_base"}
+]

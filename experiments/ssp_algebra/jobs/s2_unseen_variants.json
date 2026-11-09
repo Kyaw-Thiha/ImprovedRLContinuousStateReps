@@ -1,0 +1,132 @@
+[
+ {
+  "name": "s2-un24",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_un24",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 11.0,
+   "ls_mode": "sched",
+   "width_steps": 528,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1056,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_idx_rec_un24",
+  "rows": 11
+ },
+ {
+  "name": "s2-un48",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_un48",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 23.0,
+   "ls_mode": "sched",
+   "width_steps": 1104,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2208,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_idx_rec_un48",
+  "rows": 11
+ },
+ {
+  "name": "s2-un64",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_un64",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 31.0,
+   "ls_mode": "sched",
+   "width_steps": 1488,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2976,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95",
+  "label": "ssp_idx_rec_un64",
+  "rows": 11
+ },
+ {
+  "name": "s2-un-dl4",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_un_dl4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 2.0,
+   "ls_mode": "sched",
+   "width_steps": 96,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 192,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95 --train-lags 1 2 3 4",
+  "label": "ssp_idx_rec_dl4",
+  "rows": 11
+ },
+ {
+  "name": "s2-un-dl8",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "tag": "s2_un_dl8",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 4.0,
+   "ls_mode": "sched",
+   "width_steps": 192,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 384,
+  "extra": "--select aulc --search-seeds 1 --min-conv 0.95 --train-lags 1 2 3 4 5 6 7 8",
+  "label": "ssp_idx_rec_dl8",
+  "rows": 11
+ }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "name": "p9local-assoc-main",
+  "variant": "assoc",
+  "arms": [
+   "gru",
+   "lru",
+   "assoc_ssp",
+   "assoc_fwp"
+  ],
+  "tag": "p9local_assoc_main",
+  "rows": 48
+ },
+ {
+  "name": "p9local-assoc-nobind",
+  "variant": "assoc",
+  "arms": [
+   "assoc_ssp"
+  ],
+  "label": "assoc_ssp_nobind",
+  "tag": "p9local_assoc_nobind",
+  "rows": 12
+ },
+ {
+  "name": "p9local-assoc-learned",
+  "variant": "assoc",
+  "arms": [
+   "assoc_ssp"
+  ],
+  "label": "assoc_ssp_learned",
+  "tag": "p9local_assoc_learned",
+  "rows": 12
+ },
+ {
+  "name": "p9local-assoc-plainfwp",
+  "variant": "assoc",
+  "arms": [
+   "assoc_fwp"
+  ],
+  "label": "assoc_fwp_plain",
+  "tag": "p9local_assoc_plainfwp",
+  "rows": 12
+ }
+]

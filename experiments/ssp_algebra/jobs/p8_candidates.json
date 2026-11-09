@@ -1,0 +1,393 @@
+[
+ {
+  "name": "p8-idx32-ssp-recipe",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true
+  },
+  "tag": "p8_idx32_ssp_recipe",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-scram",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "scram_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "scrambled"
+  },
+  "tag": "p8_idx32_ssp_scram",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-tied-scr",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "scrambled",
+   "addr_mode": "tied"
+  },
+  "tag": "p8_idx32_ssp_tied_scr",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-tied-res",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_res_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "read_residual": true
+  },
+  "tag": "p8_idx32_ssp_tied_res",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-tied-rec",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_rec_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "addr_mode": "tied"
+  },
+  "tag": "p8_idx32_ssp_tied_rec",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-cauchy-scr",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "cauchy_scr_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "scrambled",
+   "omega_kind": "cauchy"
+  },
+  "tag": "p8_idx32_ssp_cauchy_scr",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-cauchy-rec",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "cauchy_rec_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "omega_kind": "cauchy"
+  },
+  "tag": "p8_idx32_ssp_cauchy_rec",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-k1-o1",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "k1_off1_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_offset": 1.0,
+   "read_heads": 1
+  },
+  "tag": "p8_idx32_ssp_k1_o1",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-k5-o1",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "k5_off1_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_offset": 1.0,
+   "read_heads": 5
+  },
+  "tag": "p8_idx32_ssp_k5_o1",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-k5-o3",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "k5_off3_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_offset": 3.0,
+   "read_heads": 5
+  },
+  "tag": "p8_idx32_ssp_k5_o3",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-idx32-ssp-dw",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "delta_write_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "write_rule": "delta",
+   "beta_init": -4.0
+  },
+  "tag": "p8_idx32_ssp_dw",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p8-dly4-ssp-recipe",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_dly",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true
+  },
+  "tag": "p8_dly4_ssp_recipe",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p8-dly4-ssp-tied-scr",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_dly",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "scrambled",
+   "addr_mode": "tied"
+  },
+  "tag": "p8_dly4_ssp_tied_scr",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p8-t64-ssp-recipe",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_T64",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true
+  },
+  "tag": "p8_t64_ssp_recipe",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ },
+ {
+  "name": "p8-t64-ssp-dw",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "delta_write_T64",
+  "arm_cfg": {
+   "rung": 1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "write_rule": "delta",
+   "beta_init": -4.0
+  },
+  "tag": "p8_t64_ssp_dw",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ }
+]

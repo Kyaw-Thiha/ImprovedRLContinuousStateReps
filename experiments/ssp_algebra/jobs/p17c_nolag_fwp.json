@@ -1,0 +1,26 @@
+[
+ {
+  "name": "p17b-nolag-fwp-delta",
+  "variant": "delay_nolag",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p17b_nolag_fwp_delta",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ }
+]

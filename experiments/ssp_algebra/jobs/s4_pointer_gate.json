@@ -1,0 +1,5 @@
+[
+  {"name": "s4-ptrgate", "variant": "pointer", "arms": ["gru", "tf_full", "looped_tf", "kernel_attn"],
+   "tag": "s4_ptrgate", "extra": "--n-nodes 4 --n-query 4 --train-hops 1 --max-hops 8 --select last5 --seeds 3",
+   "configs": 6, "steps": 6000, "rows": 36}
+]

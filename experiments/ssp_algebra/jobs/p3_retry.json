@@ -1,0 +1,17 @@
+[
+ {
+  "name": "p3-gate-easy",
+  "variant": "pointer",
+  "arms": [
+   "fwp",
+   "lru",
+   "tf_window"
+  ],
+  "tag": "p3_gate_easy",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --n-nodes 4 --n-query 8 --train-hops 1 --max-hops 1",
+  "rows": 84
+ }
+]

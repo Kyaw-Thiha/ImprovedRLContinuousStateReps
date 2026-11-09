@@ -1,0 +1,153 @@
+[
+ {
+  "name": "p10-idx32-tied-scr-3k",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_T32_3k",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p10_idx32_tied_scr_3k",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p10-idx48-tied-scr",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_T48",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p10_idx48_tied_scr",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ },
+ {
+  "name": "p10-idx64-tied-scr",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_T64",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p10_idx64_tied_scr",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2000,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ },
+ {
+  "name": "p10-dly4-tied-scr",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_dly4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p10_dly4_tied_scr",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p10-dly8-tied-scr",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_dly8",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p10_dly8_tied_scr",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 600,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 11
+ },
+ {
+  "name": "p10-dly4-tied-scr-res",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_scr_res_dly4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "read_residual": true
+  },
+  "tag": "p10_dly4_tied_scr_res",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ }
+]

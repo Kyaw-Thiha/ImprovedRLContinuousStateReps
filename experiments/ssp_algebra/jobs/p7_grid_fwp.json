@@ -1,0 +1,352 @@
+[
+ {
+  "name": "p7-idx32-fwp-o00",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "label": "fwp_o0.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_idx32_fwp_o00",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fwp-o05",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "label": "fwp_o0.5",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.5,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_idx32_fwp_o05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fwp-o10",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "label": "fwp_o1.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 1.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_idx32_fwp_o10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fwp-o30",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "label": "fwp_o3.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 3.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_idx32_fwp_o30",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-gate-idx16-fwp",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "label": "gate_fwp",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_gate_idx16_fwp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p7-dly4-fwp-o00",
+  "variant": "delay",
+  "arms": [
+   "fwp"
+  ],
+  "label": "dly_fwp_o0.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_dly4_fwp_o00",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p7-dly4-fwp-o10",
+  "variant": "delay",
+  "arms": [
+   "fwp"
+  ],
+  "label": "dly_fwp_o1.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 1.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p7_dly4_fwp_o10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fdl-o00",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fdl_o0.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_idx32_fdl_o00",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fdl-o05",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fdl_o0.5",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.5,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_idx32_fdl_o05",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fdl-o10",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fdl_o1.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 1.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_idx32_fdl_o10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-idx32-fdl-o30",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fdl_o3.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 3.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_idx32_fdl_o30",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p7-gate-idx16-fdl",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "gate_fdl",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_gate_idx16_fdl",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p7-dly4-fdl-o00",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "dly_fdl_o0.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 0.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_dly4_fdl_o00",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p7-dly4-fdl-o10",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "dly_fdl_o1.0",
+  "arm_cfg": {
+   "tied": true,
+   "read_abs": true,
+   "q_copy_init": true,
+   "q_init_offset": 1.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "rule": "delta",
+   "beta_init": 4.0
+  },
+  "tag": "p7_dly4_fdl_o10",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ }
+]

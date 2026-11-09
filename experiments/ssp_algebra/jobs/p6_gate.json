@@ -1,0 +1,15 @@
+[
+ {
+  "name": "p6-gru-gate",
+  "variant": "pointer",
+  "arms": [
+   "gru"
+  ],
+  "tag": "p6_gru_gate",
+  "configs": 3,
+  "seeds": 10,
+  "steps": 15000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --n-nodes 4 --n-query 8 --train-hops 1 --max-hops 1",
+  "rows": 13
+ }
+]

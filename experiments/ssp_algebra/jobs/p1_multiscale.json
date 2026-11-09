@@ -1,0 +1,266 @@
+[
+ {
+  "name": "p1-idx16-logmix",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_logmix_T16",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 7.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_idxt16_logmix",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1-idx16-sched",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_sched_T16",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_idxt16_sched",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p1-idx16-gru",
+  "variant": "index",
+  "arms": [
+   "gru"
+  ],
+  "tag": "p1_idxt16_gru",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 16",
+  "rows": 28
+ },
+ {
+  "name": "p1-idx32-logmix",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_logmix_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 15.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_idxt32_logmix",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1440,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p1-idx32-sched",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_sched_T32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 15.0,
+   "ls_mode": "sched",
+   "width_steps": 720,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_idxt32_sched",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1440,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p1-idx32-gru",
+  "variant": "index",
+  "arms": [
+   "gru"
+  ],
+  "tag": "p1_idxt32_gru",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p1-dly4-logmix",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_dly_logmix_l4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 2.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_dly4_logmix",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 192,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p1-dly4-sched",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_dly_sched_l4",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 2.0,
+   "ls_mode": "sched",
+   "width_steps": 96,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_dly4_sched",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 192,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p1-dly4-gru",
+  "variant": "delay",
+  "arms": [
+   "gru"
+  ],
+  "tag": "p1_dly4_gru",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ },
+ {
+  "name": "p1-dly8-logmix",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_dly_logmix_l8",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "omega_kind": "logmix",
+   "ls_hi": 4.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_dly8_logmix",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 384,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 11
+ },
+ {
+  "name": "p1-dly8-sched",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_dly_sched_l8",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 4.0,
+   "ls_mode": "sched",
+   "width_steps": 192,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1_dly8_sched",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 384,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 11
+ },
+ {
+  "name": "p1-dly8-gru",
+  "variant": "delay",
+  "arms": [
+   "gru"
+  ],
+  "tag": "p1_dly8_gru",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 6000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 28
+ }
+]

@@ -1,0 +1,94 @@
+[
+ {
+  "name": "p4-fwp-plain64",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "tag": "p4_fwp_plain64",
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p4-fwp-probe64",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "tag": "p4_fwp_probe64",
+  "arm_cfg": {
+   "lam_init": 0.99,
+   "hidden": 64,
+   "pretrain_steps": 500,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16 --pool 64",
+  "rows": 11
+ },
+ {
+  "name": "p4-fwp-probe",
+  "variant": "index",
+  "arms": [
+   "fwp"
+  ],
+  "tag": "p4_fwp_probe",
+  "arm_cfg": {
+   "lam_init": 0.99,
+   "hidden": 64,
+   "pretrain_steps": 500,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 16",
+  "rows": 28
+ },
+ {
+  "name": "p4-ssp-probe",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_probe_full",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "pretrain_steps": 500,
+   "pretrain_mode": "probe",
+   "pretrain_lr": 0.02,
+   "pretrain_shapes": [
+    8,
+    64
+   ]
+  },
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --ep-len 16",
+  "rows": 28
+ }
+]

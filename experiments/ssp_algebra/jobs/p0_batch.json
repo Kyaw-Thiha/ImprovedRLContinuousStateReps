@@ -1,0 +1,170 @@
+[
+ {
+  "name": "p0-b08-rec",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_rec_b08",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p0_b08_rec",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 8 --dense-eval",
+  "rows": 28
+ },
+ {
+  "name": "p0-b08-base",
+  "variant": "index",
+  "arms": [
+   "gru",
+   "fwp",
+   "tf_full"
+  ],
+  "tag": "p0_b08_base",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 8 --dense-eval",
+  "rows": 84
+ },
+ {
+  "name": "p0-b16-rec",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_rec_b16",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p0_b16_rec",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 16 --dense-eval",
+  "rows": 28
+ },
+ {
+  "name": "p0-b16-base",
+  "variant": "index",
+  "arms": [
+   "gru",
+   "fwp",
+   "tf_full"
+  ],
+  "tag": "p0_b16_base",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 16 --dense-eval",
+  "rows": 84
+ },
+ {
+  "name": "p0-b32-rec",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_rec_b32",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p0_b32_rec",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 32 --dense-eval",
+  "rows": 28
+ },
+ {
+  "name": "p0-b32-base",
+  "variant": "index",
+  "arms": [
+   "gru",
+   "fwp",
+   "tf_full"
+  ],
+  "tag": "p0_b32_base",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 32 --dense-eval",
+  "rows": 84
+ },
+ {
+  "name": "p0-b64-rec",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "ssp_idx_rec_b64",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "random",
+   "length_scale": 1.0,
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336,
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p0_b64_rec",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 64 --dense-eval",
+  "rows": 28
+ },
+ {
+  "name": "p0-b64-base",
+  "variant": "index",
+  "arms": [
+   "gru",
+   "fwp",
+   "tf_full"
+  ],
+  "tag": "p0_b64_base",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --batch 64 --dense-eval",
+  "rows": 84
+ }
+]

@@ -1,0 +1,5 @@
+[
+  {"name": "s4-loop-auxlong", "variant": "pointer", "arms": ["looped_tf"], "label": "looped_tf_aux_long",
+   "arm_cfg": {"aux_weight": 0.5}, "tag": "s4_loop_auxlong",
+   "extra": "--select aulc --search-seeds 3 --seeds 10", "steps": 6000, "rows": 28}
+]

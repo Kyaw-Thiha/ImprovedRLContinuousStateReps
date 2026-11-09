@@ -1,0 +1,254 @@
+[
+ {
+  "name": "p16-idx32-tied-gate-banks2",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx32_tied_gate_banks2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p16_idx32_tied_gate_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p16-idx48-tied-gate-banks2",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx48_tied_gate_banks2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p16_idx48_tied_gate_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ },
+ {
+  "name": "p16-dly4-tied-gate-banks2",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "dly4_tied_gate_banks2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p16_dly4_tied_gate_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p16-dly8-tied-gate-banks2",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "dly8_tied_gate_banks2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p16_dly8_tied_gate_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4 5 6 7 8",
+  "rows": 11
+ },
+ {
+  "name": "p16-idx32-recipe-gate-banks2-k3",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx32_recipe_gate_banks2_k3",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2,
+   "read_heads": 3
+  },
+  "tag": "p16_idx32_recipe_gate_banks2_k3",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p16-idx32-gate-banks2-k5-o1",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx32_gate_banks2_k5_o1",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": false,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "affine_offset": 1.0,
+   "gate": "input",
+   "banks": 2,
+   "read_heads": 5
+  },
+  "tag": "p16_idx32_gate_banks2_k5_o1",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p16-idx32-gate-banks2-k5-o3",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx32_gate_banks2_k5_o3",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": false,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "affine_offset": 3.0,
+   "gate": "input",
+   "banks": 2,
+   "read_heads": 5
+  },
+  "tag": "p16_idx32_gate_banks2_k5_o3",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p16-dly4-recipe-k5-o1",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "dly4_recipe_k5_o1",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": false,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "affine_offset": 1.0,
+   "read_heads": 5
+  },
+  "tag": "p16_dly4_recipe_k5_o1",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p16-idx48-recipe-k5",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idx48_recipe_k5",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "read_heads": 5
+  },
+  "tag": "p16_idx48_recipe_k5",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ }
+]

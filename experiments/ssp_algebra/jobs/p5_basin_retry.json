@@ -1,0 +1,28 @@
+[
+ {
+  "name": "p5b-s00-o0",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "b_s00_o0",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_slope_err": 0.0,
+   "affine_offset": 0.0,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5b_s00_o0",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ }
+]

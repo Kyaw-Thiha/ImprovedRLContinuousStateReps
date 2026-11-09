@@ -1,0 +1,77 @@
+[
+ {
+  "name": "p1c-idx32-aff01",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idxt32_aff01",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1c_idxt32_aff01",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p1c-idx48-aff01",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idxt48_aff01",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1c_idxt48_aff01",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 48",
+  "rows": 11
+ },
+ {
+  "name": "p1c-idx64-aff01",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "idxt64_aff01",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.1,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p1c_idxt64_aff01",
+  "budget": 512,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 3200,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 64",
+  "rows": 11
+ }
+]

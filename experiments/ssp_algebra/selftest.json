@@ -1,0 +1,46 @@
+{
+  "t0_f64": {
+    "bind": 3.6955587428207345e-15,
+    "unbind": 4.0229310842562066e-15,
+    "kappa": 8.673617379884035e-17
+  },
+  "t0_f32": {
+    "bind": 2.8272966119402554e-06,
+    "unbind": 2.360223561481689e-06,
+    "kappa": 1.1920928955078125e-07
+  },
+  "t0_pass": true,
+  "env": {
+    "fam": "RepeatPrevious",
+    "diff": "Easy",
+    "k": 4,
+    "lag": 3,
+    "n_items": 4,
+    "ep_len": 51,
+    "act_dim": 4
+  },
+  "lag_convention": "lag = k-1 = 3 (k counts back including the current card)",
+  "oracle_return": 1.0000000000000007,
+  "random_return": -0.5216666666666666,
+  "delay": [
+    {
+      "dim": 128,
+      "policy": 0.9133333333333337,
+      "policy_std": 0.04702245326555304,
+      "agreement": 0.9566666666666667
+    },
+    {
+      "dim": 256,
+      "policy": 0.9900000000000005,
+      "policy_std": 0.019649710204252695,
+      "agreement": 0.995
+    },
+    {
+      "dim": 512,
+      "policy": 0.998333333333334,
+      "policy_std": 0.008164965809277275,
+      "agreement": 0.9991666666666665
+    }
+  ],
+  "delay_pass": true
+}

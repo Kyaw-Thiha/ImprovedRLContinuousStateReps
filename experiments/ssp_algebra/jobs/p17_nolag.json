@@ -1,0 +1,196 @@
+[
+ {
+  "name": "p17-nolag-recipe",
+  "variant": "delay_nolag",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p17_nolag_recipe",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-recipe-gate-banks2",
+  "variant": "delay_nolag",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_banks2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p17_nolag_recipe_gate_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-tied",
+  "variant": "delay_nolag",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p17_nolag_tied",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-tied-gate-banks2",
+  "variant": "delay_nolag",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "tied_gate_banks2",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "scrambled",
+   "addr_mode": "tied",
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p17_nolag_tied_gate_banks2",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-k5-o1",
+  "variant": "delay_nolag",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "k5_o1",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": false,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "affine_offset": 1.0,
+   "read_heads": 5
+  },
+  "tag": "p17_nolag_k5_o1",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-fwp-delta",
+  "variant": "delay_nolag",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p17_nolag_fwp_delta",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-gru",
+  "variant": "delay_nolag",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p17_nolag_gru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p17-nolag-lru",
+  "variant": "delay_nolag",
+  "arms": [
+   "lru"
+  ],
+  "label": "lru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p17_nolag_lru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 800,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32 --train-lags 1 2 3 4",
+  "rows": 11
+ }
+]

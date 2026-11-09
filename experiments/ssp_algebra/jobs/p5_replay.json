@@ -1,0 +1,54 @@
+[
+ {
+  "name": "p5-rep-a",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rep_a",
+  "arm_cfg": {
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "length_scale": 1.0,
+   "rung": 1,
+   "init": "random",
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336
+  },
+  "tag": "p5_rep_a",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ },
+ {
+  "name": "p5-rep-b",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "rep_b",
+  "arm_cfg": {
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "length_scale": 1.0,
+   "rung": 1,
+   "init": "random",
+   "ls_start": 7.0,
+   "ls_mode": "sched",
+   "width_steps": 336
+  },
+  "tag": "p5_rep_b",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 672,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 1 --seeds 10 --ep-len 16",
+  "rows": 11
+ }
+]

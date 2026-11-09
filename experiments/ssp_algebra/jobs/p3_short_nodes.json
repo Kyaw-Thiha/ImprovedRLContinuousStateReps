@@ -1,0 +1,90 @@
+[
+ {
+  "name": "p3s-nodes32-b512",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "nodes32_b512",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3s_nodes32_b512",
+  "budget": 512,
+  "configs": 2,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 32 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 12
+ },
+ {
+  "name": "p3s-nodes32-b1024",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "nodes32_b1024",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3s_nodes32_b1024",
+  "budget": 1024,
+  "configs": 2,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 32 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 12
+ },
+ {
+  "name": "p3s-nodes64-b512",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "nodes64_b512",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3s_nodes64_b512",
+  "budget": 512,
+  "configs": 2,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 64 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 12
+ },
+ {
+  "name": "p3s-nodes64-b1024",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "nodes64_b1024",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3s_nodes64_b1024",
+  "budget": 1024,
+  "configs": 2,
+  "seeds": 10,
+  "steps": 2500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --n-nodes 64 --n-query 8 --max-hops 8 --train-hops 1 2",
+  "rows": 12
+ }
+]

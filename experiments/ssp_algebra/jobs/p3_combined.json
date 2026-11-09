@@ -1,0 +1,44 @@
+[
+ {
+  "name": "p3-combined",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_1hop_cuehop",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.5
+  },
+  "tag": "p3_combined",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --train-hops 1 --max-hops 8 --n-nodes 8 --n-query 8 --robust",
+  "rows": 28
+ },
+ {
+  "name": "p3-combined-plain",
+  "variant": "pointer",
+  "arms": [
+   "ssp_pointer_learned"
+  ],
+  "label": "ssp_ptr_1hop_cuehop_plain",
+  "arm_cfg": {
+   "rung": 3,
+   "cue": "features",
+   "halting": "cue_hop",
+   "init": "random",
+   "aux_weight": 0.0
+  },
+  "tag": "p3_combined_plain",
+  "configs": 6,
+  "seeds": 10,
+  "steps": 3000,
+  "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10 --train-hops 1 --max-hops 8 --n-nodes 8 --n-query 8 --robust",
+  "rows": 28
+ }
+]

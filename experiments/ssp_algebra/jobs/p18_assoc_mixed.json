@@ -1,0 +1,106 @@
+[
+ {
+  "name": "p18-amix-full",
+  "variant": "assoc_mixed",
+  "arms": [
+   "assoc_pos_ssp"
+  ],
+  "label": "full",
+  "arm_cfg": {},
+  "tag": "p18_amix_full",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1200,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 8",
+  "rows": 11
+ },
+ {
+  "name": "p18-amix-nopos",
+  "variant": "assoc_mixed",
+  "arms": [
+   "assoc_pos_ssp"
+  ],
+  "label": "nopos",
+  "arm_cfg": {
+   "pos": false
+  },
+  "tag": "p18_amix_nopos",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1200,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 8",
+  "rows": 11
+ },
+ {
+  "name": "p18-amix-nobind",
+  "variant": "assoc_mixed",
+  "arms": [
+   "assoc_pos_ssp"
+  ],
+  "label": "nobind",
+  "arm_cfg": {
+   "bind": false
+  },
+  "tag": "p18_amix_nobind",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1200,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 8",
+  "rows": 11
+ },
+ {
+  "name": "p18-amix-content-only-ssp",
+  "variant": "assoc_mixed",
+  "arms": [
+   "assoc_ssp"
+  ],
+  "label": "content_only_ssp",
+  "arm_cfg": {},
+  "tag": "p18_amix_content_only_ssp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1200,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 8",
+  "rows": 11
+ },
+ {
+  "name": "p18-amix-gru",
+  "variant": "assoc_mixed",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p18_amix_gru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1200,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 8",
+  "rows": 11
+ },
+ {
+  "name": "p18-amix-lru",
+  "variant": "assoc_mixed",
+  "arms": [
+   "lru"
+  ],
+  "label": "lru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p18_amix_lru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1200,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 24 --n-items 8",
+  "rows": 11
+ }
+]

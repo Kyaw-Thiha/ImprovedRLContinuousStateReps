@@ -1,0 +1,28 @@
+[
+ {
+  "name": "p5c-s10-o15",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "c_s10_o15",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_slope_err": 0.1,
+   "affine_offset": 1.5,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p5c_s10_o15",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.9 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ }
+]

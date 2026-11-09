@@ -1,0 +1,18 @@
+[
+  {"name": "s4-chain-a", "variant": "pointer", "arms": ["gru", "lru", "tf_full"], "tag": "s4_chain_a",
+   "extra": "--chain --select aulc --search-seeds 3 --seeds 10", "rows": 84},
+
+  {"name": "s4-chain-b", "variant": "pointer", "arms": ["tf_window", "kernel_attn", "looped_tf"], "tag": "s4_chain_b",
+   "extra": "--chain --select aulc --search-seeds 3 --seeds 10", "rows": 84},
+
+  {"name": "s4-loop-aux", "variant": "pointer", "arms": ["looped_tf"], "label": "looped_tf_aux",
+   "arm_cfg": {"aux_weight": 0.5}, "tag": "s4_loop_aux",
+   "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 28},
+
+  {"name": "s4-loop-plain", "variant": "pointer", "arms": ["looped_tf"], "label": "looped_tf_plain",
+   "tag": "s4_loop_plain", "extra": "--select aulc --search-seeds 3 --seeds 10", "rows": 28},
+
+  {"name": "s4-r3-aux", "variant": "pointer", "arms": ["ssp_pointer_learned"], "label": "ssp_ptr_r3_aux",
+   "arm_cfg": {"rung": 3, "init": "random", "aux_weight": 0.5}, "tag": "s4_r3_aux",
+   "extra": "--select aulc --search-seeds 3 --seeds 10 --robust", "rows": 28}
+]

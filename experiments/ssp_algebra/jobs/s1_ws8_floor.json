@@ -1,0 +1,5 @@
+[
+  {"name": "s1-ws8-floor", "variant": "index", "arms": ["ssp_index_learned"], "label": "ssp_index_learned_r1_ws8_s375",
+   "arm_cfg": {"rung": 1, "init": "random", "length_scale": 1.0, "ls_start": 8.0, "ls_mode": "sched", "width_steps": 375},
+   "tag": "s1_ws8_floor", "extra": "--select aulc --min-conv 0.95 --search-seeds 3 --seeds 10", "rows": 28}
+]

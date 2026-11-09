@@ -1,0 +1,626 @@
+[
+ {
+  "name": "p14-index-fwp_delta-def",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta_def",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p14_index_fwp_delta_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p14-index-fwp_delta-tun",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta_tun",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p14_index_fwp_delta_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p14-index-fwp_gate-def",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_def",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input"
+  },
+  "tag": "p14_index_fwp_gate_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p14-index-fwp_gate-tun",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_tun",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input"
+  },
+  "tag": "p14_index_fwp_gate_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p14-index-fwp_gate_banks2-def",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_banks2_def",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_index_fwp_gate_banks2_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p14-index-fwp_gate_banks2-tun",
+  "variant": "index",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_banks2_tun",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_index_fwp_gate_banks2_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p14-index-recipe-def",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_def",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p14_index_recipe_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p14-index-recipe-tun",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_tun",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p14_index_recipe_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p14-index-recipe_gate-def",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_def",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p14_index_recipe_gate_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p14-index-recipe_gate-tun",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_tun",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p14_index_recipe_gate_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p14-index-recipe_gate_banks2-def",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_banks2_def",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_index_recipe_gate_banks2_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 32",
+  "rows": 11
+ },
+ {
+  "name": "p14-index-recipe_gate_banks2-tun",
+  "variant": "index",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_banks2_tun",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_index_recipe_gate_banks2_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 32",
+  "rows": 28
+ },
+ {
+  "name": "p14-delay-fwp_delta-def",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta_def",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p14_delay_fwp_delta_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p14-delay-fwp_delta-tun",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_delta_tun",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p14_delay_fwp_delta_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ },
+ {
+  "name": "p14-delay-fwp_gate-def",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_def",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input"
+  },
+  "tag": "p14_delay_fwp_gate_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p14-delay-fwp_gate-tun",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_tun",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input"
+  },
+  "tag": "p14_delay_fwp_gate_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ },
+ {
+  "name": "p14-delay-fwp_gate_banks2-def",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_banks2_def",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_delay_fwp_gate_banks2_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p14-delay-fwp_gate_banks2-tun",
+  "variant": "delay",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp_gate_banks2_tun",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_delay_fwp_gate_banks2_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ },
+ {
+  "name": "p14-delay-recipe-def",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_def",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p14_delay_recipe_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p14-delay-recipe-tun",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_tun",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1
+  },
+  "tag": "p14_delay_recipe_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ },
+ {
+  "name": "p14-delay-recipe_gate-def",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_def",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p14_delay_recipe_gate_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p14-delay-recipe_gate-tun",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_tun",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input"
+  },
+  "tag": "p14_delay_recipe_gate_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ },
+ {
+  "name": "p14-delay-recipe_gate_banks2-def",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_banks2_def",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_delay_recipe_gate_banks2_def",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 1 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 11
+ },
+ {
+  "name": "p14-delay-recipe_gate_banks2-tun",
+  "variant": "delay",
+  "arms": [
+   "ssp_index_learned"
+  ],
+  "label": "recipe_gate_banks2_tun",
+  "arm_cfg": {
+   "rung": 1,
+   "init": "affine",
+   "affine_eps": 0.03,
+   "affine_offset_zero": true,
+   "length_scale": 1.0,
+   "ls_mode": "fixed",
+   "lr": 0.02,
+   "lam_init": 0.99,
+   "temp": 0.1,
+   "gate": "input",
+   "banks": 2
+  },
+  "tag": "p14_delay_recipe_gate_banks2_tun",
+  "budget": 256,
+  "configs": 6,
+  "seeds": 10,
+  "steps": 400,
+  "extra": "--select aulc --min-conv 0.0 --search-seeds 3 --seeds 10 --ep-len 16 --train-lags 1 2 3 4",
+  "rows": 28
+ }
+]

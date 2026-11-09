@@ -1,0 +1,146 @@
+[
+ {
+  "name": "p21-easy-gru",
+  "variant": "spatial_easy",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p21_easy_gru",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv -100 --search-seeds 1 --seeds 10 --ep-len 24",
+  "rows": 11
+ },
+ {
+  "name": "p21-easy-mlp",
+  "variant": "spatial_easy",
+  "arms": [
+   "mlp"
+  ],
+  "label": "mlp",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p21_easy_mlp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv -100 --search-seeds 1 --seeds 10 --ep-len 24",
+  "rows": 11
+ },
+ {
+  "name": "p21-easy-ssp",
+  "variant": "spatial_easy",
+  "arms": [
+   "ssp_spatial"
+  ],
+  "label": "ssp",
+  "arm_cfg": {},
+  "tag": "p21_easy_ssp",
+  "budget": 256,
+  "configs": 1,
+  "seeds": 10,
+  "steps": 1500,
+  "extra": "--select aulc --min-conv -100 --search-seeds 1 --seeds 10 --ep-len 24",
+  "rows": 11
+ },
+ {
+  "name": "p21-tuned-gru",
+  "variant": "spatial",
+  "arms": [
+   "gru"
+  ],
+  "label": "gru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p21_tuned_gru",
+  "budget": 256,
+  "configs": 4,
+  "seeds": 10,
+  "steps": 4000,
+  "extra": "--select aulc --min-conv -100 --search-seeds 2 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 18
+ },
+ {
+  "name": "p21-tuned-lru",
+  "variant": "spatial",
+  "arms": [
+   "lru"
+  ],
+  "label": "lru",
+  "arm_cfg": {
+   "hidden": 64
+  },
+  "tag": "p21_tuned_lru",
+  "budget": 256,
+  "configs": 4,
+  "seeds": 10,
+  "steps": 4000,
+  "extra": "--select aulc --min-conv -100 --search-seeds 2 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 18
+ },
+ {
+  "name": "p21-tuned-fwp",
+  "variant": "spatial",
+  "arms": [
+   "fwp_delta"
+  ],
+  "label": "fwp",
+  "arm_cfg": {
+   "rule": "delta",
+   "tied": true,
+   "read_abs": true,
+   "beta_init": 4.0,
+   "lr": 0.02,
+   "hidden": 32,
+   "lam_init": 0.99
+  },
+  "tag": "p21_tuned_fwp",
+  "budget": 256,
+  "configs": 4,
+  "seeds": 10,
+  "steps": 4000,
+  "extra": "--select aulc --min-conv -100 --search-seeds 2 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 18
+ },
+ {
+  "name": "p21-tuned-pose",
+  "variant": "spatial",
+  "arms": [
+   "pose_attn"
+  ],
+  "label": "pose",
+  "arm_cfg": {},
+  "tag": "p21_tuned_pose",
+  "budget": 256,
+  "configs": 4,
+  "seeds": 10,
+  "steps": 4000,
+  "extra": "--select aulc --min-conv -100 --search-seeds 2 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 18
+ },
+ {
+  "name": "p21-tuned-ssp",
+  "variant": "spatial",
+  "arms": [
+   "ssp_spatial"
+  ],
+  "label": "ssp",
+  "arm_cfg": {},
+  "tag": "p21_tuned_ssp",
+  "budget": 256,
+  "configs": 4,
+  "seeds": 10,
+  "steps": 4000,
+  "extra": "--select aulc --min-conv -100 --search-seeds 2 --seeds 10 --ep-len 24 --n-items 3",
+  "rows": 18
+ }
+]
