@@ -139,6 +139,11 @@ class TileCodingRep(object):
         self.num_tilings = num_tilings
         self.iht = IHT(iht_size)
         self.size_out = iht_size
+        # Exactly `num_tilings` tiles are active for any state (one per tiling) —
+        # DQN uses this to switch to a sparse index-based encode/update path
+        # instead of materializing a dense `size_out`-length one-hot vector.
+        # See map_indices() below and rl/networks/dqnBasic.py.
+        self.n_active = num_tilings
 
         obs_dim = len(self.env.observation_space.high)
         if state_indices is None:
@@ -165,15 +170,33 @@ class TileCodingRep(object):
             return state
         return state[self.state_indices]
 
-    def map(self, state):
+    def _active_tiles(self, state):
         state = self._select_state(state)
         clipped = np.clip(state, self.lower, self.upper)
         scaled = (clipped - self.lower) / self.ranges * self.tiles_per_dim
-        active_tiles = tiles(self.iht, self.num_tilings, scaled)
+        return tiles(self.iht, self.num_tilings, scaled)
 
+    def map(self, state):
+        """Dense multi-hot encoding (length size_out). Kept for callers that need
+        a full feature vector (e.g. the A2C/Nengo pipeline in trial_cartpole_nengo.py)."""
+        active_tiles = self._active_tiles(state)
         self.result[:] = 0
         self.result[active_tiles] = 1
         return self.result.copy()
+
+    def map_indices(self, state):
+        """Sparse encoding: just the `num_tilings` active tile indices (int64).
+
+        Equivalent information to map()'s one-hot vector, but O(num_tilings)
+        instead of O(size_out) to produce and to consume — size_out can be up
+        to 131072 while num_tilings is at most 32. Used by DQN (dqnBasic.py),
+        which detects this method via hasattr() and switches its replay buffer
+        + update() math to index-based gather/scatter ops instead of dense
+        matmuls over size_out. See docs/07-decision-log.md for the profiling
+        that motivated this (dense update() cost was ~0.23us/dim, so at
+        size_out=131072 a single gradient update cost ~30ms vs ~1.6ms at 4096).
+        """
+        return np.asarray(self._active_tiles(state), dtype=np.int64)
 
     def get_state(self, state, env=None):
         state = self._select_state(state)
