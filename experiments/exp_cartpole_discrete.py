@@ -4,7 +4,7 @@ import time
 import nni
 
 sys.path.append(os.path.join(os.path.dirname(__file__),'../trials'))
-from trial_cartpole import ACTrial
+from trial_cartpole_nengo import ACTrial
 
 # specify where to save the data locally
 data_dir_ = '../../data-ks/iccm23-git'

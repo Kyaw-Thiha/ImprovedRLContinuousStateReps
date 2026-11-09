@@ -10,7 +10,7 @@ REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
-from trial_cartpole import ACTrial
+from trial_cartpole_nengo import ACTrial
 import rl as net
 
 trials = 1000

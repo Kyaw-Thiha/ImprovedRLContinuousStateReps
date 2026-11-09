@@ -1,3 +1,7 @@
+# LEGACY (Nengo) reference implementation. Kept for the citable old A2C results; the live A2C path is
+# experiments/trial_cartpole_a2c.py (NumPy, no Nengo). NOTE: the SSP branch here is currently NOT runnable:
+# it was written for the old vendored sspspace/SSPRep(domain_bounds=..., n_scales=8), which the Stage-0
+# rewrite of rl/representations/ssp.py replaced. Logic below is unchanged apart from import names.
 import matplotlib.pyplot as plt
 import gymnasium as gym
 from tqdm import tqdm

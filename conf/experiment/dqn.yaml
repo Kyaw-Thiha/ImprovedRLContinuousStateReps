@@ -1,6 +1,6 @@
 model_type: dqn
 buffer_size: 10000
 batch_size: 64
-target_update_freq: 100   # gradient steps between target network syncs
+target_update_freq: 25    # gradient steps between target network syncs (compensated: 25 * 4 = 100 env steps, matches baseline)
 learning_starts: 500      # env steps before first gradient update
-train_freq: 1             # env steps between gradient updates
+train_freq: 4             # env steps between gradient updates
