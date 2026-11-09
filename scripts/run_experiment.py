@@ -19,7 +19,7 @@ from hydra.core.hydra_config import HydraConfig
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../experiments"))
 
-from experiments.trial_cartpole import ACTrial
+from experiments.trial_cartpole_nengo import ACTrial
 
 
 def cfg_to_trial_kwargs(cfg: DictConfig) -> dict:
