@@ -1,0 +1,86 @@
+# Stage-0 DQN Docker build context exclusions.
+# This file mirrors what setup_runpod.sh ignores via .venv + manual install —
+# any path matched here is NOT sent to the Docker daemon, keeping the build
+# context small and the resulting image lean.
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# --- Virtual envs (the Dockerfile installs a fresh env via pip, never COPY) ---
+.venv/
+venv/
+env/
+
+# --- VCS ---
+.git/
+.gitignore
+.gitattributes
+
+# --- Secrets and local config (NEVER bake into an image) ---
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# --- Runtime artifacts that must live on a volume, not in the image ---
+outputs/hparam_search/dqn/
+outputs/hparam_search/logs/
+outputs/tuned/
+outputs/hparam_search/*.db
+optuna_studies.db
+optuna_studies_a2c.db
+optuna_studies_old.db
+
+# --- Historical A2C ACTrial artifacts (GB-scale states.csv files) ---
+# These are outputs from the legacy Nengo/AC search path — not used by the
+# Stage-0 DQN runner, but they dominate the build context (~22 GB total).
+outputs/hparam_search/discrete/
+outputs/hparam_search/ssp/
+outputs/hparam_search/tile_coding/
+outputs/hparam_search_old/
+
+# --- Smoke-test outputs (from scripts/smoke_test_dqn.py, also under experiments/) ---
+outputs/smoke_test/
+outputs/smoke_test_dqn/
+experiments/outputs/
+
+# --- Tests and docs (not needed in the image) ---
+tests/
+docs/
+
+# --- Datasets / large generated data ---
+data/
+
+# --- Figures / exploratory artifacts ---
+figures/
+*.pdf
+*.png
+*.gif
+*.svg
+
+# --- Legacy AC env lockfile (unrelated to Stage-0 image) ---
+experiments/spec-file.txt
+
+# --- Editor / OS junk ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# --- Test outputs ---
+tests/outputs/
+
+# --- Repo backups ---
+README.md.backup
+
+# --- Pilot outputs (study DB copies, results JSONL) ---
+outputs/pilot/

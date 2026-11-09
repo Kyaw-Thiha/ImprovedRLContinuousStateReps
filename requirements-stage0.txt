@@ -1,0 +1,31 @@
+# Stage-0 (DQN-only) modern dependency set.
+# Used for local CPU runs of DQN-linear / DQN-deep on classic CartPole.
+# The legacy Nengo-dependent ACTrial/A2C code path is intentionally NOT
+# covered here; it remains on the legacy env (requirements.txt) and runs on
+# Modal per MODAL_GUIDE.md. Do not merge the two sets — the legacy pins
+# (Python 3.9.12, numpy 1.22.4, nengo 3.2.0) are incompatible with this
+# modern wheel set on Python 3.11+.
+
+# sspspace: pinned to upstream ctn-waterloo/sspspace main at this SHA.
+# Updated 2026-09-22. Bump when needed; record the new SHA in docs/.
+sspspace @ git+https://github.com/ctn-waterloo/sspspace@f3f68570e9488d32ce3e5dfaca6de5b0ccf5e91b
+
+# Modern compatible ranges — bumps are cheap, no functional regressions.
+numpy>=1.21.2
+scipy>=1.10
+gymnasium>=1.0
+optuna>=4.0
+pyyaml>=6.0
+pandas>=2.0
+tqdm>=4.65
+matplotlib>=3.7
+seaborn>=0.12
+pytry>=0.9
+
+# R2 sync infrastructure (scripts/sync_to_r2.py)
+boto3>=1.34
+
+# PyTorch (CPU wheel — sufficient for Stage-0 CartPole, GPU not needed at this scale)
+# Used by Stage 0 DQN (rl/networks/dqnBasic.py) for tensor-backed matmul/norm
+# in the per-action Adam update. Required since the Tier-3 PyTorch port (2026-09).
+torch>=2.0

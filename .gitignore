@@ -9,3 +9,31 @@ data/*
 experiments/plotting/*
 outputs/*
 *.db
+.env
+
+# R2 credentials for s3cmd (never commit; also excluded from the pod code tarball)
+scripts/.s3cfg/
+
+# mjlab track
+mjlab_centering/.venv/
+mjlab_centering/logs/
+mjlab_centering/results/
+mjlab_centering/**/*.egg-info/
+
+# bulk run artefacts (results stay on R2; the round reports and manifests are committed)
+experiments/outputs/
+experiments/ssp_algebra/results/
+experiments/popgym_vsa/logs/
+linear_slice/results/
+mjlab_centering/results/
+mjlab_centering/**/*.db
+mjlab_centering/.pytest_cache/
+tests/__pycache__/
+.pytest_cache/
+
+# local sync lock (transient)
+.r2_sync.lock
+
+# supervisor rollout videos: large binaries, kept locally, not in git
+docs/figures/supervisor/videos/*.mp4
+docs/figures/supervisor/videos/*.gif
