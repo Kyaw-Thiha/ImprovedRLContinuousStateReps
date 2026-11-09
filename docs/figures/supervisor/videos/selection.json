@@ -1,0 +1,14 @@
+{
+ "go1": {
+  "seed": 3002,
+  "centered_logged": 0.8828577200571696,
+  "uncentered_logged": 0.3011060754458109,
+  "n_seeds": 20
+ },
+ "g1": {
+  "seed": 3012,
+  "centered_logged": 0.8173929055531819,
+  "uncentered_logged": 0.2975931803385417,
+  "n_seeds": 20
+ }
+}

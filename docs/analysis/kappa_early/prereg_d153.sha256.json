@@ -1,0 +1,11 @@
+{
+ "written": "2026-11-06T08:07:12.551577Z",
+ "note": "sha256 of 02-decisions.md right after d153 (Task 1 pre-registration), before any kappa-hat was computed",
+ "files": {
+  "docs/mjlab_centering/02-decisions.md": "76c51b5fce801cb49cff05199a478f2be0001284e8e5e439c42056ef819066ab"
+ },
+ "files_after_result_d154": {
+  "docs/mjlab_centering/02-decisions.md": "5cbfc351574eb6ed7b261e0024664a2b3fd02390ff84af3ab36c30db857de9ca"
+ },
+ "note2": "files_after_result_d154 is the hash after the result entry d154 was appended; the first hash covers the pre-registration only"
+}

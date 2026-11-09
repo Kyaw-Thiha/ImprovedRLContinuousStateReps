@@ -1,0 +1,366 @@
+{
+ "go1_centered_seed3002": {
+  "robot": "go1",
+  "arm": "value",
+  "seed": 3002,
+  "job": "r7vid_go1_g0.999_o1_value_s3002",
+  "ckpt": "R2 mjlab_ssp_centering/r7videoruns-90413106/runs/r7vid_go1_g0.999_o1_value_s3002/model_final.pt (local copy mjlab_centering/results/video_runs/r7vid_go1_g0.999_o1_value_s3002/model_final.pt)",
+  "retrained_tracking": 0.8803682804107666,
+  "logged_tracking_same_seed": 0.8828577200571696,
+  "gif_mb": 8.0,
+  "mp4_mb": 2.75,
+  "gpu": "NVIDIA L40",
+  "train_torch": "2.15.0+cu132",
+  "render": {
+   "segments": [
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 4.0,
+     "mean_vx": 0.7539676967822015,
+     "mean_vy": -0.04303605509456247,
+     "mean_wz": -0.022521390697802415,
+     "min_root_z": 0.2979724705219269
+    },
+    {
+     "command": "turn left",
+     "cmd": [
+      0.4,
+      0.0,
+      0.5
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.4334045688311259,
+     "mean_vy": 0.003027872641881307,
+     "mean_wz": 0.5130677812422315,
+     "min_root_z": 0.29668208956718445
+    },
+    {
+     "command": "sideways (left)",
+     "cmd": [
+      0.0,
+      0.4,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.07331797815859317,
+     "mean_vy": 0.2938619203368823,
+     "mean_wz": 0.01973662101586039,
+     "min_root_z": 0.2975510358810425
+    },
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.7423637370268504,
+     "mean_vy": -0.021439329087734223,
+     "mean_wz": -0.02460260657981659,
+     "min_root_z": 0.29066500067710876
+    },
+    {
+     "command": "stop",
+     "cmd": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.03715236234789093,
+     "mean_vy": -0.010681765709693232,
+     "mean_wz": 0.02476570368356382,
+     "min_root_z": 0.27849701046943665
+    }
+   ],
+   "frames": 480,
+   "step_dt": 0.02,
+   "fps": 30,
+   "size": [
+    1280,
+    720
+   ],
+   "torch": "2.15.0+cu132",
+   "mujoco_gl": "egl"
+  }
+ },
+ "go1_uncentered_seed3002": {
+  "robot": "go1",
+  "arm": "none",
+  "seed": 3002,
+  "job": "r7vid_go1_g0.999_o1_none_s3002",
+  "ckpt": "R2 mjlab_ssp_centering/r7videoruns-90413106/runs/r7vid_go1_g0.999_o1_none_s3002/model_final.pt (local copy mjlab_centering/results/video_runs/r7vid_go1_g0.999_o1_none_s3002/model_final.pt)",
+  "retrained_tracking": 0.3181861639022827,
+  "logged_tracking_same_seed": 0.3011060754458109,
+  "gif_mb": 5.91,
+  "mp4_mb": 0.94,
+  "gpu": "NVIDIA L40",
+  "train_torch": "2.15.0+cu132",
+  "render": {
+   "segments": [
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 4.0,
+     "mean_vx": 0.008065559313545237,
+     "mean_vy": 0.009800205650171846,
+     "mean_wz": -0.003595380624765312,
+     "min_root_z": 0.06636630743741989
+    },
+    {
+     "command": "turn left",
+     "cmd": [
+      0.4,
+      0.0,
+      0.5
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.005240029943039796,
+     "mean_vy": 0.011561091832481907,
+     "mean_wz": 0.011709563837115033,
+     "min_root_z": 0.08293162286281586
+    },
+    {
+     "command": "sideways (left)",
+     "cmd": [
+      0.0,
+      0.4,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 1.6768455437462157e-05,
+     "mean_vy": 0.0036505670657303803,
+     "mean_wz": -0.003994272168977962,
+     "min_root_z": 0.08333874493837357
+    },
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": -0.00037469612318091094,
+     "mean_vy": 0.006078413478535367,
+     "mean_wz": -0.010051277072683055,
+     "min_root_z": 0.08296456187963486
+    },
+    {
+     "command": "stop",
+     "cmd": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.0035541470312091404,
+     "mean_vy": -0.010168640241154207,
+     "mean_wz": 0.010371141924115363,
+     "min_root_z": 0.08280470222234726
+    }
+   ],
+   "frames": 480,
+   "step_dt": 0.02,
+   "fps": 30,
+   "size": [
+    1280,
+    720
+   ],
+   "torch": "2.15.0+cu132",
+   "mujoco_gl": "egl"
+  }
+ },
+ "g1_centered_seed3012": {
+  "robot": "g1",
+  "arm": "value",
+  "seed": 3012,
+  "job": "r7vid_g1_g0.99_o1_value_s3012",
+  "ckpt": "R2 mjlab_ssp_centering/r7videoruns-90413106/runs/r7vid_g1_g0.99_o1_value_s3012/model_final.pt (local copy mjlab_centering/results/video_runs/r7vid_g1_g0.99_o1_value_s3012/model_final.pt)",
+  "retrained_tracking": 0.8088176568349204,
+  "logged_tracking_same_seed": 0.8173929055531819,
+  "gif_mb": 7.57,
+  "mp4_mb": 2.49,
+  "gpu": "NVIDIA L40",
+  "train_torch": "2.15.0+cu132",
+  "render": {
+   "segments": [
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 4.0,
+     "mean_vx": 0.6983095541922375,
+     "mean_vy": -0.010475220708176494,
+     "mean_wz": -0.027027881991816684,
+     "min_root_z": 0.7378485202789307
+    },
+    {
+     "command": "turn left",
+     "cmd": [
+      0.4,
+      0.0,
+      0.5
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.3785934432347616,
+     "mean_vy": 0.021890973070791613,
+     "mean_wz": 0.4195639174928268,
+     "min_root_z": 0.7510901093482971
+    },
+    {
+     "command": "sideways (left)",
+     "cmd": [
+      0.0,
+      0.4,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.04467046368556718,
+     "mean_vy": 0.2629505791235715,
+     "mean_wz": 0.00963115578206877,
+     "min_root_z": 0.7512068152427673
+    },
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.48629661909615,
+     "mean_vy": 0.016998714928825695,
+     "mean_wz": 0.031056570999789982,
+     "min_root_z": 0.7418389916419983
+    },
+    {
+     "command": "stop",
+     "cmd": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.16901444330190618,
+     "mean_vy": -0.04120220915492003,
+     "mean_wz": -0.015381940569107732,
+     "min_root_z": 0.7453653216362
+    }
+   ],
+   "frames": 480,
+   "step_dt": 0.02,
+   "fps": 30,
+   "size": [
+    1280,
+    720
+   ],
+   "torch": "2.15.0+cu132",
+   "mujoco_gl": "egl"
+  }
+ },
+ "g1_uncentered_seed3012": {
+  "robot": "g1",
+  "arm": "none",
+  "seed": 3012,
+  "job": "r7vid_g1_g0.99_o1_none_s3012",
+  "ckpt": "R2 mjlab_ssp_centering/r7videoruns-90413106/runs/r7vid_g1_g0.99_o1_none_s3012/model_final.pt (local copy mjlab_centering/results/video_runs/r7vid_g1_g0.99_o1_none_s3012/model_final.pt)",
+  "retrained_tracking": 0.3012762705485026,
+  "logged_tracking_same_seed": 0.2975931803385417,
+  "gif_mb": 8.14,
+  "mp4_mb": 1.81,
+  "gpu": "NVIDIA L40",
+  "train_torch": "2.15.0+cu132",
+  "render": {
+   "segments": [
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 4.0,
+     "mean_vx": 0.12949704949278384,
+     "mean_vy": 0.027380666914395987,
+     "mean_wz": -0.6301764048845507,
+     "min_root_z": 0.7382345795631409
+    },
+    {
+     "command": "turn left",
+     "cmd": [
+      0.4,
+      0.0,
+      0.5
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.02934447625031074,
+     "mean_vy": -0.004994882637013992,
+     "mean_wz": -0.4148393712953354,
+     "min_root_z": 0.741611659526825
+    },
+    {
+     "command": "sideways (left)",
+     "cmd": [
+      0.0,
+      0.4,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": 0.04366147433097164,
+     "mean_vy": 0.021715080154438814,
+     "mean_wz": -0.22159225279154876,
+     "min_root_z": 0.7433499693870544
+    },
+    {
+     "command": "forward 0.8 m/s",
+     "cmd": [
+      0.8,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": -0.252921091466366,
+     "mean_vy": -0.14937829807264885,
+     "mean_wz": 0.21163708127414188,
+     "min_root_z": 0.12449920922517776
+    },
+    {
+     "command": "stop",
+     "cmd": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "seconds": 3.0,
+     "mean_vx": -0.0065845169022213665,
+     "mean_vy": -0.007756025599665008,
+     "mean_wz": 0.02848724874590213,
+     "min_root_z": 0.13236142694950104
+    }
+   ],
+   "frames": 480,
+   "step_dt": 0.02,
+   "fps": 30,
+   "size": [
+    1280,
+    720
+   ],
+   "torch": "2.15.0+cu132",
+   "mujoco_gl": "egl"
+  }
+ }
+}
