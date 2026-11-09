@@ -1,0 +1,38 @@
+{
+ "campaign": "d1-f61dbe3d",
+ "iters": 150,
+ "jobs": [
+  {
+   "job_id": "diag_i150",
+   "block": "diag",
+   "robot": "go1",
+   "seed": 0,
+   "center": "none",
+   "gamma": 0.99,
+   "offset": 0.0,
+   "penalty": 10.0,
+   "iters": 150,
+   "learning_rate": null,
+   "eta": 0.01,
+   "beta": 0.01,
+   "value_clip": null,
+   "ret_norm": "none",
+   "reward_scale": "none",
+   "shock_kind": "none",
+   "shock_at": null,
+   "shock_factor": 5.0,
+   "p_reset": 0.0,
+   "num_envs": 2048,
+   "eval_envs": 256,
+   "eval_every": 25,
+   "eval_steps": 300,
+   "final_steps": 200,
+   "final_shift_steps": 100,
+   "upload_ckpt": false,
+   "num_steps_per_env": 24,
+   "priority": 0,
+   "notes": "",
+   "extra": {}
+  }
+ ]
+}
